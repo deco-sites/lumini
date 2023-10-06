@@ -50,7 +50,7 @@ function CategoriesShelf({
           {categories?.map((category, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[180px] h-[222px] first:pl-1 last:pr-1"
+              class="carousel-item w-[130px] h-[160px] sm:w-[180px] sm:h-[222px] first:pl-4 last:pr-4 sm:first:pl-1 sm:last:pr-1"
             >
               <Image
                 src={category.image}
