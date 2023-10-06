@@ -1,10 +1,9 @@
 {
   "imports": {
     "deco-sites/lumini/": "./",
-
     "$store/": "./",
-    "apps/": "https://denopkg.com/deco-cx/apps@0.12.7/",
-    "deco/": "https://denopkg.com/deco-cx/deco@1.40.0/",
+    "apps/": "https://denopkg.com/deco-cx/apps@0.13.3/",
+    "deco/": "https://denopkg.com/deco-cx/deco@1.40.1/",
     "$fresh/": "https://denopkg.com/deco-cx/fresh@1.4.3/",
     "preact": "https://esm.sh/preact@10.15.1",
     "preact/": "https://esm.sh/preact@10.15.1/",

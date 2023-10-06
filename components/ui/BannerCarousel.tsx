@@ -150,7 +150,7 @@ function Dots({ images, interval = 0 }: Props) {
 function Buttons() {
   return (
     <>
-      <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
+      <div class="flex items-center justify-center z-10 col-start-1 row-start-2 cursor-pointer">
         <Slider.PrevButton class="">
           <Icon
             class="text-black"
@@ -160,7 +160,7 @@ function Buttons() {
           />
         </Slider.PrevButton>
       </div>
-      <div class="flex items-center justify-center z-10 col-start-3 row-start-2 rotate-180">
+      <div class="flex items-center justify-center z-10 col-start-3 row-start-2 rotate-180 cursor-pointer">
         <Slider.NextButton class="">
           <Icon
             class="text-black"
