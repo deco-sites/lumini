@@ -7,7 +7,7 @@ export interface Props {
   benefits?: Array<{
     label: string;
     icon: AvailableIcons;
-    description: string;
+    description?: string;
   }>;
   layout?: {
     variation?: "Simple" | "With border" | "Color reverse";
@@ -38,7 +38,8 @@ export default function Benefits(
   } = props;
 
   const listOfBenefits = benefits.map((benefit, index) => {
-    const showDivider = index < benefits.length - 1;
+    // const showDivider = index < benefits.length - 1;
+    const showDivider = false;
     const reverse = layout?.variation === "Color reverse";
     const benefitLayout = !layout?.variation || layout?.variation === "Simple"
       ? "tiled"
@@ -48,7 +49,7 @@ export default function Benefits(
       <div
         class={`${
           reverse ? "bg-primary text-primary-content p-4 lg:px-8 lg:py-4" : ""
-        } flex gap-4 ${
+        } flex items-center justify-center gap-4 ${
           benefitLayout == "piledup" ? "flex-col items-center text-center" : ""
         } ${
           showDivider && benefitLayout !== "piledup"
@@ -70,29 +71,31 @@ export default function Benefits(
         </div>
         <div class="flex-auto flex flex-col gap-1 lg:gap-2">
           <div
-            class={`text-base lg:text-xl leading-7 ${
+            class={`text-base leading-7 ${
               reverse ? "text-base-100" : "text-base-content"
             }`}
           >
             {benefit.label}
           </div>
-          <p
-            class={`text-sm leading-5 ${
-              reverse ? "text-base-100" : "text-neutral"
-            } ${benefitLayout == "piledup" ? "hidden lg:block" : ""}`}
-          >
-            {benefit.description}
-          </p>
+          {benefit.description && (
+            <p
+              class={`text-sm leading-5 ${
+                reverse ? "text-base-100" : "text-neutral"
+              } ${benefitLayout == "piledup" ? "hidden lg:block" : ""}`}
+            >
+              {benefit.description}
+            </p>
+          )}
         </div>
       </div>
     );
   });
 
   return (
-    <>
+    <div class="flex items-center justify-center border-b border-[#d6d6d6] w-full font-univers-next-pro-light">
       {!layout?.variation || layout?.variation === "Simple"
         ? (
-          <div class="w-full container px-4 py-8 flex flex-col gap-8 lg:gap-10 lg:py-10 lg:px-0">
+          <div class="w-full container max-w-[1145px] px-4 py-6 flex flex-col gap-8 lg:gap-10 lg:px-0">
             <Header
               title={title}
               description={description}
@@ -134,6 +137,6 @@ export default function Benefits(
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

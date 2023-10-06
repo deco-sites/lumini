@@ -16,16 +16,6 @@ export interface Banner {
   mobile: ImageWidget;
   /** @description Image's alt text */
   alt: string;
-  action?: {
-    /** @description when user clicks on the image, go to this link */
-    href: string;
-    /** @description Image text title */
-    title: string;
-    /** @description Image text subtitle */
-    subTitle: string;
-    /** @description Button label */
-    label: string;
-  };
 }
 
 export interface Props {
@@ -91,29 +81,28 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
     alt,
     mobile,
     desktop,
-    action,
   } = image;
 
   return (
     <a
-      href={action?.href ?? "#"}
-      aria-label={action?.label}
-      class="relative h-[600px] overflow-y-hidden w-full"
+      href={"#"}
+      aria-label={"Banners"}
+      class="relative lg:min-h-[83vh] lg:max-h-[83vh] overflow-y-hidden w-full"
     >
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={mobile}
-          width={360}
-          height={600}
+          width={768}
+          height={972}
         />
         <Source
           media="(min-width: 768px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={desktop}
-          width={1440}
-          height={600}
+          width={1280}
+          height={514}
         />
         <img
           class="object-cover w-full h-full"
@@ -122,17 +111,6 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
           alt={alt}
         />
       </Picture>
-      {action && (
-        <div class="absolute h-min top-0 bottom-0 m-auto left-0 right-0 sm:right-auto sm:left-[12%] max-h-min max-w-[235px] flex flex-col gap-4 p-4 rounded glass">
-          <span class="text-6xl font-medium text-base-100">
-            {action.title}
-          </span>
-          <span class="font-medium text-xl text-base-100">
-            {action.subTitle}
-          </span>
-          <Button class="glass">{action.label}</Button>
-        </div>
-      )}
     </a>
   );
 }
@@ -157,7 +135,7 @@ function Dots({ images, interval = 0 }: Props) {
             <Slider.Dot index={index}>
               <div class="py-5">
                 <div
-                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-base-100 from-[length:var(--dot-progress)] to-[rgba(255,255,255,0.4)] to-[length:var(--dot-progress)]"
+                  class="w-2.5 h-2.5 rounded-full border border-black group-disabled:animate-progress bg-gradient-to-r from-black from-[length:var(--dot-progress)] to-transparent to-[length:var(--dot-progress)]"
                   style={{ animationDuration: `${interval}s` }}
                 />
               </div>
@@ -173,22 +151,22 @@ function Buttons() {
   return (
     <>
       <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
-        <Slider.PrevButton class="btn btn-circle glass">
+        <Slider.PrevButton class="">
           <Icon
-            class="text-base-100"
-            size={24}
+            class="text-black"
+            size={28}
             id="ChevronLeft"
-            strokeWidth={3}
+            strokeWidth={1}
           />
         </Slider.PrevButton>
       </div>
-      <div class="flex items-center justify-center z-10 col-start-3 row-start-2">
-        <Slider.NextButton class="btn btn-circle glass">
+      <div class="flex items-center justify-center z-10 col-start-3 row-start-2 rotate-180">
+        <Slider.NextButton class="">
           <Icon
-            class="text-base-100"
-            size={24}
-            id="ChevronRight"
-            strokeWidth={3}
+            class="text-black"
+            size={28}
+            id="ChevronLeft"
+            strokeWidth={1}
           />
         </Slider.NextButton>
       </div>
