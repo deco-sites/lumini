@@ -17,14 +17,16 @@ import { formatPrice } from "$store/sdk/format.ts";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { ProductDetailsPage } from "apps/commerce/types.ts";
+import type { ProductDetailsPage, ProductLeaf } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
+import { usePartial } from "apps/website/hooks/usePartial.ts";
 
 export interface Props {
   /** @title Integration */
   page: ProductDetailsPage | null;
+  skus?: ProductLeaf[];
 
   layout?: {
     /**
@@ -62,7 +64,13 @@ function NotFound() {
   );
 }
 
-function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
+function ProductInfo(
+  { page, skus, layout, activeIndex }: {
+    page: ProductDetailsPage;
+    selectedSku?: ProductLeaf;
+    activeIndex?: number;
+  } & Props,
+) {
   const platform = usePlatform();
   const {
     breadcrumbList,
@@ -129,9 +137,40 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
         </span>
       </div>
       {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6">
+      {
+        /* <div class="mt-4 sm:mt-6">
         <ProductSelector product={product} />
+      </div> */
+      }
+      <div class="flex flex-col gap-2">
+        <span class="font-univers-next-pro-regular text-lg">cor</span>
+
+        <ul class="flex flex-row items-center gap-2">
+          {skus &&
+            skus.map((sku, index) => (
+              <li
+                class={`${
+                  activeIndex === index && "border border-black p-1"
+                } shadow-md w-10 h-10`}
+              >
+                <button
+                  {...usePartial({
+                    href: sku.url,
+                    props: { activeIndex: index },
+                  })}
+                >
+                  <img
+                    src={sku!.image![1]!.url ?? ""}
+                    width={40}
+                    height={40}
+                    alt="Imagem de cor"
+                  />
+                </button>
+              </li>
+            ))}
+        </ul>
       </div>
+
       {/* Add to Cart and Favorites button */}
       <div class="mt-4 sm:mt-10 flex flex-col gap-2">
         {availability === "https://schema.org/InStock"
@@ -243,7 +282,10 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
 
 function Details(props: { page: ProductDetailsPage } & Props) {
   const id = useId();
-  const { page: { product: { image: images = [] } }, layout } = props;
+
+  const { page: { product: { image: imagesAvailable = [] } }, layout } = props;
+  const images = imagesAvailable.filter((_, index) => index !== 1);
+
   const variant = layout?.image ?? "slider";
 
   /**
@@ -327,7 +369,10 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
           {/* Product Info */}
           <div class="px-4 sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
-            <ProductInfo {...props} />
+            <ProductInfo
+              {...props}
+              skus={props?.page?.product?.isVariantOf?.hasVariant}
+            />
           </div>
         </div>
         <SliderJS rootId={id}></SliderJS>
