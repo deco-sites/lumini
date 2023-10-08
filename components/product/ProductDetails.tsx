@@ -65,10 +65,9 @@ function NotFound() {
 }
 
 function ProductInfo(
-  { page, skus, layout, activeIndex }: {
+  { page, skus, layout }: {
     page: ProductDetailsPage;
     selectedSku?: ProductLeaf;
-    activeIndex?: number;
   } & Props,
 ) {
   const platform = usePlatform();
