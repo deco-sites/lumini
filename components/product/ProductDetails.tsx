@@ -80,7 +80,7 @@ function ProductInfo(
     productID,
     offers,
     name = "",
-    gtin,
+    url,
     isVariantOf,
     additionalProperty = [],
   } = product;
@@ -136,16 +136,15 @@ function ProductInfo(
 
         <ul class="flex flex-row items-center gap-2">
           {skus &&
-            skus.map((sku, index) => (
+            skus.map((sku) => (
               <li
                 class={`${
-                  activeIndex === index && "border border-black"
+                  sku.url === url && "border border-black"
                 } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
               >
                 <button
                   {...usePartial({
                     href: sku.url,
-                    props: { activeIndex: index },
                   })}
                 >
                   <img
