@@ -102,39 +102,25 @@ function ProductInfo(
         itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
       />
       {/* Code and name */}
-      <div class="mt-4 sm:mt-8">
-        <div>
-          {gtin && (
-            <span class="text-sm text-base-300">
-              Cod. {gtin}
-            </span>
-          )}
+      <div class="flex flex-col gap-4 mt-4 sm:mt-8">
+        <div class="lowercase text-lightslategray text-xs">
+          <span>
+            referência:{" "}
+            {additionalProperty.find((item) => item.name === "RefId")?.value}
+          </span>
         </div>
-        <h1>
-          <span class="font-medium text-xl capitalize">
+
+        <div class="flex flex-col gap-1.5">
+          <h1 class="font-normal text-[25px] text-darkslategray lowercase">
             {layout?.name === "concat"
               ? `${isVariantOf?.name} ${name}`
               : layout?.name === "productGroup"
               ? isVariantOf?.name
               : name}
-          </span>
-        </h1>
-      </div>
-      {/* Prices */}
-      <div class="mt-4">
-        <div class="flex flex-row gap-2 items-center">
-          {(listPrice ?? 0) > price && (
-            <span class="line-through text-base-300 text-xs">
-              {formatPrice(listPrice, offers?.priceCurrency)}
-            </span>
-          )}
-          <span class="font-medium text-xl text-secondary">
-            {formatPrice(price, offers?.priceCurrency)}
-          </span>
+          </h1>
+
+          <span class="text-lightslategray">{additionalProperty[3].value}</span>
         </div>
-        <span class="text-sm text-base-300">
-          {installments}
-        </span>
       </div>
       {/* Sku Selector */}
       {
@@ -142,16 +128,19 @@ function ProductInfo(
         <ProductSelector product={product} />
       </div> */
       }
-      <div class="flex flex-col gap-2">
-        <span class="font-univers-next-pro-regular text-lg">cor</span>
+      <div class="flex flex-col gap-2 mt-4">
+        <p class="font-univers-next-pro-light text-lg font-medium">
+          cor:{" "}
+          <span class="text-lightslategray">{additionalProperty[0].value}</span>
+        </p>
 
         <ul class="flex flex-row items-center gap-2">
           {skus &&
             skus.map((sku, index) => (
               <li
                 class={`${
-                  activeIndex === index && "border border-black p-1"
-                } shadow-md w-10 h-10`}
+                  activeIndex === index && "border border-black"
+                } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
               >
                 <button
                   {...usePartial({
@@ -233,6 +222,22 @@ function ProductInfo(
             </>
           )
           : <OutOfStock productID={productID} />}
+      </div>
+      {/* Prices */}
+      <div class="border-t border-gainsboro pt-4 mt-8">
+        <div class="flex flex-row gap-2 items-center normal-case">
+          {(listPrice ?? 0) > price && (
+            <span class="line-through text-base-300 text-xs">
+              {formatPrice(listPrice, offers?.priceCurrency)}
+            </span>
+          )}
+          <span class="font-medium text-xl text-black">
+            {formatPrice(price, offers?.priceCurrency)}
+          </span>
+        </div>
+        <span class="text-sm text-base-300">
+          em até {installments}
+        </span>
       </div>
       {/* Shipping Simulation */}
       <div class="mt-8">
@@ -417,7 +422,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout }: Props) {
   return (
-    <div class="container py-0 sm:py-10">
+    <div class="container py-0 sm:py-10 font-univers-next-pro-light">
       {page ? <Details page={page} layout={layout} /> : <NotFound />}
     </div>
   );

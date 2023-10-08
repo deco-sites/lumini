@@ -13,5 +13,12 @@ export default {
     container: {
       center: true,
     },
+    extend: {
+      colors: {
+        "lightslategray": "#8b8b8b",
+        "darkslategray": "#353535",
+        "gainsboro": "#e0e0e0",
+      },
+    },
   },
 };
