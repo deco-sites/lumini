@@ -3,7 +3,10 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 
 export interface Props {
-  alerts: string[];
+  alerts: {
+    label: string;
+    href: string;
+  }[];
   /**
    * @title Autoplay interval
    * @description time (in seconds) to start the carousel autoplay
@@ -15,13 +18,16 @@ function Alert({ alerts = [], interval = 5 }: Props) {
   const id = useId();
 
   return (
-    <div id={id}>
-      <Slider class="carousel carousel-center w-screen bg-secondary gap-6">
+    <div id={id} class="w-full">
+      <Slider class="carousel carousel-center w-full bg-black gap-6">
         {alerts.map((alert, index) => (
-          <Slider.Item index={index} class="carousel-item">
-            <span class="text-sm text-secondary-content flex justify-center items-center w-screen h-[38px]">
-              {alert}
-            </span>
+          <Slider.Item index={index} class="carousel-item w-full max-w-[95%]">
+            <a
+              href={alert.href}
+              class="text-sm text-white flex justify-end items-center w-full h-[24px]"
+            >
+              {alert.label}
+            </a>
           </Slider.Item>
         ))}
       </Slider>

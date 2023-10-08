@@ -8,7 +8,10 @@ import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 
 export interface Props {
-  alerts: string[];
+  alerts: {
+    label: string;
+    href: string;
+  }[];
 
   /** @title Search Bar */
   searchbar?: Omit<SearchbarProps, "platform">;
@@ -34,7 +37,10 @@ function Header({
 
   return (
     <>
-      <header style={{ height: headerHeight }}>
+      <header
+        class="font-univers-next-pro-light"
+        style={{ height: headerHeight }}
+      >
         <Drawers
           menu={{ items }}
           searchbar={searchbar}

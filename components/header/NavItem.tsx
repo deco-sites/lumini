@@ -7,9 +7,9 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
   const image = item?.image?.[0];
 
   return (
-    <li class="group flex items-center">
+    <li class="group flex items-center last:pl-12">
       <a href={url} class="px-4 py-3">
-        <span class="group-hover:underline">
+        <span class="group-hover:underline font-univers-next-pro-regular font-normal">
           {name}
         </span>
       </a>
@@ -17,7 +17,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
       {children && children.length > 0 &&
         (
           <div
-            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen"
+            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen translate-y-2"
             style={{ top: "0px", left: "0px", marginTop: headerHeight }}
           >
             {image?.url && (
@@ -30,18 +30,18 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                 loading="lazy"
               />
             )}
-            <ul class="flex items-start justify-center gap-6">
+            <ul class="flex items-start justify-center gap-6 h-[95%]">
               {children.map((node) => (
                 <li class="p-6">
-                  <a class="hover:underline" href={node.url}>
-                    <span>{node.name}</span>
+                  <a href={node.url}>
+                    <span class="text-sm">{node.name}</span>
                   </a>
 
-                  <ul class="flex flex-col gap-1 mt-4">
+                  <ul class="h-full gap-y-3" style={{ columnCount: 2 }}>
                     {node.children?.map((leaf) => (
                       <li>
-                        <a class="hover:underline" href={leaf.url}>
-                          <span class="text-xs">{leaf.name}</span>
+                        <a href={leaf.url}>
+                          <span class="text-sm">{leaf.name}</span>
                         </a>
                       </li>
                     ))}
