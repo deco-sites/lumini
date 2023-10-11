@@ -218,28 +218,36 @@ function Footer({
         ColorClasses(layout)
       }`}
     >
-      <div class="lg:container mx-6 lg:mx-auto">
+      <div class="w-full mx-2 lg:mx-0">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
-          <div class="flex flex-col gap-10">
-            <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
-              {_logo}
-              {_sectionLinks}
-              {_newsletter}
-            </div>
-            <Divider />
-            <div class="flex flex-col md:flex-row gap-10 md:gap-14 md:items-end">
-              {_payments}
-              {_social}
-              <div class="flex flex-col lg:flex-row gap-10 lg:gap-14 lg:items-end">
-                {_apps}
-                {_region}
+          <div class="flex flex-col gap-10 w-full">
+            <div class="flex items-center justify-center w-full">
+              <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 xl:max-w-[1250px] w-full">
+                {_logo}
+                {_sectionLinks}
+                {_social}
+                {_newsletter}
               </div>
             </div>
             <Divider />
-            <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
+            <div class="flex items-center justify-center w-full">
+              <div class="flex flex-col md:flex-row xl:max-w-[1250px] lg:justify-end w-full">
+                {_payments}
+                {
+                  /* <div class="flex flex-col lg:flex-row gap-10 lg:gap-14 lg:items-end">
+                  {_apps}
+                  {_region}
+                </div> */
+                }
+              </div>
+            </div>
+            <Divider />
+            {
+              /* <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
               <PoweredByDeco />
               {_links}
-            </div>
+            </div> */
+            }
           </div>
         )}
         {layout?.variation == "Variation 2" && (
