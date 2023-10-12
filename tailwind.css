@@ -28,6 +28,23 @@
   }
 }
 
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #efefef;
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #3f3f3f;
+    border-radius: 100vh;
+  }
+}
+
 .group:disabled .group-disabled\:animate-progress {
   animation: progress-frame ease normal
 }
