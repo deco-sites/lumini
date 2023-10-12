@@ -27,7 +27,7 @@ export interface Props {
 function DesignersCard({ name, country, link, hasImage }: IDesignersCard) {
   return (
     <div class="flex flex-col first:border-l border-r last:border-none border-black px-5 h-[400px] gap-0.5">
-      <a class="w-[238px] h-[280px]">
+      <a href={link} class="w-[238px] h-[280px]">
         <Image
           src={hasImage.image}
           width={238}
