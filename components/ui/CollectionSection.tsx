@@ -10,7 +10,7 @@ export interface Props {
   }[];
 }
 
-export default function ColectionSection({ title, images }: Props) {
+export default function CollectionSection({ title, images }: Props) {
   return (
     <div class="w-full h-full flex items-center justify-center">
       <section class="max-w-full lg:max-w-[1536px] flex items-center justify-center m-5">
@@ -21,7 +21,7 @@ export default function ColectionSection({ title, images }: Props) {
             </h1>
           </div>
           <div class="flex flex-col lg:flex-row gap-5">
-            {images.map((item) => (
+            {images?.map((item) => (
               <a href={item.link} class="w-full h-full">
                 <Image
                   src={item.image}

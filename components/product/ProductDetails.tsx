@@ -130,7 +130,9 @@ function ProductInfo(
       <div class="flex flex-col gap-2 mt-4">
         <p class="font-univers-next-pro-light text-lg font-medium">
           cor:{" "}
-          <span class="text-lightslategray">{additionalProperty[0].value}</span>
+          <span class="text-lightslategray lowercase">
+            {additionalProperty[0].value}
+          </span>
         </p>
 
         <ul class="flex flex-row items-center gap-2">
