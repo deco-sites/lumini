@@ -54,8 +54,8 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 200;
-const HEIGHT = 279;
+const WIDTH = 385;
+const HEIGHT = 410;
 
 function ProductCard(
   { product, preload, itemListName, layout, platform }: Props,
@@ -101,6 +101,11 @@ function ProductCard(
       {l?.basics?.ctaText || "Ver produto"}
     </a>
   );
+
+  const productCategory =
+    isVariantOf?.hasVariant[0]?.additionalProperty?.find((item) =>
+      item.propertyID === "25"
+    )?.value ?? "";
 
   return (
     <div
@@ -210,7 +215,7 @@ function ProductCard(
         </figcaption>
       </figure>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
+      <div class="flex-auto flex flex-col p-2 gap-2.5">
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
@@ -230,11 +235,13 @@ function ProductCard(
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
           : (
-            <div class="flex flex-col gap-0">
+            <div class="flex flex-col gap-0 lowercase">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate text-base lg:text-lg text-base-content"
-                  dangerouslySetInnerHTML={{ __html: name ?? "" }}
+                  class="truncate text-base lg:text-lg text-black"
+                  dangerouslySetInnerHTML={{
+                    __html: product?.isVariantOf?.name ?? name ?? "",
+                  }}
                 />
               )}
               {l?.hide?.productDescription ? "" : (
@@ -248,21 +255,26 @@ function ProductCard(
         {l?.hide?.allPrices ? "" : (
           <div class="flex flex-col gap-2">
             <div
-              class={`flex flex-col gap-0 ${
+              class={`flex flex-col w-full gap-0 ${
                 l?.basics?.oldPriceSize === "Normal"
                   ? "lg:flex-row lg:gap-2"
                   : ""
               } ${align === "center" ? "justify-center" : "justify-start"}`}
             >
-              <div
+              {
+                /* <div
                 class={`line-through text-base-300 text-xs ${
                   l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                 }`}
               >
                 {formatPrice(listPrice, offers?.priceCurrency)}
-              </div>
-              <div class="text-accent text-base lg:text-xl">
-                {formatPrice(price, offers?.priceCurrency)}
+              </div> */
+              }
+              <div class="flex w-full justify-between text-base-content text-xs">
+                <span>
+                  a partir de {formatPrice(price, offers?.priceCurrency)}
+                </span>
+                <span>{productCategory}</span>
               </div>
             </div>
             {l?.hide?.installments

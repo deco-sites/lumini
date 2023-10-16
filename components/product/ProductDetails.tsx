@@ -127,6 +127,7 @@ function ProductInfo(
         <ProductSelector product={product} />
       </div> */
       }
+
       <div class="flex flex-col gap-2 mt-4">
         <p class="font-univers-next-pro-light text-lg font-medium">
           cor:{" "}
