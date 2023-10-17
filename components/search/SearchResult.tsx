@@ -3,10 +3,12 @@ import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx"
 import Filters from "$store/components/search/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
+import { usePartial } from "apps/website/hooks/usePartial.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
+import { useId } from "$store/sdk/useId.ts";
 
 export interface Layout {
   /**
@@ -41,15 +43,39 @@ function Result({
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
 
+  const id = useId();
+
   return (
     <>
-      <div class="container px-4 sm:py-10">
+      <div class="container px-4 sm:py-10 max-w-[1250px]">
         <SearchControls
           sortOptions={sortOptions}
           filters={filters}
           breadcrumb={breadcrumb}
           displayFilter={layout?.variant === "drawer"}
         />
+
+        <div class="flex items-center gap-2">
+          <button
+            class={layout?.columns?.desktop == 3 ? "font-bold" : ""}
+            {...usePartial<Props>({
+              id,
+              props: { layout: { columns: { desktop: 3 } } },
+            })}
+          >
+            3
+          </button>
+
+          <button
+            class={layout?.columns?.desktop == 4 ? "font-bold" : ""}
+            {...usePartial<Props>({
+              id,
+              props: { layout: { columns: { desktop: 4 } } },
+            })}
+          >
+            4
+          </button>
+        </div>
 
         <div class="flex flex-row">
           {layout?.variant === "aside" && filters.length > 0 && (
@@ -76,7 +102,7 @@ function Result({
               <Icon id="ChevronLeft" size={24} strokeWidth={2} />
             </a>
             <span class="btn btn-ghost join-item">
-              Page {pageInfo.currentPage + 1}
+              Page {pageInfo.currentPage}
             </span>
             <a
               aria-label="next page link"
