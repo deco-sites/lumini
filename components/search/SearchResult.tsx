@@ -43,7 +43,7 @@ function Result({
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
 
-  const id = useId();
+  const isListModeActive = layout?.columns?.desktop === 4;
 
   return (
     <>
@@ -53,29 +53,8 @@ function Result({
           filters={filters}
           breadcrumb={breadcrumb}
           displayFilter={layout?.variant === "drawer"}
+          isListModeActive={isListModeActive}
         />
-
-        <div class="flex items-center gap-2">
-          <button
-            class={layout?.columns?.desktop == 3 ? "font-bold" : ""}
-            {...usePartial<Props>({
-              id,
-              props: { layout: { columns: { desktop: 3 } } },
-            })}
-          >
-            3
-          </button>
-
-          <button
-            class={layout?.columns?.desktop == 4 ? "font-bold" : ""}
-            {...usePartial<Props>({
-              id,
-              props: { layout: { columns: { desktop: 4 } } },
-            })}
-          >
-            4
-          </button>
-        </div>
 
         <div class="flex flex-row">
           {layout?.variant === "aside" && filters.length > 0 && (
@@ -135,6 +114,16 @@ function Result({
     </>
   );
 }
+
+export const loader = (props: Props, req: Request) => {
+  const url = new URL(req.url);
+
+  if (url.searchParams.has("list")) {
+    return { ...props, layout: { columns: { desktop: 4 } } };
+  }
+
+  return props;
+};
 
 function SearchResult({ page, ...props }: Props) {
   if (!page) {
