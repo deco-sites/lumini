@@ -13,32 +13,35 @@ function VariantSelector({ product }: Props) {
   const possibilities = useVariantPossibilities(hasVariant, product);
 
   return (
-    <ul class="flex flex-col gap-4">
-      {Object.keys(possibilities).map((name) => (
-        <li class="flex flex-col gap-2">
-          <span class="text-sm">{name}</span>
-          <ul class="flex flex-row gap-3">
-            {Object.entries(possibilities[name]).map(([value, link]) => {
-              const partial = usePartial({ href: link });
+    <ul class="flex flex-row items-center gap-2">
+      {Object.entries(possibilities["cor"]).map(([value, link]) => {
+        const partial = usePartial({ href: link });
 
-              return (
-                <li>
-                  <button {...partial}>
-                    <Avatar
-                      content={value}
-                      variant={link === url
-                        ? "active"
-                        : link
-                        ? "default"
-                        : "disabled"}
-                    />
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </li>
-      ))}
+        const variant = isVariantOf?.hasVariant?.find((item) =>
+          item.url === link
+        );
+
+        const imageUrl = (variant?.image && variant.image[1]?.url) ?? null;
+
+        return (
+          <li
+            class={`${
+              link === url && "border border-black"
+            } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
+          >
+            <button
+              {...partial}
+            >
+              <img
+                src={imageUrl ?? ""}
+                width={40}
+                height={40}
+                alt="Imagem de cor"
+              />
+            </button>
+          </li>
+        );
+      })}
     </ul>
   );
 }

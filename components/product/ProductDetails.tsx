@@ -109,25 +109,30 @@ function ProductInfo(
           </span>
         </div>
 
-        <div class="flex flex-col gap-1.5">
-          <h1 class="font-normal text-[25px] text-darkslategray lowercase">
-            {layout?.name === "concat"
-              ? `${isVariantOf?.name} ${name}`
-              : layout?.name === "productGroup"
-              ? isVariantOf?.name
-              : name}
-          </h1>
+        <div class="flex flex-row justify-between w-full">
+          <div class="flex flex-col gap-1.5">
+            <h1 class="font-normal text-[25px] text-darkslategray lowercase">
+              {layout?.name === "concat"
+                ? `${isVariantOf?.name} ${name}`
+                : layout?.name === "productGroup"
+                ? isVariantOf?.name
+                : name}
+            </h1>
 
-          <span class="text-lightslategray">{additionalProperty[3].value}</span>
+            <span class="text-lightslategray">
+              {additionalProperty[3].value}
+            </span>
+          </div>
+
+          <WishlistButton
+            variant="icon"
+            productID={productID}
+            productGroupID={productGroupID}
+          />
         </div>
       </div>
-      {/* Sku Selector */}
-      {
-        /* <div class="mt-4 sm:mt-6">
-        <ProductSelector product={product} />
-      </div> */
-      }
 
+      {/* Sku Selector */}
       <div class="flex flex-col gap-2 mt-4">
         <p class="font-univers-next-pro-light text-lg font-medium">
           cor:{" "}
@@ -136,52 +141,55 @@ function ProductInfo(
           </span>
         </p>
 
-        <ul class="flex flex-row items-center gap-2">
-          {skus &&
-            skus.map((sku) => (
-              <li
-                class={`${
-                  sku.url === url && "border border-black"
-                } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
-              >
-                <button
-                  {...usePartial({
-                    href: sku.url,
-                  })}
-                >
-                  <img
-                    src={sku!.image![1]!.url ?? ""}
-                    width={40}
-                    height={40}
-                    alt="Imagem de cor"
-                  />
-                </button>
-              </li>
-            ))}
-        </ul>
+        <ProductSelector product={product} />
       </div>
 
-      {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+      <div class="flex flex-col gap-2 mt-4 w-full">
+        <p class="font-univers-next-pro-light text-lg font-medium">
+          voltagem
+        </p>
+
+        <div class="flex flex-col gap-1.5 w-full">
+          <button class="flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold">
+            110v
+          </button>
+
+          <button class="flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold">
+            220v
+          </button>
+        </div>
+      </div>
+
+      {/* Prices */}
+      <div class="border-t border-gainsboro pt-4 mt-8">
+        <div class="flex flex-row gap-2 items-center normal-case">
+          {(listPrice ?? 0) > price && (
+            <span class="line-through text-base-300 text-xs">
+              {formatPrice(listPrice, offers?.priceCurrency)}
+            </span>
+          )}
+          <span class="font-medium text-xl text-black">
+            {formatPrice(price, offers?.priceCurrency)}
+          </span>
+        </div>
+        <span class="text-sm text-base-300">
+          em até {installments}
+        </span>
+      </div>
+      {/* Add to Cart */}
+      <div class="mt-4 mb-2.5 flex flex-col gap-2">
         {availability === "https://schema.org/InStock"
           ? (
             <>
               {platform === "vtex" && (
-                <>
-                  <AddToCartButtonVTEX
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                    seller={seller}
-                  />
-                  <WishlistButton
-                    variant="full"
-                    productID={productID}
-                    productGroupID={productGroupID}
-                  />
-                </>
+                <AddToCartButtonVTEX
+                  name={name}
+                  productID={productID}
+                  productGroupID={productGroupID}
+                  price={price}
+                  discount={discount}
+                  seller={seller}
+                />
               )}
               {platform === "wake" && (
                 <AddToCartButtonWake
@@ -224,20 +232,10 @@ function ProductInfo(
           )
           : <OutOfStock productID={productID} />}
       </div>
-      {/* Prices */}
-      <div class="border-t border-gainsboro pt-4 mt-8">
-        <div class="flex flex-row gap-2 items-center normal-case">
-          {(listPrice ?? 0) > price && (
-            <span class="line-through text-base-300 text-xs">
-              {formatPrice(listPrice, offers?.priceCurrency)}
-            </span>
-          )}
-          <span class="font-medium text-xl text-black">
-            {formatPrice(price, offers?.priceCurrency)}
-          </span>
-        </div>
-        <span class="text-sm text-base-300">
-          em até {installments}
+      <div class="w-full border-b border-gainsboro pb-2">
+        <span class="text-lightslategray text-sm">
+          os preços podem variar de acordo com as características escolhidas do
+          produto.
         </span>
       </div>
       {/* Shipping Simulation */}
@@ -306,82 +304,84 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       <>
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
+          class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-1 sm:justify-center"
         >
-          {/* Image Slider */}
-          <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
-            <Slider class="carousel carousel-center gap-6 w-screen sm:w-[40vw]">
-              {images.map((img, index) => (
-                <Slider.Item
-                  index={index}
-                  class="carousel-item w-full"
-                >
-                  <Image
-                    class="w-full"
-                    sizes="(max-width: 640px) 100vw, 40vw"
-                    style={{ aspectRatio: ASPECT_RATIO }}
-                    src={img.url!}
-                    alt={img.alternateName}
-                    width={WIDTH}
-                    height={HEIGHT}
-                    // Preload LCP image for better web vitals
-                    preload={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </Slider.Item>
-              ))}
-            </Slider>
+          <div class="flex flex-col w-full md:gap-1.5">
+            {/* Image Slider */}
+            <div class="relative">
+              <Slider class="carousel carousel-center gap-6 w-screen sm:w-[40vw]">
+                {images.map((img, index) => (
+                  <Slider.Item
+                    index={index}
+                    class="carousel-item w-full"
+                  >
+                    <Image
+                      class="w-full"
+                      sizes="(max-width: 640px) 100vw, 40vw"
+                      style={{ aspectRatio: ASPECT_RATIO }}
+                      src={img.url!}
+                      alt={img.alternateName}
+                      width={WIDTH}
+                      height={HEIGHT}
+                      // Preload LCP image for better web vitals
+                      preload={index === 0}
+                      loading={index === 0 ? "eager" : "lazy"}
+                    />
+                  </Slider.Item>
+                ))}
+              </Slider>
 
-            <Slider.PrevButton
-              class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
-              disabled
-            >
-              <Icon size={24} id="ChevronLeft" strokeWidth={3} />
-            </Slider.PrevButton>
+              <Slider.PrevButton
+                class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
+                disabled
+              >
+                <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+              </Slider.PrevButton>
 
-            <Slider.NextButton
-              class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
-              disabled={images.length < 2}
-            >
-              <Icon size={24} id="ChevronRight" strokeWidth={3} />
-            </Slider.NextButton>
+              <Slider.NextButton
+                class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
+                disabled={images.length < 2}
+              >
+                <Icon size={24} id="ChevronRight" strokeWidth={3} />
+              </Slider.NextButton>
 
-            <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-              <ProductImageZoom
-                images={images}
-                width={700}
-                height={Math.trunc(700 * HEIGHT / WIDTH)}
-              />
+              <div class="absolute top-2 right-2">
+                <ProductImageZoom
+                  images={images}
+                  width={700}
+                  height={Math.trunc(700 * HEIGHT / WIDTH)}
+                />
+              </div>
             </div>
+
+            {/* Dots */}
+            <ul class="flex gap-2 overflow-auto px-4 sm:px-0">
+              {images.map((img, index) => (
+                <li class="min-w-[63px] sm:min-w-[100px]">
+                  <Slider.Dot index={index}>
+                    <Image
+                      style={{ aspectRatio: ASPECT_RATIO }}
+                      class="group-disabled:border-base-300 border rounded"
+                      width={100}
+                      height={100}
+                      src={img.url!}
+                      alt={img.alternateName}
+                    />
+                  </Slider.Dot>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Dots */}
-          <ul class="flex gap-2 sm:justify-start overflow-auto px-4 sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
-            {images.map((img, index) => (
-              <li class="min-w-[63px] sm:min-w-[100px]">
-                <Slider.Dot index={index}>
-                  <Image
-                    style={{ aspectRatio: ASPECT_RATIO }}
-                    class="group-disabled:border-base-300 border rounded "
-                    width={63}
-                    height={87.5}
-                    src={img.url!}
-                    alt={img.alternateName}
-                  />
-                </Slider.Dot>
-              </li>
-            ))}
-          </ul>
-
           {/* Product Info */}
-          <div class="px-4 sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
+          <div class="px-4">
             <ProductInfo
               {...props}
               skus={props?.page?.product?.isVariantOf?.hasVariant}
             />
           </div>
         </div>
-        <SliderJS rootId={id}></SliderJS>
+        <SliderJS rootId={id} />
       </>
     );
   }

@@ -94,14 +94,11 @@ function ShippingSimulation({ items }: Props) {
   return (
     <div class="flex flex-col gap-2">
       <div class="flex flex-col">
-        <span>Calcular frete</span>
-        <span>
-          Informe seu CEP para consultar os prazos de entrega
-        </span>
+        <span>calcule seu frete e o prazo de entrega</span>
       </div>
 
       <form
-        class="join"
+        class="flex items-center gap-2"
         onSubmit={(e) => {
           e.preventDefault();
           handleSimulation();
@@ -110,8 +107,8 @@ function ShippingSimulation({ items }: Props) {
         <input
           as="input"
           type="text"
-          class="input input-bordered join-item"
-          placeholder="Seu cep aqui"
+          class="border border-gray bg-ice-cube text-sm text-black w-full h-10 max-w-[195px] pl-1"
+          placeholder=""
           value={postalCode.value}
           maxLength={8}
           size={8}
@@ -119,10 +116,23 @@ function ShippingSimulation({ items }: Props) {
             postalCode.value = e.currentTarget.value;
           }}
         />
-        <Button type="submit" loading={loading.value} class="join-item">
+        <Button
+          type="submit"
+          loading={loading.value}
+          class="max-w-[124px] flex items-center justify-center min-h-[40px] max-h-[40px] rounded-none border border-dark-gray bg-transparent hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold"
+        >
           Calcular
         </Button>
       </form>
+
+      <div class="flex flex-col pt-1">
+        <a
+          target="_blank"
+          href="https://buscacepinter.correios.com.br/app/endereco/index.php?t"
+        >
+          não lembra o cep?
+        </a>
+      </div>
 
       <div>
         <div>

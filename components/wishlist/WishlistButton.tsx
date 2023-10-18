@@ -36,7 +36,7 @@ function WishlistButton({
         e.preventDefault();
 
         if (!isUserLoggedIn) {
-          window.alert("Please log in before adding to your wishlist");
+          window.alert("Por favor, faça login para favoritar um item.");
 
           return;
         }
@@ -49,7 +49,7 @@ function WishlistButton({
           fetching.value = true;
           inWishlist
             ? await removeItem({ id: listItem.value!.id }!)
-            : await addItem(item);
+            : await addItem({ productId: item!.productId!, sku: item!.sku! });
         } finally {
           fetching.value = false;
         }
