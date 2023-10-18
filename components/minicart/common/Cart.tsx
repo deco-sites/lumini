@@ -52,7 +52,7 @@ function Cart({
             <span class="font-medium text-2xl">Sua sacola está vazia</span>
             <Button
               title="close button"
-              aria-label="close cart"
+              aria-label="close cart button"
               class="btn-outline"
               onClick={() => {
                 displayCart.value = false;
