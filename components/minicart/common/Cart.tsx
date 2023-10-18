@@ -39,14 +39,14 @@ function Cart({
   onAddCoupon,
 }: Props) {
   const { displayCart } = useUI();
-  const isEmtpy = items.length === 0;
+  const isEmpty = items.length === 0;
 
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"
       style={{ minWidth: "calc(min(100vw, 425px))", maxWidth: "425px" }}
     >
-      {isEmtpy
+      {isEmpty
         ? (
           <div class="flex flex-col gap-6">
             <span class="font-medium text-2xl">Sua sacola está vazia</span>
@@ -132,7 +132,7 @@ function Cart({
                   <Button
                     data-deco="buy-button"
                     class="btn-primary btn-block"
-                    disabled={loading || isEmtpy}
+                    disabled={loading || isEmpty}
                     onClick={() => {
                       sendEvent({
                         name: "begin_checkout",
