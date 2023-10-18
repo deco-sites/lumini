@@ -6,30 +6,64 @@ export interface Props {
 }
 
 function MenuItem({ item }: { item: SiteNavigationElement }) {
-  return (
-    <div class="collapse collapse-plus">
-      <input type="checkbox" />
-      <div class="collapse-title">{item.name}</div>
-      <div class="collapse-content">
-        <ul>
-          <li>
-            <a class="underline text-sm" href={item.url}>Ver todos</a>
-          </li>
-          {item.children?.map((node) => (
-            <li>
-              <MenuItem item={node} />
-            </li>
-          ))}
-        </ul>
+  const component = item?.children?.length
+    ? (
+      <div class="collapse collapse-plus relative items-start">
+        <input
+          type="checkbox"
+          class="absolute left-0 w-full top-0"
+        />
+        <div class="collapse-title min-h-0 p-0 py-2.5 font-bold text-lg px-0 flex items-center justify-between">
+          {item.name}
+        </div>
+        <div class="collapse-content px-0">
+          <div class="pt-0 px-0">
+            {item.children?.map(({ children }) => (
+              <ul class="border-l border-l-gold pl-3 gap-0.5">
+                {children?.map((child) => (
+                  <>
+                    <li>
+                      <a
+                        href={item.url}
+                        class="w-full block font-normal text-sm"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+
+                    <li>
+                      <a
+                        href={child.url}
+                        class="w-full block font-normal text-sm"
+                      >
+                        {child.name}
+                      </a>
+                    </li>
+                  </>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    )
+    : (
+      <a
+        href={item.url}
+        title={item.name}
+        class="w-full block py-2.5 font-normal text-lg"
+      >
+        {item.name}
+      </a>
+    );
+
+  return component;
 }
 
 function Menu({ items }: Props) {
   return (
     <div class="flex flex-col h-full">
-      <ul class="px-4 flex-grow flex flex-col divide-y divide-base-200">
+      <ul class="px-4 flex-grow flex flex-col">
         {items.map((item) => (
           <li>
             <MenuItem item={item} />
@@ -37,41 +71,24 @@ function Menu({ items }: Props) {
         ))}
       </ul>
 
-      <ul class="flex flex-col py-2 bg-base-200">
+      <ul class="flex flex-col py-2 bg-base-200 border-t border-t-border-base-300">
+        <li>
+          <a
+            class="flex items-center gap-4 px-4 py-2"
+            href="/login"
+          >
+            <Icon id="User" size={24} strokeWidth={2} />
+            <span class="text-sm">Minha conta</span>
+          </a>
+        </li>
+
         <li>
           <a
             class="flex items-center gap-4 px-4 py-2"
             href="/wishlist"
           >
             <Icon id="Heart" size={24} strokeWidth={2} />
-            <span class="text-sm">Lista de desejos</span>
-          </a>
-        </li>
-        <li>
-          <a
-            class="flex items-center gap-4 px-4 py-2"
-            href="https://www.deco.cx"
-          >
-            <Icon id="MapPin" size={24} strokeWidth={2} />
-            <span class="text-sm">Nossas lojas</span>
-          </a>
-        </li>
-        <li>
-          <a
-            class="flex items-center gap-4 px-4 py-2"
-            href="https://www.deco.cx"
-          >
-            <Icon id="Phone" size={24} strokeWidth={2} />
-            <span class="text-sm">Fale conosco</span>
-          </a>
-        </li>
-        <li>
-          <a
-            class="flex items-center gap-4 px-4 py-2"
-            href="https://www.deco.cx"
-          >
-            <Icon id="User" size={24} strokeWidth={2} />
-            <span class="text-sm">Minha conta</span>
+            <span class="text-sm">Favoritos</span>
           </a>
         </li>
       </ul>

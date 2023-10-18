@@ -33,7 +33,7 @@ function ProductShelf({
   return (
     <div
       id={id}
-      class="w-full container max-w-[1230px] py-8 flex flex-col gap-12 lg:gap-16 lg:py-10"
+      class="w-full container max-w-[1230px] py-2 flex flex-col gap-12 lg:gap-16"
     >
       <div class="flex justify-between w-full px-6 lg:px-0">
         <h1 class="text-[21px] lg:text-4xl font-univers-next-pro-bold">
@@ -42,13 +42,13 @@ function ProductShelf({
 
         <div class="flex gap-6">
           <div class="relative block z-10 col-start-1 row-start-3">
-            <Slider.PrevButton class="absolute right-1/2 hover:cursor-pointer disabled:opacity-70">
+            <Slider.PrevButton class="absolute right-1/2 hover:cursor-pointer disabled:opacity-50">
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
           </div>
 
           <div class="relative block z-10 col-start-3 row-start-3">
-            <Slider.NextButton class="absolute left-1/2 rotate-180 hover:cursor-pointer disabled:opacity-70">
+            <Slider.NextButton class="absolute left-1/2 rotate-180 hover:cursor-pointer disabled:opacity-50">
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.NextButton>
           </div>
