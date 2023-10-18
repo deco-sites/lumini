@@ -51,6 +51,8 @@ function Cart({
           <div class="flex flex-col gap-6">
             <span class="font-medium text-2xl">Sua sacola está vazia</span>
             <Button
+              title="close button"
+              aria-label="close cart"
               class="btn-outline"
               onClick={() => {
                 displayCart.value = false;

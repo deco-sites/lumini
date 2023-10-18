@@ -43,6 +43,7 @@ function Modal(props: Props) {
         id={id}
         checked={open}
         type="checkbox"
+        aria-label="toggle modal"
         class="modal-toggle"
         onChange={(e) => e.currentTarget.checked === false && onClose?.()}
       />

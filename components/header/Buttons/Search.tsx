@@ -8,6 +8,7 @@ export default function SearchButton() {
   return (
     <>
       <Button
+        title="search button"
         class="btn-circle btn-sm btn-ghost hover:bg-transparent hidden sm:block"
         aria-label="search icon button"
         onClick={() => {
