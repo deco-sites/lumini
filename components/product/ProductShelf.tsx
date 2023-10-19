@@ -41,14 +41,14 @@ function ProductShelf({
         </h1>
 
         <div class="flex gap-6">
-          <div class="relative block z-10 col-start-1 row-start-3">
-            <Slider.PrevButton class="absolute right-1/2 hover:cursor-pointer disabled:opacity-50">
+          <div class="relative block">
+            <Slider.PrevButton class="hover:cursor-pointer disabled:opacity-50">
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
           </div>
 
-          <div class="relative block z-10 col-start-3 row-start-3">
-            <Slider.NextButton class="absolute left-1/2 rotate-180 hover:cursor-pointer disabled:opacity-50">
+          <div class="relative block">
+            <Slider.NextButton class="rotate-180 hover:cursor-pointer disabled:opacity-50">
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.NextButton>
           </div>
