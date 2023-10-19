@@ -361,7 +361,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                   <Slider.Dot index={index}>
                     <Image
                       style={{ aspectRatio: ASPECT_RATIO }}
-                      class="group-disabled:border-base-300 border rounded"
+                      class="group-disabled:border-base-300 group-disabled:border rounded"
                       width={100}
                       height={100}
                       src={img.url!}
