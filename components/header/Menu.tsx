@@ -25,7 +25,7 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
                     href={item.url}
                     class="w-full block font-normal text-sm"
                   >
-                   {item.name}
+                    {item.name}
                   </a>
                 </li>
                 {children?.map((child) => (
