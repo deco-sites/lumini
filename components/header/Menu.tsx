@@ -20,17 +20,16 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
           <div class="pt-0 px-0">
             {item.children?.map(({ children }) => (
               <ul class="border-l border-l-gold pl-3 gap-0.5">
+                <li>
+                  <a
+                    href={item.url}
+                    class="w-full block font-normal text-sm"
+                  >
+                   {item.name}
+                  </a>
+                </li>
                 {children?.map((child) => (
                   <>
-                    <li>
-                      <a
-                        href={item.url}
-                        class="w-full block font-normal text-sm"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-
                     <li>
                       <a
                         href={child.url}

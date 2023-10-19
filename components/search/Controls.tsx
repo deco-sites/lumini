@@ -48,7 +48,7 @@ function SearchControls(
         </div>
 
         <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
-          <div class="flex items-center gap-4">
+          <div class="hidden lg:flex items-center gap-4">
             <a
               href="?grid"
               class="flex items-center gap-1.5 hover:cursor-pointer"
