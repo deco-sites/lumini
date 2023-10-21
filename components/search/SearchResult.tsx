@@ -117,7 +117,7 @@ export const loader = (props: Props, req: Request) => {
   const url = new URL(req.url);
 
   if (url.searchParams.has("list")) {
-    return { ...props, layout: { columns: { desktop: 4 } } };
+    return { ...props, layout: { ...props.layout, columns: { desktop: 4 } } };
   }
 
   return props;
