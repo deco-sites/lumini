@@ -20,7 +20,7 @@ function ValueItem(
 ) {
   return (
     <a href={url} class="flex items-center gap-2">
-      <div aria-checked={selected} class="checkbox" />
+      <div selected={selected ? true : false} class="checkbox" />
       <span class="text-sm">{label}</span>
       {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>}
     </a>
@@ -33,7 +33,7 @@ function FilterValues({ key, values }: FilterToggle) {
     : "flex-col";
 
   return (
-    <ul class={`flex flex-wrap gap-2 ${flexDirection}`}>
+    <div class={`flex flex-wrap gap-2 ${flexDirection}`}>
       {values.map((item) => {
         const { url, selected, value, quantity } = item;
 
@@ -61,7 +61,7 @@ function FilterValues({ key, values }: FilterToggle) {
 
         return <ValueItem {...item} />;
       })}
-    </ul>
+    </div>
   );
 }
 

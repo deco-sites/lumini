@@ -110,6 +110,8 @@ function Searchbar({
           placeholder={placeholder}
           role="combobox"
           aria-controls="search-suggestion"
+          aria-label="Barra de pesquisa"
+          aria-expanded={displaySearchPopup.value}
           autocomplete="off"
         />
         <Button
