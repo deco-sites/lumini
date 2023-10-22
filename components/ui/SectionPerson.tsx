@@ -35,16 +35,21 @@ export default function SectionPerson(
             <p class="text-[32px] text-black mt-2 md:mt-0">
               {name}
             </p>
-            <p dangerouslySetInnerHTML={{ __html: subTitle }} class="mb-2" />
+            <p
+              dangerouslySetInnerHTML={{ __html: subTitle ?? "" }}
+              class="mb-2"
+            />
             <div class="w-[24px] h-[24px] flex cursor-pointer bg-black rounded-full">
-              <a href={socialMedia.url}>
-                <Image
-                  src={socialMedia.link}
-                  width={24}
-                  height={24}
-                  alt={socialMedia.description}
-                />
-              </a>
+              {socialMedia?.map((item) => (
+                <a href={item.url}>
+                  <Image
+                    src={item.link}
+                    width={24}
+                    height={24}
+                    alt={item.description}
+                  />
+                </a>
+              ))}
             </div>
           </div>
         </div>

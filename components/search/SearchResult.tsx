@@ -79,7 +79,7 @@ function Result({
               <Icon id="ChevronLeft" size={24} strokeWidth={2} />
             </a>
             <span class="btn btn-ghost join-item">
-              Page {pageInfo.currentPage}
+              página {pageInfo.currentPage}
             </span>
             <a
               aria-label="next page link"
@@ -117,7 +117,10 @@ export const loader = (props: Props, req: Request) => {
   const url = new URL(req.url);
 
   if (url.searchParams.has("list")) {
-    return { ...props, layout: { ...props.layout, columns: { desktop: 4 } } };
+    return {
+      ...props,
+      layout: { ...props.layout, columns: { desktop: 4 } },
+    };
   }
 
   return props;
