@@ -43,7 +43,7 @@ function SearchControls(
         </>
       }
     >
-      <div class="flex justify-between mb-4 p-4 sm:mt-2 sm:mb-0 sm:p-0 sm:gap-4 sm:h-[53px] font-univers-next-pro-light">
+      <div class="flex flex-col sm:flex-row justify-between mb-4 p-4 sm:mt-2 sm:mb-0 sm:p-0 sm:gap-4 sm:h-[53px] font-univers-next-pro-light">
         <div class="flex flex-row items-center gap-6 lg:gap-24">
           {displayFilter && (
             <button
