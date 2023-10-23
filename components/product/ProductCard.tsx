@@ -47,6 +47,7 @@ interface Props {
   layout?: Layout;
 
   platform?: Platform;
+  isPLP?: boolean;
 }
 
 const relative = (url: string) => {
@@ -58,7 +59,7 @@ const WIDTH = 390;
 const HEIGHT = 410;
 
 function ProductCard(
-  { product, preload, itemListName, layout, platform }: Props,
+  { product, preload, itemListName, layout, platform, isPLP }: Props,
 ) {
   const {
     url,
@@ -103,9 +104,9 @@ function ProductCard(
   );
 
   const productCategory =
-    isVariantOf?.hasVariant[0]?.additionalProperty?.find((item) =>
-      item.propertyID === "25"
-    )?.value ?? "";
+    isVariantOf?.hasVariant[0]?.additionalProperty?.filter((item) =>
+      item.name == "category"
+    )[1]?.value ?? "";
 
   return (
     <div
@@ -215,7 +216,7 @@ function ProductCard(
         </figcaption>
       </figure>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col p-2 gap-2.5">
+      <div class="flex-auto flex flex-col py-2 gap-2">
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
@@ -270,11 +271,14 @@ function ProductCard(
                 {formatPrice(listPrice, offers?.priceCurrency)}
               </div> */
               }
-              <div class="flex w-full justify-between text-base-content text-xs">
-                <span>
-                  a partir de {formatPrice(price, offers?.priceCurrency)}
+              <div class="flex w-full justify-between">
+                <span class={isPLP ? "text-base" : "text-sm"}>
+                  {!isPLP && "a partir de "}
+                  {formatPrice(price, offers?.priceCurrency)}
                 </span>
-                <span>{productCategory}</span>
+                <span class="text-gray-normal/80 text-base">
+                  {productCategory}
+                </span>
               </div>
             </div>
             {l?.hide?.installments

@@ -4,6 +4,7 @@ import Filters from "$store/components/search/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
+import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
@@ -43,18 +44,32 @@ function Result({
 
   const isListModeActive = layout?.columns?.desktop === 4;
 
+  const title = breadcrumb?.itemListElement?.slice(-1)[0]?.name ?? "";
+
   return (
     <>
       <div class="container px-4 sm:py-10 max-w-[1250px]">
-        <SearchControls
-          sortOptions={sortOptions}
-          filters={filters}
-          breadcrumb={breadcrumb}
-          displayFilter={layout?.variant === "drawer"}
-          isListModeActive={isListModeActive}
-        />
+        <div class="flex flex-col gap-4 w-full">
+          <div class="flex flex-row items-center sm:p-0 mb-2">
+            <Breadcrumb
+              itemListElement={breadcrumb?.itemListElement?.slice(0, -1)}
+            />
+          </div>
 
-        <div class="flex flex-row">
+          <h1 class="font-bold font-univers-next-pro-bold text-[32px]">
+            {title ?? "pendente"}
+          </h1>
+
+          <SearchControls
+            sortOptions={sortOptions}
+            filters={filters}
+            displayFilter={layout?.variant === "drawer"}
+            isListModeActive={isListModeActive}
+            productsQuantity={pageInfo.records}
+          />
+        </div>
+
+        <div class="flex flex-row mt-8">
           {layout?.variant === "aside" && filters.length > 0 && (
             <aside class="hidden sm:block w-min min-w-[250px]">
               <Filters filters={filters} />

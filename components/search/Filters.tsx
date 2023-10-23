@@ -20,31 +20,24 @@ function ValueItem(
 ) {
   return (
     <a href={url} class="flex items-center gap-2">
-      <div selected={selected ? true : false} class="checkbox" />
+      <div aria-checked={selected} class="checkbox" />
       <span class="text-sm">{label}</span>
-      {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>}
+      {/* {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>} */}
     </a>
   );
 }
 
 function FilterValues({ key, values }: FilterToggle) {
-  const flexDirection = key === "tamanho" || key === "cor"
-    ? "flex-row"
-    : "flex-col";
+  const flexDirection = "flex-col";
 
   return (
     <div class={`flex flex-wrap gap-2 ${flexDirection}`}>
       {values.map((item) => {
-        const { url, selected, value, quantity } = item;
-
         if (key === "cor" || key === "tamanho") {
           return (
-            <a href={url}>
-              <Avatar
-                content={value}
-                variant={selected ? "active" : "default"}
-              />
-            </a>
+            <ValueItem
+              {...item}
+            />
           );
         }
 
@@ -66,17 +59,34 @@ function FilterValues({ key, values }: FilterToggle) {
 }
 
 function Filters({ filters }: Props) {
+  const definitiveFilters = filters.filter((filter) => filter.key !== "price");
+
   return (
-    <ul class="flex flex-col gap-6 p-4">
-      {filters
+    <div class="flex flex-col gap-2 lowercase">
+      {definitiveFilters
         .filter(isToggle)
         .map((filter) => (
-          <li class="flex flex-col gap-4">
-            <span>{filter.label}</span>
-            <FilterValues {...filter} />
-          </li>
+          <div class="flex flex-col gap-4 border-b border-base-200">
+            <div class="collapse collapse-arrow rounded-none">
+              <input
+                type="checkbox"
+                name="pdc-filters"
+                class="min-h-[0px]"
+                aria-label="Filtros"
+                checked={filter.values.some((item) => item.selected === true)}
+              />
+              <div class="collapse-title flex justify-between cursor-pointer min-h-[0px] pl-2">
+                <span class="flex content-center flex-wrap h-9">
+                  {filter.label}
+                </span>
+              </div>
+              <div class="collapse-content transition-all duration-700 pt-1 max-h-[200px] overflow-auto pl-2">
+                <FilterValues {...filter} />
+              </div>
+            </div>
+          </div>
         ))}
-    </ul>
+    </div>
   );
 }
 

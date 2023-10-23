@@ -15,6 +15,7 @@ export default {
     },
     extend: {
       colors: {
+        "gray-normal": "#777",
         "lightslategray": "#8b8b8b",
         "darkslategray": "#353535",
         "ice-cube": "#f9f9f9",
