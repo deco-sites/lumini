@@ -22,6 +22,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import { usePartial } from "apps/website/hooks/usePartial.ts";
+import ProductDescription from "./ProductDescription.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -251,7 +252,8 @@ function ProductInfo(
         )}
       </div>
       {/* Description card */}
-      <div class="mt-4 sm:mt-6">
+      {
+        /* <div class="mt-4 sm:mt-6">
         <span class="text-sm">
           {description && (
             <details>
@@ -263,7 +265,8 @@ function ProductInfo(
             </details>
           )}
         </span>
-      </div>
+      </div> */
+      }
       {/* Analytics Event */}
       <SendEventOnLoad
         event={{
@@ -422,10 +425,19 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 }
 
 function ProductDetails({ page, layout }: Props) {
+  if (!page) return <NotFound />;
+
+  const description = page.product.description ||
+    page.product.isVariantOf?.description;
+
   return (
-    <div class="container py-0 sm:py-10 font-univers-next-pro-light">
-      {page ? <Details page={page} layout={layout} /> : <NotFound />}
-    </div>
+    <section class="flex flex-col gap-20 mb-6">
+      <div class="container py-0 sm:py-10 font-univers-next-pro-light">
+        {page && <Details page={page} layout={layout} />}
+      </div>
+
+      <ProductDescription description={description} />
+    </section>
   );
 }
 
