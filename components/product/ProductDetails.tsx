@@ -121,7 +121,7 @@ function ProductInfo(
             </h1>
 
             <span class="text-lightslategray">
-              {additionalProperty[3].value}
+              {breadcrumbList && breadcrumbList?.itemListElement[1].name}
             </span>
           </div>
 
@@ -173,9 +173,11 @@ function ProductInfo(
             {formatPrice(price, offers?.priceCurrency)}
           </span>
         </div>
-        <span class="text-sm text-base-300">
-          em até {installments}
-        </span>
+        {installments && (
+          <span class="text-sm text-base-300">
+            em até {installments.replace(".", ",")}
+          </span>
+        )}
       </div>
       {/* Add to Cart */}
       <div class="mt-4 mb-2.5 flex flex-col gap-2">
@@ -291,7 +293,9 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   const id = useId();
 
   const { page: { product: { image: imagesAvailable = [] } }, layout } = props;
-  const images = imagesAvailable.filter((_, index) => index !== 1);
+  const images = imagesAvailable.filter((item) =>
+    item.alternateName !== "skucor"
+  );
 
   const variant = layout?.image ?? "slider";
 
