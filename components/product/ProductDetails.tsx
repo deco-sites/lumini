@@ -425,10 +425,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 }
 
 function ProductDetails({ page, layout }: Props) {
-  if (!page) return <NotFound />;
-
-  const description = page.product.description ||
-    page.product.isVariantOf?.description;
+  if (!page || !page.product) return <NotFound />;
 
   return (
     <section class="flex flex-col gap-20 mb-6">
@@ -436,7 +433,7 @@ function ProductDetails({ page, layout }: Props) {
         {page && <Details page={page} layout={layout} />}
       </div>
 
-      <ProductDescription description={description} />
+      <ProductDescription product={page.product} />
     </section>
   );
 }
