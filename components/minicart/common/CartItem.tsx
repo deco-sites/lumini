@@ -66,15 +66,14 @@ function CartItem(
     >
       <Image
         {...image}
-        style={{ aspectRatio: "108 / 150" }}
-        width={108}
-        height={150}
-        class="h-full object-contain"
+        style={{ aspectRatio: "1" }}
+        width={72}
+        height={82}
       />
 
       <div class="flex flex-col gap-2">
         <div class="flex justify-between items-center">
-          <span>{name}</span>
+          <span class="lowercase">{name}</span>
           <Button
             disabled={loading || isGift}
             loading={loading}
@@ -94,9 +93,11 @@ function CartItem(
           </Button>
         </div>
         <div class="flex items-center gap-2">
-          <span class="line-through text-base-300 text-sm">
+          {
+            /* <span class="line-through text-base-300 text-sm">
             {formatPrice(list, currency, locale)}
-          </span>
+          </span> */
+          }
           <span class="text-sm text-secondary">
             {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
           </span>

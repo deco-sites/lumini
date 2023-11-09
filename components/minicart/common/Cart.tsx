@@ -49,30 +49,24 @@ function Cart({
       {isEmpty
         ? (
           <div class="flex flex-col gap-6">
-            <span class="font-medium text-2xl">Sua sacola está vazia</span>
-            <Button
-              title="close button"
-              aria-label="close cart button"
-              class="btn-outline"
-              onClick={() => {
-                displayCart.value = false;
-              }}
-            >
-              Escolher produtos
-            </Button>
+            <span class="font-medium text-xl">
+              {"seu carrinho está vazio. :("}
+            </span>
           </div>
         )
         : (
           <>
             {/* Free Shipping Bar */}
-            <div class="px-2 py-4 w-full">
+            {
+              /* <div class="px-2 py-4 w-full">
               <FreeShippingProgressBar
                 total={total}
                 locale={locale}
                 currency={currency}
                 target={freeShippingTarget}
               />
-            </div>
+            </div> */
+            }
 
             {/* Cart Items */}
             <ul

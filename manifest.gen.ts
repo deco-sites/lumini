@@ -5,35 +5,37 @@
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
-import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
-import * as $$$$$$3 from "./sections/Content/CategoriesShelf.tsx";
-import * as $$$$$$4 from "./sections/Content/CollectionSection.tsx";
-import * as $$$$$$5 from "./sections/Content/Designers.tsx";
-import * as $$$$$$6 from "./sections/Content/DesignersSection.tsx";
-import * as $$$$$$7 from "./sections/Content/Faq.tsx";
-import * as $$$$$$8 from "./sections/Content/Logos.tsx";
-import * as $$$$$$9 from "./sections/Content/SectionPerson.tsx";
-import * as $$$$$$10 from "./sections/Content/SuggestionHero.tsx";
-import * as $$$$$$11 from "./sections/Content/Testimonials.tsx";
-import * as $$$$$$12 from "./sections/Footer/Footer.tsx";
-import * as $$$$$$13 from "./sections/Header/Header.tsx";
-import * as $$$$$$14 from "./sections/Images/BannerGrid.tsx";
-import * as $$$$$$15 from "./sections/Images/BiggestBanner.tsx";
-import * as $$$$$$16 from "./sections/Images/Carousel.tsx";
-import * as $$$$$$17 from "./sections/Images/ImageGallery.tsx";
-import * as $$$$$$18 from "./sections/Images/ShoppableBanner.tsx";
-import * as $$$$$$19 from "./sections/Links/LinkTree.tsx";
-import * as $$$$$$20 from "./sections/Links/Shortcuts.tsx";
-import * as $$$$$$21 from "./sections/Miscellaneous/CampaignTimer.tsx";
-import * as $$$$$$22 from "./sections/Miscellaneous/CookieConsent.tsx";
-import * as $$$$$$23 from "./sections/Newsletter/Newsletter.tsx";
-import * as $$$$$$24 from "./sections/Product/ProductDetails.tsx";
-import * as $$$$$$25 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$26 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$27 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$28 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$29 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$30 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$2 from "./sections/Content/AboutSection.tsx";
+import * as $$$$$$3 from "./sections/Content/Benefits.tsx";
+import * as $$$$$$4 from "./sections/Content/CategoriesShelf.tsx";
+import * as $$$$$$5 from "./sections/Content/CollectionSection.tsx";
+import * as $$$$$$6 from "./sections/Content/Designers.tsx";
+import * as $$$$$$7 from "./sections/Content/DesignersSection.tsx";
+import * as $$$$$$8 from "./sections/Content/Faq.tsx";
+import * as $$$$$$9 from "./sections/Content/Logos.tsx";
+import * as $$$$$$10 from "./sections/Content/SectionPerson.tsx";
+import * as $$$$$$11 from "./sections/Content/SuggestionHero.tsx";
+import * as $$$$$$12 from "./sections/Content/Testimonials.tsx";
+import * as $$$$$$13 from "./sections/Content/Video.tsx";
+import * as $$$$$$14 from "./sections/Footer/Footer.tsx";
+import * as $$$$$$15 from "./sections/Header/Header.tsx";
+import * as $$$$$$16 from "./sections/Images/BannerGrid.tsx";
+import * as $$$$$$17 from "./sections/Images/BiggestBanner.tsx";
+import * as $$$$$$18 from "./sections/Images/Carousel.tsx";
+import * as $$$$$$19 from "./sections/Images/ImageGallery.tsx";
+import * as $$$$$$20 from "./sections/Images/ShoppableBanner.tsx";
+import * as $$$$$$21 from "./sections/Links/LinkTree.tsx";
+import * as $$$$$$22 from "./sections/Links/Shortcuts.tsx";
+import * as $$$$$$23 from "./sections/Miscellaneous/CampaignTimer.tsx";
+import * as $$$$$$24 from "./sections/Miscellaneous/CookieConsent.tsx";
+import * as $$$$$$25 from "./sections/Newsletter/Newsletter.tsx";
+import * as $$$$$$26 from "./sections/Product/ProductDetails.tsx";
+import * as $$$$$$27 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$28 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$29 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$30 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$31 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$32 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
@@ -44,35 +46,37 @@ const manifest = {
   "sections": {
     "deco-sites/lumini/sections/Category/CategoryBanner.tsx": $$$$$$0,
     "deco-sites/lumini/sections/Category/CategoryList.tsx": $$$$$$1,
-    "deco-sites/lumini/sections/Content/Benefits.tsx": $$$$$$2,
-    "deco-sites/lumini/sections/Content/CategoriesShelf.tsx": $$$$$$3,
-    "deco-sites/lumini/sections/Content/CollectionSection.tsx": $$$$$$4,
-    "deco-sites/lumini/sections/Content/Designers.tsx": $$$$$$5,
-    "deco-sites/lumini/sections/Content/DesignersSection.tsx": $$$$$$6,
-    "deco-sites/lumini/sections/Content/Faq.tsx": $$$$$$7,
-    "deco-sites/lumini/sections/Content/Logos.tsx": $$$$$$8,
-    "deco-sites/lumini/sections/Content/SectionPerson.tsx": $$$$$$9,
-    "deco-sites/lumini/sections/Content/SuggestionHero.tsx": $$$$$$10,
-    "deco-sites/lumini/sections/Content/Testimonials.tsx": $$$$$$11,
-    "deco-sites/lumini/sections/Footer/Footer.tsx": $$$$$$12,
-    "deco-sites/lumini/sections/Header/Header.tsx": $$$$$$13,
-    "deco-sites/lumini/sections/Images/BannerGrid.tsx": $$$$$$14,
-    "deco-sites/lumini/sections/Images/BiggestBanner.tsx": $$$$$$15,
-    "deco-sites/lumini/sections/Images/Carousel.tsx": $$$$$$16,
-    "deco-sites/lumini/sections/Images/ImageGallery.tsx": $$$$$$17,
-    "deco-sites/lumini/sections/Images/ShoppableBanner.tsx": $$$$$$18,
-    "deco-sites/lumini/sections/Links/LinkTree.tsx": $$$$$$19,
-    "deco-sites/lumini/sections/Links/Shortcuts.tsx": $$$$$$20,
-    "deco-sites/lumini/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$21,
-    "deco-sites/lumini/sections/Miscellaneous/CookieConsent.tsx": $$$$$$22,
-    "deco-sites/lumini/sections/Newsletter/Newsletter.tsx": $$$$$$23,
-    "deco-sites/lumini/sections/Product/ProductDetails.tsx": $$$$$$24,
-    "deco-sites/lumini/sections/Product/ProductShelf.tsx": $$$$$$25,
-    "deco-sites/lumini/sections/Product/SearchResult.tsx": $$$$$$26,
-    "deco-sites/lumini/sections/Product/Wishlist.tsx": $$$$$$27,
-    "deco-sites/lumini/sections/Social/InstagramPosts.tsx": $$$$$$28,
-    "deco-sites/lumini/sections/Social/WhatsApp.tsx": $$$$$$29,
-    "deco-sites/lumini/sections/Theme/Theme.tsx": $$$$$$30,
+    "deco-sites/lumini/sections/Content/AboutSection.tsx": $$$$$$2,
+    "deco-sites/lumini/sections/Content/Benefits.tsx": $$$$$$3,
+    "deco-sites/lumini/sections/Content/CategoriesShelf.tsx": $$$$$$4,
+    "deco-sites/lumini/sections/Content/CollectionSection.tsx": $$$$$$5,
+    "deco-sites/lumini/sections/Content/Designers.tsx": $$$$$$6,
+    "deco-sites/lumini/sections/Content/DesignersSection.tsx": $$$$$$7,
+    "deco-sites/lumini/sections/Content/Faq.tsx": $$$$$$8,
+    "deco-sites/lumini/sections/Content/Logos.tsx": $$$$$$9,
+    "deco-sites/lumini/sections/Content/SectionPerson.tsx": $$$$$$10,
+    "deco-sites/lumini/sections/Content/SuggestionHero.tsx": $$$$$$11,
+    "deco-sites/lumini/sections/Content/Testimonials.tsx": $$$$$$12,
+    "deco-sites/lumini/sections/Content/Video.tsx": $$$$$$13,
+    "deco-sites/lumini/sections/Footer/Footer.tsx": $$$$$$14,
+    "deco-sites/lumini/sections/Header/Header.tsx": $$$$$$15,
+    "deco-sites/lumini/sections/Images/BannerGrid.tsx": $$$$$$16,
+    "deco-sites/lumini/sections/Images/BiggestBanner.tsx": $$$$$$17,
+    "deco-sites/lumini/sections/Images/Carousel.tsx": $$$$$$18,
+    "deco-sites/lumini/sections/Images/ImageGallery.tsx": $$$$$$19,
+    "deco-sites/lumini/sections/Images/ShoppableBanner.tsx": $$$$$$20,
+    "deco-sites/lumini/sections/Links/LinkTree.tsx": $$$$$$21,
+    "deco-sites/lumini/sections/Links/Shortcuts.tsx": $$$$$$22,
+    "deco-sites/lumini/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$23,
+    "deco-sites/lumini/sections/Miscellaneous/CookieConsent.tsx": $$$$$$24,
+    "deco-sites/lumini/sections/Newsletter/Newsletter.tsx": $$$$$$25,
+    "deco-sites/lumini/sections/Product/ProductDetails.tsx": $$$$$$26,
+    "deco-sites/lumini/sections/Product/ProductShelf.tsx": $$$$$$27,
+    "deco-sites/lumini/sections/Product/SearchResult.tsx": $$$$$$28,
+    "deco-sites/lumini/sections/Product/Wishlist.tsx": $$$$$$29,
+    "deco-sites/lumini/sections/Social/InstagramPosts.tsx": $$$$$$30,
+    "deco-sites/lumini/sections/Social/WhatsApp.tsx": $$$$$$31,
+    "deco-sites/lumini/sections/Theme/Theme.tsx": $$$$$$32,
   },
   "apps": {
     "deco-sites/lumini/apps/decohub.ts": $$$$$$$$$$$0,
