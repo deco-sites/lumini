@@ -32,7 +32,7 @@ const Aside = (
   <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw] w-[75%] lg:w-auto">
     <div class="flex justify-between items-center">
       <h1 class="px-4 py-3">
-        <span class="font-medium text-2xl">{title}</span>
+        <span class="font-medium text-2xl lowercase">{title}</span>
       </h1>
       {onClose && (
         <Button
