@@ -11,6 +11,7 @@ export interface Props {
   categories: Array<{
     image: ImageWidget;
     description: string;
+    link: string;
   }>;
   title?: string;
   description?: string;
@@ -53,13 +54,15 @@ function CategoriesShelf({
               index={index}
               class="carousel-item w-[130px] h-[160px] sm:w-[180px] sm:h-[222px] first:pl-4 last:pr-4 sm:first:pl-1 sm:last:pr-1"
             >
-              <Image
-                src={category.image}
-                width={180}
-                height={222}
-                loading="eager"
-                alt={category.description}
-              />
+              <a href={category.link}>
+                <Image
+                  src={category.image}
+                  width={180}
+                  height={222}
+                  loading="eager"
+                  alt={category.description}
+                />
+              </a>
             </Slider.Item>
           ))}
         </Slider>

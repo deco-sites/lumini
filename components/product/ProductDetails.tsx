@@ -121,7 +121,7 @@ function ProductInfo(
             </h1>
 
             <span class="text-lightslategray">
-              {additionalProperty[3].value}
+              {breadcrumbList && breadcrumbList?.itemListElement[1].name}
             </span>
           </div>
 
@@ -134,7 +134,7 @@ function ProductInfo(
       </div>
 
       {/* Sku Selector */}
-      <div class="flex flex-col gap-2 mt-4">
+      <div class="flex flex-col gap-2 mt-4 w-full">
         <p class="font-univers-next-pro-light text-lg font-medium">
           cor:{" "}
           <span class="text-lightslategray lowercase">
@@ -145,7 +145,8 @@ function ProductInfo(
         <ProductSelector product={product} />
       </div>
 
-      <div class="flex flex-col gap-2 mt-4 w-full">
+      {
+        /* <div class="flex flex-col gap-2 mt-4 w-full">
         <p class="font-univers-next-pro-light text-lg font-medium">
           voltagem
         </p>
@@ -159,7 +160,8 @@ function ProductInfo(
             220v
           </button>
         </div>
-      </div>
+      </div> */
+      }
 
       {/* Prices */}
       <div class="border-t border-gainsboro pt-4 mt-8">
@@ -173,9 +175,11 @@ function ProductInfo(
             {formatPrice(price, offers?.priceCurrency)}
           </span>
         </div>
-        <span class="text-sm text-base-300">
-          em até {installments}
-        </span>
+        {installments && (
+          <span class="text-sm text-base-300">
+            em até {installments.replace(".", ",")}
+          </span>
+        )}
       </div>
       {/* Add to Cart */}
       <div class="mt-4 mb-2.5 flex flex-col gap-2">
@@ -291,7 +295,9 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   const id = useId();
 
   const { page: { product: { image: imagesAvailable = [] } }, layout } = props;
-  const images = imagesAvailable.filter((_, index) => index !== 1);
+  const images = imagesAvailable.filter((item) =>
+    item.alternateName !== "skucor"
+  );
 
   const variant = layout?.image ?? "slider";
 
@@ -425,10 +431,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 }
 
 function ProductDetails({ page, layout }: Props) {
-  if (!page) return <NotFound />;
-
-  const description = page.product.description ||
-    page.product.isVariantOf?.description;
+  if (!page || !page.product) return <NotFound />;
 
   return (
     <section class="flex flex-col gap-20 mb-6">
@@ -436,7 +439,7 @@ function ProductDetails({ page, layout }: Props) {
         {page && <Details page={page} layout={layout} />}
       </div>
 
-      <ProductDescription description={description} />
+      <ProductDescription product={page.product} />
     </section>
   );
 }
