@@ -134,7 +134,7 @@ function ProductInfo(
       </div>
 
       {/* Sku Selector */}
-      <div class="flex flex-col gap-2 mt-4">
+      <div class="flex flex-col gap-2 mt-4 w-full">
         <p class="font-univers-next-pro-light text-lg font-medium">
           cor:{" "}
           <span class="text-lightslategray lowercase">
@@ -145,7 +145,8 @@ function ProductInfo(
         <ProductSelector product={product} />
       </div>
 
-      <div class="flex flex-col gap-2 mt-4 w-full">
+      {
+        /* <div class="flex flex-col gap-2 mt-4 w-full">
         <p class="font-univers-next-pro-light text-lg font-medium">
           voltagem
         </p>
@@ -159,7 +160,8 @@ function ProductInfo(
             220v
           </button>
         </div>
-      </div>
+      </div> */
+      }
 
       {/* Prices */}
       <div class="border-t border-gainsboro pt-4 mt-8">
