@@ -48,6 +48,7 @@ function Dimensions(
         <img
           src={`https://tezexb.vteximg.com.br${image}`}
           alt={imageDescription}
+          loading="lazy"
         />
       </div>
     </details>
@@ -132,55 +133,53 @@ function Description(
 }
 
 export default function ProductDescription({ product }: Props) {
+  function getProperty(product: Product, propertyName: string) {
+    return (
+      product?.additionalProperty?.find((item) => item.name === propertyName)
+        ?.value ||
+      product?.isVariantOf?.additionalProperty?.find((item) =>
+        item.name === propertyName
+      )?.value
+    );
+  }
+
+  function getImageInfo(property?: string | null) {
+    if (!property) return { image: undefined, imageDescription: undefined };
+
+    const image = property?.match(/src="([^"]*)"/)?.[1]?.replace(/\\/g, "");
+    const imageDescription = property?.match(/alt="([^"]*)"/)?.[1]?.replace(
+      /\\/g,
+      "",
+    );
+
+    return { image, imageDescription };
+  }
+
+  function getDownloadInfo(property?: string | null) {
+    if (!property) return { downloadLink: undefined, downloadImage: undefined };
+
+    const downloadLink = property?.match(/href="([^"]*)"/)?.[1]?.replace(
+      /\\/g,
+      "",
+    );
+    const downloadImage = property?.match(/src="([^"]*)"/)?.[1]?.replace(
+      /\\/g,
+      "",
+    );
+
+    return { downloadLink, downloadImage };
+  }
+
   const description = product.description || product.isVariantOf?.description;
-  const designer =
-    product?.additionalProperty?.find((item) => item.name === "designer")
-      ?.value ||
-    product?.isVariantOf?.additionalProperty?.find((item) =>
-      item.name === "designer"
-    )?.value ||
-    product?.additionalProperty?.find((item) => item.propertyID === "162")
-      ?.value ||
-    product?.isVariantOf?.additionalProperty?.find((item) =>
-      item.propertyID === "162"
-    )?.value;
-  const lightSource =
-    product?.additionalProperty?.find((item) => item.name === "fonte de luz")
-      ?.value ||
-    product?.isVariantOf?.additionalProperty?.find((item) =>
-      item.name === "fonte de luz"
-    )?.value;
-  const cable =
-    product?.additionalProperty?.find((item) => item.name === "cabo")?.value ||
-    product?.isVariantOf?.additionalProperty?.find((item) =>
-      item.name === "cabo"
-    )?.value;
-  const materialUsed =
-    product?.additionalProperty?.find((item) =>
-      item.name === "material utilizado"
-    )?.value || product?.isVariantOf?.additionalProperty?.find((item) =>
-      item.name === "material utilizado"
-    )?.value;
-  const imageValue =
-    product?.additionalProperty?.find((item) => item.name === "Imagem")
-      ?.value ||
-    product?.isVariantOf?.additionalProperty?.find((item) =>
-      item.name === "Imagem"
-    )?.value;
-  const image = imageValue &&
-    imageValue.match(/src="([^"]*)"/)?.[1]?.replace(/\\/g, "");
-  const imageDescription = imageValue &&
-    imageValue.match(/alt="([^"]*)"/)?.[1]?.replace(/\\/g, "");
-  const downloadValue =
-    product?.additionalProperty?.find((item) =>
-      item.name === "manual de instalação"
-    )?.value || product?.isVariantOf?.additionalProperty?.find((item) =>
-      item.name === "manual de instalação"
-    )?.value;
-  const downloadLink = downloadValue &&
-    downloadValue.match(/href="([^"]*)"/)?.[1]?.replace(/\\/g, "");
-  const downloadImage = downloadValue &&
-    downloadValue.match(/src="([^"]*)"/)?.[1]?.replace(/\\/g, "");
+  const designer = getProperty(product, "designer") ||
+    getProperty(product, "162");
+  const lightSource = getProperty(product, "fonte de luz");
+  const cable = getProperty(product, "cabo");
+  const materialUsed = getProperty(product, "material utilizado");
+  const imageValue = getProperty(product, "Imagem");
+  const { image, imageDescription } = getImageInfo(imageValue);
+  const downloadValue = getProperty(product, "manual de instalação");
+  const { downloadLink, downloadImage } = getDownloadInfo(downloadValue);
 
   return (
     <section class="flex border-t border-t-lightslategray w-full h-full bg-ice-cube pt-4 pb-8">
