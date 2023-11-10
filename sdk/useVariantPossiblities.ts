@@ -24,7 +24,7 @@ export const useVariantPossibilities = (
       }
 
       if (!possibilities[name][value]) {
-        possibilities[name][value] = it === 0 ? url : undefined;
+        possibilities[name][value] = url;
       }
 
       const isSelectable = specs.every((s) =>

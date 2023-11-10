@@ -55,17 +55,28 @@ function VariantSelector({ product }: Props) {
           <ul class="flex flex-col gap-4 w-full">
             <li class="flex flex-col gap-2 w-full">
               <p class="font-univers-next-pro-light text-lg font-medium">
-                {name}
+                {name}:{" "}
+                <span class="text-lightslategray lowercase">
+                  {product?.additionalProperty?.find((item) =>
+                    item.name === name
+                  )?.value || ""}
+                </span>
               </p>
               <ul class="flex flex-col gap-3 w-full">
                 {Object.entries(possibilities[name]).map(([value, link]) => {
                   const partial = usePartial({ href: link });
+                  const isChecked = product?.additionalProperty?.find((item) =>
+                    item.name === name
+                  )?.value === value;
 
                   return (
                     <li>
                       <button
                         {...partial}
-                        class="flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold"
+                        title={`Change ${name}`}
+                        class={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
+                          isChecked && "bg-dark-gray text-white"
+                        }`}
                       >
                         {value}
                       </button>

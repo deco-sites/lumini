@@ -145,24 +145,6 @@ function ProductInfo(
         <ProductSelector product={product} />
       </div>
 
-      {
-        /* <div class="flex flex-col gap-2 mt-4 w-full">
-        <p class="font-univers-next-pro-light text-lg font-medium">
-          voltagem
-        </p>
-
-        <div class="flex flex-col gap-1.5 w-full">
-          <button class="flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold">
-            110v
-          </button>
-
-          <button class="flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold">
-            220v
-          </button>
-        </div>
-      </div> */
-      }
-
       {/* Prices */}
       <div class="border-t border-gainsboro pt-4 mt-8">
         <div class="flex flex-row gap-2 items-center normal-case">
