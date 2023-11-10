@@ -8,6 +8,8 @@ interface Props {
 }
 
 function VariantSelector({ product }: Props) {
+  if (!product) return null;
+  
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
