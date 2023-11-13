@@ -15,7 +15,7 @@ export interface Props {
 export default function CollectionSection({ title, images }: Props) {
   return (
     <div class="w-full h-full flex items-center justify-center">
-      <section class="max-w-full lg:max-w-[1230px] flex items-center justify-center m-5">
+      <section class="max-w-full lg:max-w-[1250px] flex items-center justify-center m-5">
         <div class="w-full h-full flex flex-col items-center justify-center">
           <div class="w-full flex items-start justify-start my-5">
             <h1 class="text-[21px] lg:text-4xl font-univers-next-pro-bold">
