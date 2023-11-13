@@ -21,7 +21,7 @@ export default function SectionPerson(
 ) {
   return (
     <div class="w-full h-full flex items-center justify-center">
-      <section class="max-w-[1536px] h-full flex items-start justify-center my-20">
+      <section class="max-w-[1250px] h-full flex items-start justify-center my-20">
         <div class="w-full h-full flex flex-col md:flex-row items-start justify-center">
           <div class="bg-cover">
             <Image
