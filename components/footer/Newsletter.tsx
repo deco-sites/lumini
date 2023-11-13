@@ -66,7 +66,7 @@ function Newsletter(
           <div class="flex justify-between items-center w-full h-full">
             <input
               name="email"
-              class="flex w-full text-base-content bg-transparent pl-1.5 focus:bg-none focus:border-none h-full"
+              class="flex w-full text-base-content bg-transparent pl-1.5 focus:outline-none h-full"
               placeholder={content?.form?.placeholder || "insira seu email"}
             />
 
