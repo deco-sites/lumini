@@ -41,14 +41,17 @@ function Sort({ sortOptions }: Props) {
       name="sort"
       aria-label="sort options"
       onInput={applySort}
-      class="w-min h-[36px] px-1 rounded m-2 text-base-content cursor-pointer outline-none lowercase"
+      class="w-[120px] h-[36px] px-1 rounded m-2 text-base-content cursor-pointer outline-none lowercase"
     >
+      <option value="" hidden>
+        Ordenar por
+      </option>
       {sortOptions.map(({ value, label }) => ({
         value,
         label: portugueseMappings[label as keyof typeof portugueseMappings] ??
           label,
       })).filter(({ label }) => label).map(({ value, label }) => (
-        <option key={value} value={value} selected={value === sort}>
+        <option key={value} value={value}>
           <span class="text-sm">{label}</span>
         </option>
       ))}
