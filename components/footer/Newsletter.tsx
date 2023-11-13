@@ -60,30 +60,39 @@ function Newsletter(
       </div>
       <div class="flex flex-col gap-4">
         <form
-          class="form-control"
+          class="flex items-center justify-center w-full border-b border-b-black pb-0.5 h-[46px]"
           onSubmit={handleSubmit}
         >
-          <div class="flex flex-wrap gap-3">
+          <div class="flex justify-between items-center w-full h-full">
             <input
               name="email"
-              class="flex-auto md:flex-none input input-bordered md:w-80 text-base-content"
-              placeholder={content?.form?.placeholder || "Digite seu email"}
+              class="flex w-full text-base-content bg-transparent pl-1.5 focus:bg-none focus:border-none h-full"
+              placeholder={content?.form?.placeholder || "insira seu email"}
             />
+
             <button
               type="submit"
-              class="btn disabled:loading"
+              class="disabled:loading pr-1.5 h-full"
               disabled={loading}
             >
-              {content?.form?.buttonText || "Inscrever"}
+              <img
+                alt="right arrow image"
+                width={24}
+                height={24}
+                loading="lazy"
+                src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/hpa-newsletter-row___ef97774d74950b40c21bc4b0ba8ffec1.svg"
+              />
             </button>
           </div>
         </form>
-        {content?.form?.helpText && (
+        {
+          /* {content?.form?.helpText && (
           <div
             class="text-sm"
             dangerouslySetInnerHTML={{ __html: content?.form?.helpText }}
           />
-        )}
+        )} */
+        }
       </div>
     </div>
   );

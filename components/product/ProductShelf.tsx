@@ -33,7 +33,7 @@ function ProductShelf({
   return (
     <div
       id={id}
-      class="w-full container max-w-[1230px] py-2 flex flex-col gap-12 lg:gap-16"
+      class="w-full container max-w-[1230px] py-2 flex flex-col gap-10"
     >
       <div class="flex justify-between w-full px-6 lg:px-0">
         <h1 class="text-[21px] lg:text-4xl font-univers-next-pro-bold">

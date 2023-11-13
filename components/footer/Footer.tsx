@@ -214,13 +214,13 @@ function Footer({
 
   return (
     <footer
-      class={`w-full flex flex-col pt-10 pb-2 md:pb-10 gap-10 ${
+      class={`w-full flex flex-col pt-10 pb-2 md:pb-5 gap-10 bg-ice-cube ${
         ColorClasses(layout)
       }`}
     >
       <div class="w-full mx-2 lg:mx-0">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
-          <div class="flex flex-col gap-10 w-full">
+          <div class="flex flex-col gap-7 w-full">
             <div class="flex items-center justify-center w-full">
               <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 xl:max-w-[1250px] w-full">
                 {_logo}
@@ -242,12 +242,35 @@ function Footer({
               </div>
             </div>
             <Divider />
-            {
-              /* <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
-              <PoweredByDeco />
-              {_links}
-            </div> */
-            }
+            <div class="flex flex-col md:flex-row max-w-[1250px] items-center justify-between w-full text-xs mx-auto">
+              <span>
+                lumini soluções em iluminação ltda. cnpj 40.418.865/0002-78
+              </span>
+
+              <div class="flex items-center justify-center gap-3">
+                <div class="flex flex-col gap-0.5">
+                  <span>powered by</span>
+                  <img
+                    alt="powered by vtex"
+                    width={52}
+                    height={20}
+                    loading="lazy"
+                    src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/img/footer-02___b451dae0e36eb67702aada3e57fd45ed.png"
+                  />
+                </div>
+
+                <div class="flex flex-col gap-0.5">
+                  <span>developed by</span>
+                  <img
+                    alt="developed by allfa"
+                    width={68}
+                    height={48}
+                    loading="lazy"
+                    src="https://www.abracadabra.com.br/allfa.svg?__frsh_c=8082c87b3981777fbf3e38c25733c9112c11e5b8"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         )}
         {layout?.variation == "Variation 2" && (
