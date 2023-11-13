@@ -15,14 +15,14 @@ export interface Props {
 
 export default function Designers({ cards }: Props) {
   return (
-    <section class="w-full h-full flex items-center justify-center">
+    <section class="w-full h-full flex items-center justify-center mb-4">
       <div class="max-w-[1250px] h-full flex flex-col items-center justify-center mx-auto">
         <div class="w-full my-[56px] text-center xl:text-start">
           <p class="w-full text-[32px]">
             designers
           </p>
         </div>
-        <div class="w-full h-full flex flex-wrap items-center justify-center gap-8">
+        <div class="w-full h-full flex flex-wrap items-center justify-center lg:justify-start gap-8">
           {cards?.map((card) => (
             <div class="flex flex-col">
               <a href={card.linkPage}>
