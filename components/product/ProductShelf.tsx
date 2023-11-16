@@ -30,7 +30,7 @@ function ProductShelf({
   }
 
   return (
-    <div
+    <section
       id={id}
       class="w-full container max-w-[1230px] py-2 flex flex-col gap-10"
     >
@@ -59,7 +59,7 @@ function ProductShelf({
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[270px] sm:w-[400px] lg:h-[400px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              class="carousel-item w-[270px] sm:w-[390px] lg:h-[410px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -88,7 +88,7 @@ function ProductShelf({
       </div>
 
       <SliderJS rootId={id} />
-    </div>
+    </section>
   );
 }
 
