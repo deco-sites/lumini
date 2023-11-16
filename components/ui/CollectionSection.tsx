@@ -1,6 +1,5 @@
 import { ImageWidget } from "apps/admin/widgets.ts";
 import { useId } from "$store/sdk/useId.ts";
-
 import Image from "apps/website/components/Image.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
