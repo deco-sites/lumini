@@ -14,32 +14,33 @@ import * as $$$$$$7 from "./sections/Content/Designers.tsx";
 import * as $$$$$$8 from "./sections/Content/DesignersSection.tsx";
 import * as $$$$$$9 from "./sections/Content/Faq.tsx";
 import * as $$$$$$10 from "./sections/Content/Logos.tsx";
-import * as $$$$$$11 from "./sections/Content/SectionPerson.tsx";
-import * as $$$$$$12 from "./sections/Content/SuggestionHero.tsx";
-import * as $$$$$$13 from "./sections/Content/Testimonials.tsx";
-import * as $$$$$$14 from "./sections/Content/Video.tsx";
-import * as $$$$$$15 from "./sections/Footer/Footer.tsx";
-import * as $$$$$$16 from "./sections/Header/Header.tsx";
-import * as $$$$$$17 from "./sections/Images/BannerGrid.tsx";
-import * as $$$$$$18 from "./sections/Images/BiggestBanner.tsx";
-import * as $$$$$$19 from "./sections/Images/Carousel.tsx";
-import * as $$$$$$20 from "./sections/Images/ImageGallery.tsx";
-import * as $$$$$$21 from "./sections/Images/ShoppableBanner.tsx";
-import * as $$$$$$22 from "./sections/Institutional/ContainerInstitutional.tsx";
-import * as $$$$$$23 from "./sections/Institutional/InstitutionalDescription.tsx";
-import * as $$$$$$24 from "./sections/Institutional/InstitutionalMenu.tsx";
-import * as $$$$$$25 from "./sections/Links/LinkTree.tsx";
-import * as $$$$$$26 from "./sections/Links/Shortcuts.tsx";
-import * as $$$$$$27 from "./sections/Miscellaneous/CampaignTimer.tsx";
-import * as $$$$$$28 from "./sections/Miscellaneous/CookieConsent.tsx";
-import * as $$$$$$29 from "./sections/Newsletter/Newsletter.tsx";
-import * as $$$$$$30 from "./sections/Product/ProductDetails.tsx";
-import * as $$$$$$31 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$32 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$33 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$34 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$35 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$36 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$11 from "./sections/Content/OurStores.tsx";
+import * as $$$$$$12 from "./sections/Content/SectionPerson.tsx";
+import * as $$$$$$13 from "./sections/Content/SuggestionHero.tsx";
+import * as $$$$$$14 from "./sections/Content/Testimonials.tsx";
+import * as $$$$$$15 from "./sections/Content/Video.tsx";
+import * as $$$$$$16 from "./sections/Footer/Footer.tsx";
+import * as $$$$$$17 from "./sections/Header/Header.tsx";
+import * as $$$$$$18 from "./sections/Images/BannerGrid.tsx";
+import * as $$$$$$19 from "./sections/Images/BiggestBanner.tsx";
+import * as $$$$$$20 from "./sections/Images/Carousel.tsx";
+import * as $$$$$$21 from "./sections/Images/ImageGallery.tsx";
+import * as $$$$$$22 from "./sections/Images/ShoppableBanner.tsx";
+import * as $$$$$$23 from "./sections/Institutional/ContainerInstitutional.tsx";
+import * as $$$$$$24 from "./sections/Institutional/InstitutionalDescription.tsx";
+import * as $$$$$$25 from "./sections/Institutional/InstitutionalMenu.tsx";
+import * as $$$$$$26 from "./sections/Links/LinkTree.tsx";
+import * as $$$$$$27 from "./sections/Links/Shortcuts.tsx";
+import * as $$$$$$28 from "./sections/Miscellaneous/CampaignTimer.tsx";
+import * as $$$$$$29 from "./sections/Miscellaneous/CookieConsent.tsx";
+import * as $$$$$$30 from "./sections/Newsletter/Newsletter.tsx";
+import * as $$$$$$31 from "./sections/Product/ProductDetails.tsx";
+import * as $$$$$$32 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$33 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$34 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$35 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$36 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$37 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
@@ -59,34 +60,35 @@ const manifest = {
     "deco-sites/lumini/sections/Content/DesignersSection.tsx": $$$$$$8,
     "deco-sites/lumini/sections/Content/Faq.tsx": $$$$$$9,
     "deco-sites/lumini/sections/Content/Logos.tsx": $$$$$$10,
-    "deco-sites/lumini/sections/Content/SectionPerson.tsx": $$$$$$11,
-    "deco-sites/lumini/sections/Content/SuggestionHero.tsx": $$$$$$12,
-    "deco-sites/lumini/sections/Content/Testimonials.tsx": $$$$$$13,
-    "deco-sites/lumini/sections/Content/Video.tsx": $$$$$$14,
-    "deco-sites/lumini/sections/Footer/Footer.tsx": $$$$$$15,
-    "deco-sites/lumini/sections/Header/Header.tsx": $$$$$$16,
-    "deco-sites/lumini/sections/Images/BannerGrid.tsx": $$$$$$17,
-    "deco-sites/lumini/sections/Images/BiggestBanner.tsx": $$$$$$18,
-    "deco-sites/lumini/sections/Images/Carousel.tsx": $$$$$$19,
-    "deco-sites/lumini/sections/Images/ImageGallery.tsx": $$$$$$20,
-    "deco-sites/lumini/sections/Images/ShoppableBanner.tsx": $$$$$$21,
+    "deco-sites/lumini/sections/Content/OurStores.tsx": $$$$$$11,
+    "deco-sites/lumini/sections/Content/SectionPerson.tsx": $$$$$$12,
+    "deco-sites/lumini/sections/Content/SuggestionHero.tsx": $$$$$$13,
+    "deco-sites/lumini/sections/Content/Testimonials.tsx": $$$$$$14,
+    "deco-sites/lumini/sections/Content/Video.tsx": $$$$$$15,
+    "deco-sites/lumini/sections/Footer/Footer.tsx": $$$$$$16,
+    "deco-sites/lumini/sections/Header/Header.tsx": $$$$$$17,
+    "deco-sites/lumini/sections/Images/BannerGrid.tsx": $$$$$$18,
+    "deco-sites/lumini/sections/Images/BiggestBanner.tsx": $$$$$$19,
+    "deco-sites/lumini/sections/Images/Carousel.tsx": $$$$$$20,
+    "deco-sites/lumini/sections/Images/ImageGallery.tsx": $$$$$$21,
+    "deco-sites/lumini/sections/Images/ShoppableBanner.tsx": $$$$$$22,
     "deco-sites/lumini/sections/Institutional/ContainerInstitutional.tsx":
-      $$$$$$22,
-    "deco-sites/lumini/sections/Institutional/InstitutionalDescription.tsx":
       $$$$$$23,
-    "deco-sites/lumini/sections/Institutional/InstitutionalMenu.tsx": $$$$$$24,
-    "deco-sites/lumini/sections/Links/LinkTree.tsx": $$$$$$25,
-    "deco-sites/lumini/sections/Links/Shortcuts.tsx": $$$$$$26,
-    "deco-sites/lumini/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$27,
-    "deco-sites/lumini/sections/Miscellaneous/CookieConsent.tsx": $$$$$$28,
-    "deco-sites/lumini/sections/Newsletter/Newsletter.tsx": $$$$$$29,
-    "deco-sites/lumini/sections/Product/ProductDetails.tsx": $$$$$$30,
-    "deco-sites/lumini/sections/Product/ProductShelf.tsx": $$$$$$31,
-    "deco-sites/lumini/sections/Product/SearchResult.tsx": $$$$$$32,
-    "deco-sites/lumini/sections/Product/Wishlist.tsx": $$$$$$33,
-    "deco-sites/lumini/sections/Social/InstagramPosts.tsx": $$$$$$34,
-    "deco-sites/lumini/sections/Social/WhatsApp.tsx": $$$$$$35,
-    "deco-sites/lumini/sections/Theme/Theme.tsx": $$$$$$36,
+    "deco-sites/lumini/sections/Institutional/InstitutionalDescription.tsx":
+      $$$$$$24,
+    "deco-sites/lumini/sections/Institutional/InstitutionalMenu.tsx": $$$$$$25,
+    "deco-sites/lumini/sections/Links/LinkTree.tsx": $$$$$$26,
+    "deco-sites/lumini/sections/Links/Shortcuts.tsx": $$$$$$27,
+    "deco-sites/lumini/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$28,
+    "deco-sites/lumini/sections/Miscellaneous/CookieConsent.tsx": $$$$$$29,
+    "deco-sites/lumini/sections/Newsletter/Newsletter.tsx": $$$$$$30,
+    "deco-sites/lumini/sections/Product/ProductDetails.tsx": $$$$$$31,
+    "deco-sites/lumini/sections/Product/ProductShelf.tsx": $$$$$$32,
+    "deco-sites/lumini/sections/Product/SearchResult.tsx": $$$$$$33,
+    "deco-sites/lumini/sections/Product/Wishlist.tsx": $$$$$$34,
+    "deco-sites/lumini/sections/Social/InstagramPosts.tsx": $$$$$$35,
+    "deco-sites/lumini/sections/Social/WhatsApp.tsx": $$$$$$36,
+    "deco-sites/lumini/sections/Theme/Theme.tsx": $$$$$$37,
   },
   "apps": {
     "deco-sites/lumini/apps/decohub.ts": $$$$$$$$$$$0,

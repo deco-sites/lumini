@@ -23,18 +23,14 @@ export type Section = {
 };
 
 export interface SocialItem {
-  label:
-    | "Discord"
-    | "Facebook"
-    | "Instagram"
-    | "Linkedin"
-    | "Tiktok"
-    | "Twitter";
+  image: ImageWidget;
+  description: string;
   link: string;
 }
 
 export interface PaymentItem {
-  label: "Diners" | "Elo" | "Mastercard" | "Pix" | "Visa";
+  image: ImageWidget;
+  description: string;
 }
 
 export interface MobileApps {
@@ -153,11 +149,11 @@ function Footer({
   }],
   social = {
     title: "Redes sociais",
-    items: [{ label: "Instagram", link: "/" }, { label: "Tiktok", link: "/" }],
+    items: [],
   },
   payments = {
     title: "Formas de pagamento",
-    items: [{ label: "Mastercard" }, { label: "Visa" }, { label: "Pix" }],
+    items: [],
   },
   mobileApps = { apple: "/", android: "/" },
   regionOptions = { currency: [], language: [] },
@@ -222,14 +218,16 @@ function Footer({
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div class="flex flex-col gap-7 w-full">
             <div class="flex items-center justify-center w-full">
-              <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 xl:max-w-[1250px] w-full">
+              <div class="flex flex-col md:flex-row md:justify-center lg:justify-between md:flex-wrap lg:flex-nowrap gap-8 xl:max-w-[1250px] w-full">
                 {_logo}
                 {_sectionLinks}
                 {_social}
                 {_newsletter}
               </div>
             </div>
-            <Divider />
+            <div class="hidden lg:block">
+              <Divider />
+            </div>
             <div class="flex items-center justify-center w-full">
               <div class="flex flex-col md:flex-row xl:max-w-[1250px] lg:justify-end w-full">
                 {_payments}
@@ -242,7 +240,7 @@ function Footer({
               </div>
             </div>
             <Divider />
-            <div class="flex flex-col md:flex-row max-w-[1250px] items-center justify-between w-full text-xs mx-auto">
+            <div class="flex flex-col md:flex-row max-w-[1250px] items-start justify-start md:items-center md:justify-between w-full text-xs mx-auto gap-2">
               <span>
                 lumini soluções em iluminação ltda. cnpj 40.418.865/0002-78
               </span>

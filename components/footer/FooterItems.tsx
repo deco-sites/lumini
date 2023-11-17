@@ -47,7 +47,7 @@ export default function FooterItems(
           <ul class="flex flex-col md:hidden gap-4">
             {sections.map((section) => (
               <li>
-                <div class="collapse collapse-arrow ">
+                <div class="collapse collapse-arrow">
                   <input
                     type="checkbox"
                     class="min-h-[0]"

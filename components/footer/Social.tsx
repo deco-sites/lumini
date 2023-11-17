@@ -1,13 +1,8 @@
-import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
+import { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface SocialItem {
-  label:
-    | "Discord"
-    | "Facebook"
-    | "Instagram"
-    | "Linkedin"
-    | "Tiktok"
-    | "Twitter";
+  image: ImageWidget;
+  description: string;
   link: string;
 }
 
@@ -34,15 +29,16 @@ export default function Social(
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${item.label} Logo`}
+                    aria-label={`${item.description} Logo`}
                     class="flex gap-2 items-center"
                   >
-                    <span class="block p-1 border rounded-full">
-                      <Icon size={24} id={item.label} />
-                    </span>
-                    {vertical && (
-                      <div class="text-sm hidden lg:block">{item.label}</div>
-                    )}
+                    <img
+                      src={item.image}
+                      alt={item.description}
+                      width={24}
+                      height={24}
+                      loading="lazy"
+                    />
                   </a>
                 </li>
               );
