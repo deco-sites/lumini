@@ -115,6 +115,7 @@ function Searchbar({
           autocomplete="off"
         />
         <Button
+          aria-label="display popup button"
           type="button"
           class="join-item btn-ghost btn-square hidden sm:inline-flex"
           onClick={() => displaySearchPopup.value = false}
