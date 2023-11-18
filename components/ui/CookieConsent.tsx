@@ -119,7 +119,7 @@ function CookieConsent(props: Props) {
                 />
               )}
 
-              {policy && (
+              {policy && policy.text && (
                 <a href={policy.link} class="text-sm link link-secondary">
                   {policy.text}
                 </a>
