@@ -75,9 +75,10 @@ function CartItem(
         <div class="flex justify-between items-center">
           <span class="lowercase">{name}</span>
           <Button
+            aria-label="remove item"
             disabled={loading || isGift}
             loading={loading}
-            class="btn-ghost btn-square"
+            class="btn-ghost btn-square hover:bg-transparent"
             onClick={withLoading(async () => {
               const analyticsItem = itemToAnalyticsItem(index);
 

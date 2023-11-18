@@ -13,15 +13,21 @@ function Cart() {
 
   return (
     <BaseCart
-      items={items.map((item) => ({
-        image: { src: item.imageUrl, alt: item.skuName },
-        quantity: item.quantity,
-        name: item.name,
-        price: {
-          sale: item.sellingPrice / 100,
-          list: item.listPrice / 100,
-        },
-      }))}
+      items={items.map((item) => {
+        const productCategoriesArray = Object.values(item.productCategories);
+        const categoryName =
+          productCategoriesArray[productCategoriesArray.length - 1] ?? null;
+
+        return {
+          image: { src: item.imageUrl, alt: item.skuName },
+          quantity: item.quantity,
+          name: categoryName || item.name,
+          price: {
+            sale: item.sellingPrice / 100,
+            list: item.listPrice / 100,
+          },
+        };
+      })}
       total={(total - discounts) / 100}
       subtotal={total / 100}
       discounts={discounts / 100}
