@@ -16,9 +16,9 @@ export default function AboutSection(
   { title, subTitle, titleButton, linkButton, image }: Props,
 ) {
   return (
-    <section class="max-w-[1536px] flex items-center justify-center mx-auto">
-      <div class="w-full h-full flex flex-col md:flex-row items-center justify-center ">
-        <div class="md:w-2/4 h-full flex flex-col ml-[145px] mr-[102px]">
+    <section class="max-w-[1250px] flex items-center justify-center mx-auto px-2 lg:px-0">
+      <div class="w-full h-full flex flex-col md:flex-row items-center justify-center gap-3">
+        <div class="max-w-[540px] w-full h-full flex flex-col">
           <h1 dangerouslySetInnerHTML={{ __html: title ?? "" }} />
           <p dangerouslySetInnerHTML={{ __html: subTitle ?? "" }} />
           <div class="my-8">
@@ -30,7 +30,7 @@ export default function AboutSection(
           </div>
         </div>
         {image && (
-          <div class="md:w-2/4 h-full mt-[-14px]">
+          <div class="max-w-[500px] w-full h-full mt-[-14px]">
             <Image
               src={image.linkImage}
               width={500}
