@@ -23,13 +23,18 @@ export interface Props {
 }
 
 const Aside = (
-  { title, onClose, children }: {
+  { title, onClose, children, isMinicart }: {
     title: string;
     onClose?: () => void;
     children: ComponentChildren;
+    isMinicart?: boolean;
   },
 ) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw] w-[75%] lg:w-auto">
+  <div
+    class={`bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw] lg:w-auto ${
+      !isMinicart ? "w-[75%]" : "w-full"
+    }`}
+  >
     <div class="flex justify-between items-center">
       <h1 class="px-4 py-3">
         <span class="font-medium text-2xl lowercase">{title}</span>
@@ -90,6 +95,7 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
         onClose={() => displayCart.value = false}
         aside={
           <Aside
+            isMinicart={true}
             title="sacola"
             onClose={() => displayCart.value = false}
           >
