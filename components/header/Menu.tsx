@@ -1,8 +1,17 @@
+import { lazy } from "preact/compat";
+
 import Icon from "$store/components/ui/Icon.tsx";
+
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
+import type { Props as SearchbarProps } from "$store/components/search/MobileSearchbar.tsx";
+
+const Searchbar = lazy(() =>
+  import("$store/components/search/MobileSearchbar.tsx")
+);
 
 export interface Props {
   items: SiteNavigationElement[];
+  searchbar?: SearchbarProps & { isMobile?: boolean };
 }
 
 function MenuItem({ item }: { item: SiteNavigationElement }) {
@@ -59,9 +68,15 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
   return component;
 }
 
-function Menu({ items }: Props) {
+function Menu({ items, searchbar }: Props) {
   return (
     <div class="flex flex-col h-full">
+      {searchbar && (
+        <div class="px-4 pt-2 pb-4">
+          <Searchbar {...searchbar} />
+        </div>
+      )}
+
       <ul class="px-4 flex-grow flex flex-col">
         {items.map((item) => (
           <li>

@@ -27,7 +27,7 @@ export interface Props {
   /**
    * @title Placeholder
    * @description Search bar default placeholder message
-   * @default What are you looking for?
+   * @default o que você está procurando?
    */
   placeholder?: string;
   /**
@@ -53,7 +53,7 @@ export interface Props {
 }
 
 function Searchbar({
-  placeholder = "What are you looking for?",
+  placeholder = "o que você procura?",
   action = "/s",
   name = "q",
   loader,

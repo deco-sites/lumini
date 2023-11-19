@@ -10,7 +10,6 @@ import type { ComponentChildren } from "preact";
 import { lazy, Suspense } from "preact/compat";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
-const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
 export interface Props {
   menu: MenuProps;
@@ -24,32 +23,34 @@ export interface Props {
 
 const Aside = (
   { title, onClose, children, isMinicart }: {
-    title: string;
+    title?: string;
     onClose?: () => void;
     children: ComponentChildren;
     isMinicart?: boolean;
   },
 ) => (
   <div
-    class={`bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw] lg:w-auto ${
-      !isMinicart ? "w-[75%]" : "w-full"
+    class={`bg-base-100 grid h-full divide-y max-w-[100%] ${
+      !isMinicart ? "w-[75%] sm:w-auto" : "w-auto grid-rows-[auto_1fr]"
     }`}
   >
-    <div class="flex justify-between items-center">
-      <h1 class="px-4 py-3">
-        <span class="font-medium text-2xl lowercase">{title}</span>
-      </h1>
-      {onClose && (
-        <Button
-          title="close button"
-          aria-label="close modal"
-          class="btn btn-ghost"
-          onClick={onClose}
-        >
-          <Icon id="XMark" size={24} strokeWidth={2} />
-        </Button>
-      )}
-    </div>
+    {title && (
+      <div class="flex justify-between items-center">
+        <h1 class="px-4 py-3">
+          <span class="font-medium text-2xl lowercase">{title}</span>
+        </h1>
+        {onClose && (
+          <Button
+            title="close button"
+            aria-label="close modal"
+            class="btn btn-ghost"
+            onClick={onClose}
+          >
+            <Icon id="XMark" size={24} strokeWidth={2} />
+          </Button>
+        )}
+      </div>
+    )}
     <Suspense
       fallback={
         <div class="w-screen flex items-center justify-center">
@@ -63,29 +64,21 @@ const Aside = (
 );
 
 function Drawers({ menu, searchbar, children, platform }: Props) {
-  const { displayCart, displayMenu, displaySearchDrawer } = useUI();
+  const { displayCart, displayMenu } = useUI();
 
   return (
     <Drawer // left drawer
-      open={displayMenu.value || displaySearchDrawer.value}
+      open={displayMenu.value}
       onClose={() => {
         displayMenu.value = false;
-        displaySearchDrawer.value = false;
       }}
       aside={
         <Aside
           onClose={() => {
             displayMenu.value = false;
-            displaySearchDrawer.value = false;
           }}
-          title={displayMenu.value ? "Menu" : "Buscar"}
         >
-          {displayMenu.value && <Menu {...menu} />}
-          {searchbar && displaySearchDrawer.value && (
-            <div class="w-screen">
-              <Searchbar {...searchbar} />
-            </div>
-          )}
+          {displayMenu.value && <Menu searchbar={searchbar} {...menu} />}
         </Aside>
       }
     >
