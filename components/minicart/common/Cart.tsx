@@ -2,10 +2,12 @@ import Button from "$store/components/ui/Button.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useUI } from "$store/sdk/useUI.ts";
+import { useState } from "preact/hooks";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
+import Shipping from "./Shipping.tsx";
 
 interface Props {
   items: Item[];
@@ -40,6 +42,9 @@ function Cart({
 }: Props) {
   const { displayCart } = useUI();
   const isEmpty = items.length === 0;
+  const [shippingValue, setShippingValue] = useState<number | null>(null);
+
+  console.log(shippingValue);
 
   return (
     <div
@@ -74,7 +79,10 @@ function Cart({
               class="mt-6 px-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
             >
               {items.map((item, index) => (
-                <li key={index}>
+                <li
+                  key={index}
+                  class="pb-4 border-b border-b-gray-100 last:border-none"
+                >
                   <CartItem
                     item={item}
                     index={index}
@@ -88,44 +96,70 @@ function Cart({
             </ul>
 
             {/* Cart Footer */}
-            <footer class="w-full">
+            <footer class="w-full bg-ice-cube border-t border-t-gray-100">
               {/* Subtotal */}
-              <div class="border-t border-base-200 py-2 flex flex-col">
-                {discounts > 0 && (
-                  <div class="flex justify-between items-center px-4">
-                    <span class="text-sm">Descontos</span>
+              <div class="py-2 flex flex-col">
+                <div class="w-full flex justify-between px-4 pb-2">
+                  <span>subtotal</span>
+                  <span>
+                    {formatPrice(subtotal, currency, locale)}
+                  </span>
+                </div>
+                <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
+                <Shipping
+                  shippingValue={shippingValue}
+                  setShippingValue={setShippingValue}
+                />
+              </div>
+
+              {/* Total */}
+              <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
+                {shippingValue !== null && (
+                  <div class="flex items-center justify-between w-full">
+                    <span>frete calculado:</span>
+
+                    <span>
+                      {shippingValue === 0
+                        ? "frete grátis"
+                        : (shippingValue / 100).toLocaleString("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        })}
+                    </span>
+                  </div>
+                )}
+
+                {discounts < 0 && (
+                  <div class="flex justify-between items-center w-full">
+                    <span class="text-sm">descontos</span>
                     <span class="text-sm">
                       {formatPrice(discounts, currency, locale)}
                     </span>
                   </div>
                 )}
-                <div class="w-full flex justify-between px-4 text-sm">
-                  <span>Subtotal</span>
-                  <span class="px-4">
-                    {formatPrice(subtotal, currency, locale)}
-                  </span>
-                </div>
-                <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
-              </div>
 
-              {/* Total */}
-              <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
                 <div class="flex justify-between items-center w-full">
-                  <span>Total</span>
+                  <span>total</span>
                   <span class="font-medium text-xl">
-                    {formatPrice(total, currency, locale)}
+                    {formatPrice(
+                      total + ((shippingValue ?? 0) / 100),
+                      currency,
+                      locale,
+                    )}
                   </span>
                 </div>
-                <span class="text-sm text-base-300">
+                {
+                  /* <span class="text-sm text-base-300">
                   Taxas e fretes serão calculados no checkout
-                </span>
+                </span> */
+                }
               </div>
 
               <div class="p-4">
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
                     data-deco="buy-button"
-                    class="btn-primary btn-block"
+                    class="btn-primary btn-block border-none"
                     disabled={loading || isEmpty}
                     onClick={() => {
                       sendEvent({
@@ -141,7 +175,7 @@ function Cart({
                       });
                     }}
                   >
-                    Fechar pedido
+                    fechar pedido
                   </Button>
                 </a>
               </div>

@@ -161,13 +161,27 @@ function Searchbar({
             >
               Produtos sugeridos
             </span>
-            <Slider class="carousel">
+            <Slider class="carousel gap-3">
               {products.map((product, index) => (
                 <Slider.Item
                   index={index}
-                  class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
+                  class="carousel-item first:ml-4 last:mr-4 min-w-[250px] max-w-[250px]"
                 >
-                  <ProductCard product={product} platform={platform} />
+                  <ProductCard
+                    product={product}
+                    platform={platform}
+                    layout={{
+                      hide: {
+                        productDescription: true,
+                        cta: false,
+                        skuSelector: true,
+                      },
+                      basics: {
+                        contentAlignment: "Center",
+                        oldPriceSize: "Small",
+                      },
+                    }}
+                  />
                 </Slider.Item>
               ))}
             </Slider>

@@ -12,9 +12,9 @@ export interface Props {
     link: string;
     description: string;
     width?: number;
-    height?: number; 
-    title?: string; 
-    subTitle?: string; 
+    height?: number;
+    title?: string;
+    subTitle?: string;
   }[];
 }
 
@@ -63,8 +63,8 @@ export default function CollectionSection({ title, images }: Props) {
                 />
 
                 <div>
-                    <p class="text-xs font-medium mt-1 mb-1">{item.title}</p>
-                    <p class="text-xl font-extralight mb-1">{item.subTitle}</p>
+                  <p class="text-xs font-medium my-1">{item.title}</p>
+                  <p class="text-xl font-extralight mb-1">{item.subTitle}</p>
                 </div>
               </a>
             </Slider.Item>

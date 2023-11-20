@@ -59,7 +59,7 @@ function CartItem(
 
   return (
     <div
-      class="grid grid-rows-1 gap-2"
+      class="grid grid-rows-1 gap-2 min-h-[100px]"
       style={{
         gridTemplateColumns: "auto 1fr",
       }}
@@ -71,7 +71,7 @@ function CartItem(
         height={82}
       />
 
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col">
         <div class="flex justify-between items-center">
           <span class="lowercase">{name}</span>
           <Button
@@ -93,7 +93,7 @@ function CartItem(
             <Icon id="Trash" size={24} />
           </Button>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center justify-between gap-2 w-full">
           {
             /* <span class="line-through text-base-300 text-sm">
             {formatPrice(list, currency, locale)}
@@ -102,27 +102,27 @@ function CartItem(
           <span class="text-sm text-secondary">
             {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
           </span>
+
+          <QuantitySelector
+            disabled={loading || isGift}
+            quantity={quantity}
+            onChange={withLoading(async (quantity) => {
+              const analyticsItem = itemToAnalyticsItem(index);
+              const diff = quantity - item.quantity;
+
+              await onUpdateQuantity(quantity, index);
+
+              if (analyticsItem) {
+                analyticsItem.quantity = diff;
+
+                sendEvent({
+                  name: diff < 0 ? "remove_from_cart" : "add_to_cart",
+                  params: { items: [analyticsItem] },
+                });
+              }
+            })}
+          />
         </div>
-
-        <QuantitySelector
-          disabled={loading || isGift}
-          quantity={quantity}
-          onChange={withLoading(async (quantity) => {
-            const analyticsItem = itemToAnalyticsItem(index);
-            const diff = quantity - item.quantity;
-
-            await onUpdateQuantity(quantity, index);
-
-            if (analyticsItem) {
-              analyticsItem.quantity = diff;
-
-              sendEvent({
-                name: diff < 0 ? "remove_from_cart" : "add_to_cart",
-                params: { items: [analyticsItem] },
-              });
-            }
-          })}
-        />
       </div>
     </div>
   );

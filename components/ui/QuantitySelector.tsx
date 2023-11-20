@@ -26,7 +26,7 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
         -
       </Button>
       <input
-        class="input text-center join-item [appearance:textfield]"
+        class="w-5 text-center join-item [appearance:textfield]"
         type="number"
         inputMode="numeric"
         pattern="[0-9]*"
