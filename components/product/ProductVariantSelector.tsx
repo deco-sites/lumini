@@ -11,8 +11,7 @@ function VariantSelector({ product }: Props) {
   if (!product) return null;
 
   const { url, isVariantOf } = product;
-  const hasVariant = isVariantOf?.hasVariant ?? [];
-  const possibilities = useVariantPossibilities(hasVariant, product);
+  const possibilities = useVariantPossibilities(product);
 
   const colorPossibilities = possibilities["cor"] || possibilities["COR"] || {};
   const excludedKeys = ["cor", "COR", "category", "cluster", "RefId"];
@@ -20,75 +19,108 @@ function VariantSelector({ product }: Props) {
   return (
     <div class="flex flex-col gap-4 w-full lowercase">
       {colorPossibilities && Object.entries(colorPossibilities).length > 0 && (
-        <ul class="flex flex-row items-center gap-2">
-          {Object.entries(colorPossibilities).map(([value, link]) => {
-            const partial = usePartial({ href: link });
+        <ul className="flex flex-row items-center gap-2">
+          {Object.entries(colorPossibilities).map(([value, links]) => (
+            <>
+              {links.slice(0, -1).map((link, index) => {
+                const partial = usePartial({ href: link });
+                const variant = isVariantOf?.hasVariant?.find(
+                  (item) => item.url === link,
+                );
+                const imageUrl = (variant?.image &&
+                  variant?.image?.find(
+                    (item) => item.alternateName === "skucor",
+                  )?.url) ?? null;
 
-            const variant = isVariantOf?.hasVariant?.find((item) =>
-              item.url === link
-            );
-
-            const imageUrl = (variant?.image && variant?.image?.find((item) =>
-              item.alternateName === "skucor"
-            )?.url) ?? null;
-
-            return (
-              <li
-                class={`${
-                  link === url && "border border-black"
-                } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
-              >
-                <button {...partial}>
-                  <img
-                    src={imageUrl ?? ""}
-                    width={40}
-                    height={40}
-                    alt="Imagem de cor"
-                  />
-                </button>
-              </li>
-            );
-          })}
+                return (
+                  <li
+                    key={index}
+                    className={`${
+                      link === url && "border border-black"
+                    } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
+                  >
+                    <button {...partial}>
+                      <img
+                        src={imageUrl ?? ""}
+                        width={40}
+                        height={40}
+                        alt="Imagem de cor"
+                      />
+                    </button>
+                  </li>
+                );
+              })}
+            </>
+          ))}
         </ul>
       )}
 
-      {Object.keys(possibilities).filter((name) => !excludedKeys.includes(name))
-        .map((name) => (
-          <ul class="flex flex-col gap-4 w-full">
-            <li class="flex flex-col gap-2 w-full">
-              <p class="font-univers-next-pro-light text-lg font-medium">
-                {name}:{" "}
-                <span class="text-lightslategray lowercase">
-                  {product?.additionalProperty?.find((item) =>
-                    item.name === name
-                  )?.value || ""}
-                </span>
-              </p>
-              <ul class="flex flex-col gap-3 w-full">
-                {Object.entries(possibilities[name]).map(([value, link]) => {
-                  const partial = usePartial({ href: link });
-                  const isChecked = product?.additionalProperty?.find((item) =>
-                    item.name === name
-                  )?.value === value;
+      {Object.entries(possibilities)
+        .filter(([name]) => !excludedKeys.includes(name))
+        .map(([name, links]) => {
+          const selectedColor = product?.additionalProperty?.find((item) =>
+            item.name === "cor"
+          )?.value || product?.additionalProperty?.find((item) =>
+            item.name === "COR"
+          )?.value;
+          "";
 
-                  return (
-                    <li>
-                      <button
-                        {...partial}
-                        title={`Change ${name}`}
-                        class={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
-                          isChecked && "bg-dark-gray text-white"
-                        }`}
-                      >
-                        {value}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
-          </ul>
-        ))}
+          const voltageLinks = name === "voltagem" && selectedColor
+            ? (possibilities["cor"] || possibilities["COR"])[selectedColor] ||
+              []
+            : ([] as string[]);
+
+          const getVoltageValue = (link: string) => {
+            for (
+              const [voltage, links] of Object.entries(possibilities.voltagem)
+            ) {
+              if (links.includes(link)) {
+                return voltage;
+              }
+            }
+            return ""; // ou outra lógica de fallback se o link não estiver em nenhuma chave "voltagem"
+          };
+
+          return (
+            <ul key={name} className="flex flex-col gap-4 w-full">
+              <li className="flex flex-col gap-2 w-full">
+                <p className="font-univers-next-pro-light text-lg font-medium">
+                  {name}:{" "}
+                  <span className="text-lightslategray lowercase">
+                    {product?.additionalProperty?.find((item) =>
+                      item.name === name
+                    )
+                      ?.value || ""}
+                  </span>
+                </p>
+                <ul className="flex flex-col gap-3 w-full">
+                  {voltageLinks.map((link, index) => {
+                    const partial = usePartial({ href: link });
+                    const isChecked =
+                      product?.additionalProperty?.find((item) =>
+                        item.name === name
+                      )
+                        ?.value === getVoltageValue(link);
+
+                    return (
+                      <li key={index}>
+                        <button
+                          {...partial}
+                          title={`Change ${name}`}
+                          className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
+                            isChecked && "bg-dark-gray text-white"
+                          }`}
+                        >
+                          {getVoltageValue(link)}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            </ul>
+          );
+        })}
     </div>
   );
 }
