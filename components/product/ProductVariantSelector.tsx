@@ -13,8 +13,19 @@ function VariantSelector({ product }: Props) {
   const { url, isVariantOf } = product;
   const possibilities = useVariantPossibilities(product);
 
+  // console.log(possibilities);
+
   const colorPossibilities = possibilities["cor"] || possibilities["COR"] || {};
-  const excludedKeys = ["cor", "COR", "category", "cluster", "RefId"];
+  const excludedKeys = [
+    "cor",
+    "COR",
+    "category",
+    "cluster",
+    "RefId",
+    "cabo",
+    "fixação",
+    "tamanho",
+  ];
 
   return (
     <div class="flex flex-col gap-4 w-full lowercase">
@@ -49,28 +60,23 @@ function VariantSelector({ product }: Props) {
       {Object.entries(possibilities)
         .filter(([name]) => !excludedKeys.includes(name))
         .map(([name, links]) => {
-          const selectedColor = product?.additionalProperty?.find((item) =>
-            item.name === "cor"
-          )?.value || product?.additionalProperty?.find((item) =>
-            item.name === "COR"
-          )?.value;
-          "";
+          const selectedColor = product?.additionalProperty?.find(
+            (item) => item.name === "cor" || item.name === "COR",
+          )?.value || "";
 
-          const voltageLinks = name === "voltagem" && selectedColor
-            ? (possibilities["cor"] || possibilities["COR"])[selectedColor] ||
-              []
-            : ([] as string[]);
+          const colorLinks =
+            (possibilities["cor"] || possibilities["COR"])[selectedColor] || [];
 
-          const getVoltageValue = (link: string) => {
-            for (
-              const [voltage, links] of Object.entries(possibilities.voltagem)
-            ) {
-              if (links.includes(link)) {
-                return voltage;
-              }
-            }
-            return ""; // ou outra lógica de fallback se o link não estiver em nenhuma chave "voltagem"
-          };
+          const filteredVoltageLinks = possibilities.voltagem
+            ? Object.entries(possibilities.voltagem)
+              .map(([voltage, voltageLinks]) => ({
+                voltage,
+                commonLinks: voltageLinks.filter((link) =>
+                  colorLinks.includes(link)
+                ),
+              }))
+              .filter(({ commonLinks }) => commonLinks.length > 0)
+            : [];
 
           return (
             <ul key={name} className="flex flex-col gap-4 w-full">
@@ -85,28 +91,29 @@ function VariantSelector({ product }: Props) {
                   </span>
                 </p>
                 <ul className="flex flex-col gap-3 w-full">
-                  {voltageLinks.map((link, index) => {
-                    const partial = usePartial({ href: link });
-                    const isChecked =
-                      product?.additionalProperty?.find((item) =>
-                        item.name === name
-                      )
-                        ?.value === getVoltageValue(link);
+                  {filteredVoltageLinks.map(
+                    ({ voltage, commonLinks }, index) => {
+                      const isChecked =
+                        product?.additionalProperty?.find((item) =>
+                          item.name === name
+                        )
+                          ?.value === voltage;
 
-                    return (
-                      <li key={index}>
-                        <button
-                          {...partial}
-                          title={`Change ${name}`}
-                          className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
-                            isChecked && "bg-dark-gray text-white"
-                          }`}
-                        >
-                          {getVoltageValue(link)}
-                        </button>
-                      </li>
-                    );
-                  })}
+                      return (
+                        <li key={index}>
+                          <button
+                            {...usePartial({ href: commonLinks[0] })}
+                            title={`Change ${name}`}
+                            className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
+                              isChecked && "bg-dark-gray text-white"
+                            }`}
+                          >
+                            {voltage}
+                          </button>
+                        </li>
+                      );
+                    },
+                  )}
                 </ul>
               </li>
             </ul>
