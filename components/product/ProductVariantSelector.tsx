@@ -21,36 +21,27 @@ function VariantSelector({ product }: Props) {
       {colorPossibilities && Object.entries(colorPossibilities).length > 0 && (
         <ul className="flex flex-row items-center gap-2">
           {Object.entries(colorPossibilities).map(([value, links]) => (
-            <>
-              {links.slice(0, -1).map((link, index) => {
-                const partial = usePartial({ href: link });
-                const variant = isVariantOf?.hasVariant?.find(
-                  (item) => item.url === link,
-                );
-                const imageUrl = (variant?.image &&
-                  variant?.image?.find(
-                    (item) => item.alternateName === "skucor",
-                  )?.url) ?? null;
-
-                return (
-                  <li
-                    key={index}
-                    className={`${
-                      link === url && "border border-black"
-                    } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
-                  >
-                    <button {...partial}>
-                      <img
-                        src={imageUrl ?? ""}
-                        width={40}
-                        height={40}
-                        alt="Imagem de cor"
-                      />
-                    </button>
-                  </li>
-                );
-              })}
-            </>
+            <li
+              key={value}
+              className={`${
+                links[0] === url && "border border-black"
+              } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
+            >
+              {links.length > 0 && (
+                <button {...usePartial({ href: links[0] })}>
+                  <img
+                    src={isVariantOf?.hasVariant?.find(
+                      (item) => item.url === links[0],
+                    )?.image?.find(
+                      (item) => item.alternateName === "skucor",
+                    )?.url ?? ""}
+                    width={40}
+                    height={40}
+                    alt={`Imagem de ${value}`}
+                  />
+                </button>
+              )}
+            </li>
           ))}
         </ul>
       )}
