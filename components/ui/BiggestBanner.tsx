@@ -6,9 +6,17 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
  */
 export interface Banner {
   /** @description desktop otimized image */
-  desktop: ImageWidget;
+  desktop: {
+    image: ImageWidget;
+    width: number;
+    height: number;
+  };
   /** @description mobile otimized image */
-  mobile: ImageWidget;
+  mobile: {
+    image: ImageWidget;
+    width: number;
+    height: number;
+  };
   /** @description Image's alt text */
   alt: string;
 }
@@ -31,21 +39,21 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
         <Source
           media="(max-width: 767px)"
           fetchPriority={lcp ? "high" : "auto"}
-          src={mobile}
-          width={1280}
-          height={514}
+          src={mobile.image}
+          width={mobile.width ?? 1280}
+          height={mobile.height ?? 514}
         />
         <Source
           media="(min-width: 768px)"
           fetchPriority={lcp ? "high" : "auto"}
-          src={desktop}
-          width={1280}
-          height={514}
+          src={desktop.image}
+          width={desktop.width ?? 1280}
+          height={desktop.height ?? 514}
         />
         <img
           class="object-cover w-full h-full"
           loading={lcp ? "eager" : "lazy"}
-          src={desktop}
+          src={desktop.image}
           alt={alt}
         />
       </Picture>
