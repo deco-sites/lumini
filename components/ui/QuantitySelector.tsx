@@ -18,8 +18,8 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
   return (
     <div class="max-h-[35px] join border rounded-none w-min ">
       <Button
-        class="h-[35px] btn-ghost join-item"
-        style={{ width: "30px" }}
+        class=" btn-ghost join-item"
+        style={{ width: "30px", height: "35px" }}
         onClick={decrement}
         disabled={disabled}
         loading={loading}
@@ -42,7 +42,7 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
       />
       <Button
         class="h-[35px] btn-ghost join-item"
-        style={{ width: "30px" }}
+        style={{ width: "30px", height: "35px" }}
         onClick={increment}
         disabled={disabled}
         loading={loading}
