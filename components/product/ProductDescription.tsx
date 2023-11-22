@@ -120,7 +120,7 @@ function Description(
           </div>
         </div>
 
-        <div class="flex flex-col gap-1 w-full">
+        <div class="flex flex-col gap-1 max-w-[856px]">
           <h2 class="text-darkslategray">sobre o produto</h2>
           <div
             class="contents text-gray-normal"
