@@ -27,10 +27,11 @@ function SearchbarModal({ searchbar, isMobile }: Props) {
       loading="lazy"
       open={displaySearchPopup.value}
       onClose={() => displaySearchPopup.value = false}
+      hasBackgroundTransparent={true}
     >
       <div
-        class="absolute top-0 bg-base-100 container"
-        style={{ marginTop: headerHeight }}
+        class="absolute top-0 bg-base-100 w-full"
+        style={{ marginTop: "110px" }}
       >
         <Searchbar {...searchbar} />
       </div>

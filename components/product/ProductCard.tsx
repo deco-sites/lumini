@@ -48,6 +48,7 @@ interface Props {
 
   platform?: Platform;
   isPLP?: boolean;
+  isSearchbar?: boolean;
 }
 
 const relative = (url: string) => {
@@ -59,7 +60,8 @@ const WIDTH = 390;
 const HEIGHT = 410;
 
 function ProductCard(
-  { product, preload, itemListName, layout, platform, isPLP }: Props,
+  { product, preload, itemListName, layout, platform, isPLP, isSearchbar }:
+    Props,
 ) {
   const {
     url,
@@ -76,7 +78,7 @@ function ProductCard(
   const [front, back] =
     images?.filter((item) => item.alternateName !== "skucor") ?? [];
   const { listPrice, price, installments } = useOffer(offers);
-  const possibilities = useVariantPossibilities(hasVariant, product);
+  const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
   const l = layout;
@@ -86,21 +88,23 @@ function ProductCard(
       : "center";
   const skuSelector = variants.map(([value, link]) => (
     <li>
-      <a href={link}>
+      {
+        /* <a href={link}>
         <Avatar
           variant={link === url ? "active" : link ? "default" : "disabled"}
           content={value}
         />
-      </a>
+      </a> */
+      }
     </li>
   ));
   const cta = (
     <a
       href={url && relative(url)}
       aria-label="view product"
-      class="btn btn-block"
+      class="flex items-center justify-center w-[170px] h-[38px] cursor-pointer border text-black hover:text-white hover:bg-darkslategray text-sm"
     >
-      {l?.basics?.ctaText || "Ver produto"}
+      {l?.basics?.ctaText || "adicionar ao carrinho"}
     </a>
   );
 
@@ -175,7 +179,7 @@ function ProductCard(
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded w-full ${
+            class={`bg-base-100 col-span-full row-span-full w-full ${
               l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
@@ -192,7 +196,7 @@ function ProductCard(
               alt={back?.alternateName ?? front.alternateName}
               width={WIDTH}
               height={HEIGHT}
-              class="bg-base-100 col-span-full row-span-full transition-opacity rounded w-full opacity-0 lg:group-hover:opacity-100"
+              class="bg-base-100 col-span-full row-span-full transition-opacity w-full opacity-0 lg:group-hover:opacity-100"
               sizes="(max-width: 640px) 50vw, 20vw"
               loading="lazy"
               decoding="async"
@@ -272,21 +276,36 @@ function ProductCard(
                 {formatPrice(listPrice, offers?.priceCurrency)}
               </div> */
               }
-              <div class="flex w-full justify-between">
+              <div
+                class={`flex w-full ${
+                  !isSearchbar ? "justify-between" : "flex-col justify-center"
+                }`}
+              >
+                {isSearchbar && (
+                  <p class="text-sm text-base-300">
+                    De{"  "}
+                    <span class="line-through">
+                      {formatPrice(listPrice, offers?.priceCurrency)}
+                    </span>
+                  </p>
+                )}
                 <span class={isPLP ? "text-base" : "text-sm"}>
-                  {!isPLP && "a partir de "}
+                  {!isPLP && !isSearchbar && "a partir de "}
+                  {isSearchbar && "Para"}{"  "}
                   {formatPrice(price, offers?.priceCurrency)}
                 </span>
-                <span class="text-gray-normal/80 text-base">
-                  {productCategory}
-                </span>
+                {!isSearchbar && (
+                  <span class="text-gray-normal/80 text-base">
+                    {productCategory}
+                  </span>
+                )}
               </div>
             </div>
-            {l?.hide?.installments
+            {!installments || l?.hide?.installments
               ? ""
               : (
-                <div class="text-base-300 text-sm lg:text-base truncate">
-                  ou {installments}
+                <div class="text-base-300 text-sm">
+                  ou {installments.replace(".", ",")}
                 </div>
               )}
           </div>

@@ -75,25 +75,18 @@ function Searchbar({
 
   return (
     <div
-      class="w-full grid gap-8 px-4 py-6 overflow-y-hidden"
+      class="max-w-[800px] container w-full grid gap-8 px-4 pt-10 overflow-y-hidden"
       style={{ gridTemplateRows: "min-content auto" }}
     >
-      <form id={id} action={action} class="join">
-        <Button
-          type="submit"
-          class="join-item btn-square"
-          aria-label="Search"
-          for={id}
-          tabIndex={-1}
-        >
-          {loading.value
-            ? <span class="loading loading-spinner loading-xs" />
-            : <Icon id="MagnifyingGlass" size={24} strokeWidth={0.01} />}
-        </Button>
+      <form
+        id={id}
+        action={action}
+        class="flex items-center justify-center gap-4"
+      >
         <input
           ref={searchInputRef}
           id="search-input"
-          class="input input-bordered join-item flex-grow"
+          class="border-b border-b-black/70 pb-1 h-[38px] flex-grow pl-2 focus:outline-none placeholder:text-gray-100 text-sm"
           name={name}
           onInput={(e) => {
             const value = e.currentTarget.value;
@@ -114,32 +107,38 @@ function Searchbar({
           aria-expanded={displaySearchPopup.value}
           autocomplete="off"
         />
-        <Button
-          aria-label="display popup button"
-          type="button"
-          class="join-item btn-ghost btn-square hidden sm:inline-flex"
-          onClick={() => displaySearchPopup.value = false}
+
+        <button
+          type="submit"
+          class="flex items-center justify-center w-[170px] h-[38px] cursor-pointer border text-black hover:text-white hover:bg-darkslategray text-sm"
+          aria-label="Search"
+          for={id}
+          tabIndex={-1}
         >
-          <Icon id="XMark" size={24} strokeWidth={2} />
-        </Button>
+          {loading.value
+            ? <span class="loading loading-spinner loading-xs" />
+            : <span>pesquisar</span>}
+        </button>
       </form>
 
       <div
-        class={`overflow-y-scroll ${!hasProducts && !hasTerms ? "hidden" : ""}`}
+        class={`${!hasProducts && !hasTerms ? "hidden" : ""}`}
       >
-        <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[150px_1fr]">
+        <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[190px_1fr] md:divide-x md:divide-slate-100 pb-1">
           <div class="flex flex-col gap-6">
             <span
-              class="font-medium text-xl"
               role="heading"
               aria-level={3}
             >
-              Sugestões
+              sugestões
             </span>
             <ul id="search-suggestion" class="flex flex-col gap-6">
               {searches.map(({ term }) => (
                 <li>
-                  <a href={`/s?q=${term}`} class="flex gap-4 items-center">
+                  <a
+                    href={`/s?q=${term}`}
+                    class="flex gap-4 items-center text-sm"
+                  >
                     <span>
                       <Icon
                         id="MagnifyingGlass"
@@ -153,23 +152,23 @@ function Searchbar({
               ))}
             </ul>
           </div>
-          <div class="flex flex-col pt-6 md:pt-0 gap-6 overflow-x-hidden">
+          <div class="flex flex-col pt-6 md:pt-0 gap-6 overflow-hidden pl-5">
             <span
-              class="font-medium text-xl"
               role="heading"
               aria-level={3}
             >
-              Produtos sugeridos
+              produtos sugeridos
             </span>
             <Slider class="carousel gap-3">
-              {products.map((product, index) => (
+              {products?.slice(0, 3)?.map((product, index) => (
                 <Slider.Item
                   index={index}
-                  class="carousel-item first:ml-4 last:mr-4 min-w-[250px] max-w-[250px]"
+                  class="carousel-item min-w-[160px] max-w-[160px]"
                 >
                   <ProductCard
                     product={product}
                     platform={platform}
+                    isSearchbar={true}
                     layout={{
                       hide: {
                         productDescription: true,
@@ -185,6 +184,16 @@ function Searchbar({
                 </Slider.Item>
               ))}
             </Slider>
+            {
+              /* {products && products.length > 0 && (
+              <a
+                href={`/s?q=${term}`}
+                class="mt-5 underline text-gray text-xs"
+              >
+                veja todos os {products.length} produtos
+              </a>
+            )} */
+            }
           </div>
         </div>
       </div>

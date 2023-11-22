@@ -13,19 +13,10 @@ function VariantSelector({ product }: Props) {
   const { url, isVariantOf } = product;
   const possibilities = useVariantPossibilities(product);
 
-  // console.log(possibilities);
-
   const colorPossibilities = possibilities["cor"] || possibilities["COR"] || {};
-  const excludedKeys = [
-    "cor",
-    "COR",
-    "category",
-    "cluster",
-    "RefId",
-    "cabo",
-    "fixação",
-    "tamanho",
-  ];
+  const excludedKeys = ["voltagem"];
+  const excludedSecondKeys = ["fixação"];
+  const excludedThirdKeys = ["cabo"];
 
   return (
     <div class="flex flex-col gap-4 w-full lowercase">
@@ -58,7 +49,70 @@ function VariantSelector({ product }: Props) {
       )}
 
       {Object.entries(possibilities)
-        .filter(([name]) => !excludedKeys.includes(name))
+        .filter(([name]) => excludedSecondKeys.includes(name))
+        .map(([name, links]) => {
+          const selectedColor = product?.additionalProperty?.find(
+            (item) => item.name === "cor" || item.name === "COR",
+          )?.value || "";
+
+          const colorLinks =
+            (possibilities["cor"] || possibilities["COR"])[selectedColor] || [];
+
+          const filteredLinks = possibilities["fixação"]
+            ? Object.entries(possibilities["fixação"])
+              .map(([item, itemLinks]) => ({
+                item,
+                commonLinks: itemLinks.filter((link) =>
+                  colorLinks.includes(link)
+                ),
+              }))
+              .filter(({ commonLinks }) => commonLinks.length > 0)
+            : [];
+
+          return (
+            <ul key={name} className="flex flex-col gap-4 w-full">
+              <li className="flex flex-col gap-2 w-full">
+                <p className="font-univers-next-pro-light text-lg font-medium">
+                  {name}:{" "}
+                  <span className="text-lightslategray lowercase">
+                    {product?.additionalProperty?.find((item) =>
+                      item.name === name
+                    )
+                      ?.value || ""}
+                  </span>
+                </p>
+                <ul className="flex flex-col gap-3 w-full">
+                  {filteredLinks.map(
+                    ({ item, commonLinks }, index) => {
+                      const isChecked =
+                        product?.additionalProperty?.find((item) =>
+                          item.name === name
+                        )
+                          ?.value === item;
+
+                      return (
+                        <li key={index}>
+                          <button
+                            {...usePartial({ href: commonLinks[0] })}
+                            title={`Change ${name}`}
+                            className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
+                              isChecked && "bg-dark-gray text-white"
+                            }`}
+                          >
+                            {item}
+                          </button>
+                        </li>
+                      );
+                    },
+                  )}
+                </ul>
+              </li>
+            </ul>
+          );
+        })}
+
+      {Object.entries(possibilities)
+        .filter(([name]) => excludedKeys.includes(name))
         .map(([name, links]) => {
           const selectedColor = product?.additionalProperty?.find(
             (item) => item.name === "cor" || item.name === "COR",
@@ -109,6 +163,69 @@ function VariantSelector({ product }: Props) {
                             }`}
                           >
                             {voltage}
+                          </button>
+                        </li>
+                      );
+                    },
+                  )}
+                </ul>
+              </li>
+            </ul>
+          );
+        })}
+
+      {Object.entries(possibilities)
+        .filter(([name]) => excludedThirdKeys.includes(name))
+        .map(([name, links]) => {
+          const selectedColor = product?.additionalProperty?.find(
+            (item) => item.name === "cor" || item.name === "COR",
+          )?.value || "";
+
+          const colorLinks =
+            (possibilities["cor"] || possibilities["COR"])[selectedColor] || [];
+
+          const filteredLinks = possibilities["cabo"]
+            ? Object.entries(possibilities["cabo"])
+              .map(([item, itemLinks]) => ({
+                item,
+                commonLinks: itemLinks.filter((link) =>
+                  colorLinks.includes(link)
+                ),
+              }))
+              .filter(({ commonLinks }) => commonLinks.length > 0)
+            : [];
+
+          return (
+            <ul key={name} className="flex flex-col gap-4 w-full">
+              <li className="flex flex-col gap-2 w-full">
+                <p className="font-univers-next-pro-light text-lg font-medium">
+                  {name}:{" "}
+                  <span className="text-lightslategray lowercase">
+                    {product?.additionalProperty?.find((item) =>
+                      item.name === name
+                    )
+                      ?.value || ""}
+                  </span>
+                </p>
+                <ul className="flex flex-col gap-3 w-full">
+                  {filteredLinks.map(
+                    ({ item, commonLinks }, index) => {
+                      const isChecked =
+                        product?.additionalProperty?.find((item) =>
+                          item.name === name
+                        )
+                          ?.value === item;
+
+                      return (
+                        <li key={index}>
+                          <button
+                            {...usePartial({ href: commonLinks[0] })}
+                            title={`Change ${name}`}
+                            className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
+                              isChecked && "bg-dark-gray text-white"
+                            }`}
+                          >
+                            {item}
                           </button>
                         </li>
                       );

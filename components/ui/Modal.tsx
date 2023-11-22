@@ -10,6 +10,7 @@ interface Props {
   style?: string;
   children?: ComponentChildren;
   loading?: "eager" | "lazy";
+  hasBackgroundTransparent?: boolean;
 }
 
 function Modal(props: Props) {
@@ -18,6 +19,7 @@ function Modal(props: Props) {
     open,
     onClose,
     loading = "lazy",
+    hasBackgroundTransparent = false,
   } = props;
   const lazy = useSignal(loading === "lazy" && !open);
   const id = useId();
@@ -47,7 +49,7 @@ function Modal(props: Props) {
         class="modal-toggle"
         onChange={(e) => e.currentTarget.checked === false && onClose?.()}
       />
-      <div class="modal">
+      <div class={`modal ${hasBackgroundTransparent && "!bg-transparent"}`}>
         {!lazy.value && children}
         <label class="modal-backdrop" for={id}>Close</label>
       </div>
