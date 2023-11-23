@@ -4,23 +4,32 @@ interface Props {
   quantity: number;
   disabled?: boolean;
   loading?: boolean;
-  onChange?: (quantity: number) => void; 
-  isPdp?: boolean; 
+  onChange?: (quantity: number) => void;
+  isPdp?: boolean;
 }
 
 const QUANTITY_MAX_VALUE = 100;
 
-function QuantitySelector({ onChange, quantity, disabled, loading, isPdp }: Props) {
+function QuantitySelector(
+  { onChange, quantity, disabled, loading, isPdp }: Props,
+) {
   const decrement = () => onChange?.(Math.max(0, quantity - 1));
 
   const increment = () =>
     onChange?.(Math.min(quantity + 1, QUANTITY_MAX_VALUE));
 
   return (
-    <div class={`${isPdp ? "max-h-[48px]" : "max-h-[35px]"}  join border rounded-none w-min `}>
+    <div
+      class={`${
+        isPdp ? "max-h-[48px]" : "max-h-[35px]"
+      }  join border rounded-none w-min `}
+    >
       <Button
         class=" btn-ghost join-item"
-        style={{ width: `${isPdp ? "42px" : "30px"}`, height: `${isPdp ? "48px" : "35px"}` }}
+        style={{
+          width: `${isPdp ? "42px" : "30px"}`,
+          height: `${isPdp ? "48px" : "35px"}`,
+        }}
         onClick={decrement}
         disabled={disabled}
         loading={loading}
@@ -29,7 +38,9 @@ function QuantitySelector({ onChange, quantity, disabled, loading, isPdp }: Prop
         -
       </Button>
       <input
-        class={`${isPdp ? "w-16" : "w-5"} text-center join-item [appearance:textfield] font-semibold`}
+        class={`${
+          isPdp ? "w-16" : "w-5"
+        } text-center join-item [appearance:textfield] font-semibold`}
         type="number"
         inputMode="numeric"
         pattern="[0-9]*"
@@ -43,7 +54,10 @@ function QuantitySelector({ onChange, quantity, disabled, loading, isPdp }: Prop
       />
       <Button
         class="h-[35px] btn-ghost join-item"
-        style={{ width: `${isPdp ? "42px" : "30px"}`, height: `${isPdp ? "48px" : "35px"}` }}
+        style={{
+          width: `${isPdp ? "42px" : "30px"}`,
+          height: `${isPdp ? "48px" : "35px"}`,
+        }}
         onClick={increment}
         disabled={disabled}
         loading={loading}

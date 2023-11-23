@@ -1,6 +1,6 @@
 import { useCart } from "apps/vtex/hooks/useCart.ts";
 import Button, { Props as BtnProps } from "./common.tsx";
-import QuantitySelector from "$store/components/ui/QuantitySelector.tsx"
+import QuantitySelector from "$store/components/ui/QuantitySelector.tsx";
 import { useState } from "preact/compat";
 
 export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
@@ -19,17 +19,16 @@ function AddToCartButton(props: Props) {
       }],
     });
 
-    return (
-      <div class="flex w-full h-full gap-10">
-        <QuantitySelector  
-           quantity={quantity}
-           onChange={setQuantity}
-           isPdp
-        />
-        <Button onAddItem={onAddItem} {...props} />
-      </div>
-      )
-      
+  return (
+    <div class="flex w-full h-full gap-10">
+      <QuantitySelector
+        quantity={quantity}
+        onChange={setQuantity}
+        isPdp
+      />
+      <Button onAddItem={onAddItem} {...props} />
+    </div>
+  );
 }
 
 export default AddToCartButton;
