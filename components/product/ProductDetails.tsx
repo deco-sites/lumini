@@ -295,12 +295,12 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       <>
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-1 sm:justify-center"
+          class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-1 sm:justify-center max-w-[1250px] mx-auto"
         >
           <div class="flex flex-col w-full md:gap-1.5">
             {/* Image Slider */}
             <div class="relative">
-              <Slider class="carousel carousel-center gap-6 w-screen sm:w-[40vw]">
+              <Slider class="carousel carousel-center gap-6 w-screen sm:w-full">
                 {images.map((img, index) => (
                   <Slider.Item
                     index={index}
@@ -416,8 +416,8 @@ function ProductDetails({ page, layout }: Props) {
   if (!page || !page.product) return <NotFound />;
 
   return (
-    <section class="flex flex-col gap-20 mb-6">
-      <div class="container py-0 sm:py-10 font-univers-next-pro-light">
+    <section class="flex flex-col items-center gap-20 mb-6">
+      <div class="mx-auto container py-0 sm:py-10 font-univers-next-pro-light relative">
         {page && <Details page={page} layout={layout} />}
       </div>
 
