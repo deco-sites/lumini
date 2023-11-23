@@ -158,7 +158,7 @@ function VariantSelector({ product }: Props) {
                           <button
                             {...usePartial({ href: commonLinks[0] })}
                             title={`Change ${name}`}
-                            className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
+                            className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-normal ${
                               isChecked && "bg-dark-gray text-white"
                             }`}
                           >
