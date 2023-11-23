@@ -142,7 +142,7 @@ function Cart({
                   <span>total</span>
                   <span class="font-medium text-xl">
                     {formatPrice(
-                      total + ((shippingValue ?? 0) / 100) + discounts,
+                      total - ((shippingValue ?? 0) / 100),
                       currency,
                       locale,
                     )}
