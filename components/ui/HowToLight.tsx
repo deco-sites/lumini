@@ -47,7 +47,7 @@ export default function CollectionSection({ title, images }: Props) {
       </div>
 
       <div class="container max-w-[1230px] grid grid-cols-[48px_1fr_48px]">
-        <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+        <Slider class="carousel carousel-center sm:carousel-end gap-4 col-span-full row-start-2 row-end-5">
           {images?.map((item, index) => (
             <Slider.Item
               index={index}

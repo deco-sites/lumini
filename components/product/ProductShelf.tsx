@@ -34,7 +34,7 @@ function ProductShelf({
       id={id}
       class="w-full container max-w-[1230px] py-2 flex flex-col gap-10"
     >
-      <div class="flex justify-between w-full px-6 lg:px-0">
+      <div class="flex justify-between w-full px-2 lg:px-0">
         <h1 class="text-[21px] lg:text-4xl font-univers-next-pro-bold">
           {title || ""}
         </h1>
@@ -55,11 +55,11 @@ function ProductShelf({
       </div>
 
       <div class="container max-w-[1230px] grid grid-cols-[48px_1fr_48px]">
-        <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+        <Slider class="carousel carousel-center sm:carousel-end gap-2.5 col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[270px] sm:w-[390px] lg:h-[410px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              class="carousel-item w-full sm:w-[390px] lg:w-[400px] h-full first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
             >
               <ProductCard
                 product={product}

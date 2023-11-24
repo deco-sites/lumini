@@ -65,10 +65,11 @@ function CartItem(
       }}
     >
       <Image
-        {...image}
+        src={image?.src.replace("55-55", "72-72")}
+        alt={image?.alt}
         style={{ aspectRatio: "1" }}
         width={72}
-        height={82}
+        height={72}
       />
 
       <div class="flex flex-col">

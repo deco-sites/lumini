@@ -56,8 +56,8 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 390;
-const HEIGHT = 410;
+const WIDTH = 400;
+const HEIGHT = 400;
 
 function ProductCard(
   { product, preload, itemListName, layout, platform, isPLP, isSearchbar }:
@@ -80,6 +80,10 @@ function ProductCard(
   const { listPrice, price, installments } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
+
+  const discountPercentage = Math.round(
+    ((listPrice! - price!) / listPrice!) * 100,
+  );
 
   const l = layout;
   const align =
@@ -116,7 +120,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full ${
+      class={`card card-compact group w-full lg:min-h-[487px] lg:max-h-[487px] px-2 lg:px-0 ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -168,13 +172,18 @@ function ProductCard(
             />
           )}
         </div>
+        {listPrice && price && listPrice > price && (
+          <div class="z-10 absolute top-0 right-0 flex py-1.5 px-2 text-white items-center justify-center w-10 h-5 bg-[#1d1d1b] font-univers-next-pro-light text-xs">
+            <span>-{discountPercentage}%</span>
+          </div>
+        )}
         {/* Product Images */}
         <a
           href={url && relative(url)}
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full"
         >
-          <Image
+          <img
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
@@ -185,13 +194,13 @@ function ProductCard(
                 : ""
             }`}
             sizes="(max-width: 640px) 50vw, 20vw"
-            preload={preload}
+            // preload={preload}
             loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
-            <Image
+            <img
               src={back?.url ?? front.url!}
               alt={back?.alternateName ?? front.alternateName}
               width={WIDTH}
@@ -244,7 +253,7 @@ function ProductCard(
             <div class="flex flex-col gap-0 lowercase">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate text-base lg:text-lg text-black"
+                  class="truncate text-base lg:text-lg text-black font-univers-next-pro-bold"
                   dangerouslySetInnerHTML={{
                     __html: product?.isVariantOf?.name ?? name ?? "",
                   }}
@@ -267,15 +276,13 @@ function ProductCard(
                   : ""
               } ${align === "center" ? "justify-center" : "justify-start"}`}
             >
-              {
-                /* <div
-                class={`line-through text-base-300 text-xs ${
+              <div
+                class={`line-through text-[#A8A8A8] text-xs ${
                   l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                 }`}
               >
                 {formatPrice(listPrice, offers?.priceCurrency)}
-              </div> */
-              }
+              </div>
               <div
                 class={`flex w-full ${
                   !isSearchbar ? "justify-between" : "flex-col justify-center"
@@ -290,7 +297,6 @@ function ProductCard(
                   </p>
                 )}
                 <span class={isPLP ? "text-base" : "text-sm"}>
-                  {!isPLP && !isSearchbar && "a partir de "}
                   {isSearchbar && "Para"}{"  "}
                   {formatPrice(price, offers?.priceCurrency)}
                 </span>
