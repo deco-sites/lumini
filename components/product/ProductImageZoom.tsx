@@ -51,12 +51,12 @@ function ProductImageZoom({ images, width, height }: Props) {
               ))}
             </Slider>
 
-            <Slider.PrevButton class="btn btn-circle btn-outline col-start-1 col-end-2 row-start-1 row-span-full">
-              <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+            <Slider.PrevButton class="col-start-1 col-end-2 row-start-1 row-span-full">
+              <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
             </Slider.PrevButton>
 
-            <Slider.NextButton class="btn btn-circle btn-outline col-start-3 col-end-4 row-start-1 row-span-full">
-              <Icon size={24} id="ChevronRight" strokeWidth={3} />
+            <Slider.NextButton class="col-start-3 col-end-4 row-start-1 row-span-full">
+              <Icon size={24} id="ChevronRight" strokeWidth={0.8} />
             </Slider.NextButton>
 
             <SliderJS rootId={id} />

@@ -1,4 +1,3 @@
-import Avatar from "$store/components/ui/Avatar.tsx";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { usePartial } from "apps/website/hooks/usePartial.ts";
@@ -14,9 +13,13 @@ function VariantSelector({ product }: Props) {
   const possibilities = useVariantPossibilities(product);
 
   const colorPossibilities = possibilities["cor"] || possibilities["COR"] || {};
-  const excludedKeys = ["voltagem"];
-  const excludedSecondKeys = ["fixação"];
-  const excludedThirdKeys = ["cabo"];
+  const excludedKeys = [
+    "cor",
+    "COR",
+    "category",
+    "cluster",
+    "RefId",
+  ];
 
   return (
     <div class="flex flex-col gap-4 w-full lowercase">
@@ -49,148 +52,19 @@ function VariantSelector({ product }: Props) {
       )}
 
       {Object.entries(possibilities)
-        .filter(([name]) => excludedSecondKeys.includes(name))
+        .filter(([name]) => !excludedKeys.includes(name))
         .map(([name, links]) => {
-          const selectedColor = product?.additionalProperty?.find(
-            (item) => item.name === "cor" || item.name === "COR",
+          const selectedColor = product?.additionalProperty?.find((item) =>
+            item.name === name
           )?.value || "";
 
-          const colorLinks =
-            (possibilities["cor"] || possibilities["COR"])[selectedColor] || [];
+          const colorLinks = possibilities[name] || [];
 
-          const filteredLinks = possibilities["fixação"]
-            ? Object.entries(possibilities["fixação"])
+          const filteredLinks = possibilities[name]
+            ? Object.entries(possibilities[name])
               .map(([item, itemLinks]) => ({
                 item,
-                commonLinks: itemLinks.filter((link) =>
-                  colorLinks.includes(link)
-                ),
-              }))
-              .filter(({ commonLinks }) => commonLinks.length > 0)
-            : [];
-
-          return (
-            <ul key={name} className="flex flex-col gap-4 w-full">
-              <li className="flex flex-col gap-2 w-full">
-                <p className="font-univers-next-pro-light text-lg font-medium">
-                  {name}:{" "}
-                  <span className="text-lightslategray lowercase">
-                    {product?.additionalProperty?.find((item) =>
-                      item.name === name
-                    )
-                      ?.value || ""}
-                  </span>
-                </p>
-                <ul className="flex flex-col gap-3 w-full">
-                  {filteredLinks.map(
-                    ({ item, commonLinks }, index) => {
-                      const isChecked =
-                        product?.additionalProperty?.find((item) =>
-                          item.name === name
-                        )
-                          ?.value === item;
-
-                      return (
-                        <li key={index}>
-                          <button
-                            {...usePartial({ href: commonLinks[0] })}
-                            title={`Change ${name}`}
-                            className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
-                              isChecked && "bg-dark-gray text-white"
-                            }`}
-                          >
-                            {item}
-                          </button>
-                        </li>
-                      );
-                    },
-                  )}
-                </ul>
-              </li>
-            </ul>
-          );
-        })}
-
-      {Object.entries(possibilities)
-        .filter(([name]) => excludedKeys.includes(name))
-        .map(([name, links]) => {
-          const selectedColor = product?.additionalProperty?.find(
-            (item) => item.name === "cor" || item.name === "COR",
-          )?.value || "";
-
-          const colorLinks =
-            (possibilities["cor"] || possibilities["COR"])[selectedColor] || [];
-
-          const filteredVoltageLinks = possibilities.voltagem
-            ? Object.entries(possibilities.voltagem)
-              .map(([voltage, voltageLinks]) => ({
-                voltage,
-                commonLinks: voltageLinks.filter((link) =>
-                  colorLinks.includes(link)
-                ),
-              }))
-              .filter(({ commonLinks }) => commonLinks.length > 0)
-            : [];
-
-          return (
-            <ul key={name} className="flex flex-col gap-4 w-full">
-              <li className="flex flex-col gap-2 w-full">
-                <p className="font-univers-next-pro-light text-lg font-medium">
-                  {name}:{" "}
-                  <span className="text-lightslategray lowercase">
-                    {product?.additionalProperty?.find((item) =>
-                      item.name === name
-                    )
-                      ?.value || ""}
-                  </span>
-                </p>
-                <ul className="flex flex-col gap-3 w-full">
-                  {filteredVoltageLinks.map(
-                    ({ voltage, commonLinks }, index) => {
-                      const isChecked =
-                        product?.additionalProperty?.find((item) =>
-                          item.name === name
-                        )
-                          ?.value === voltage;
-
-                      return (
-                        <li key={index}>
-                          <button
-                            {...usePartial({ href: commonLinks[0] })}
-                            title={`Change ${name}`}
-                            className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-normal ${
-                              isChecked && "bg-dark-gray text-white"
-                            }`}
-                          >
-                            {voltage}
-                          </button>
-                        </li>
-                      );
-                    },
-                  )}
-                </ul>
-              </li>
-            </ul>
-          );
-        })}
-
-      {Object.entries(possibilities)
-        .filter(([name]) => excludedThirdKeys.includes(name))
-        .map(([name, links]) => {
-          const selectedColor = product?.additionalProperty?.find(
-            (item) => item.name === "cor" || item.name === "COR",
-          )?.value || "";
-
-          const colorLinks =
-            (possibilities["cor"] || possibilities["COR"])[selectedColor] || [];
-
-          const filteredLinks = possibilities["cabo"]
-            ? Object.entries(possibilities["cabo"])
-              .map(([item, itemLinks]) => ({
-                item,
-                commonLinks: itemLinks.filter((link) =>
-                  colorLinks.includes(link)
-                ),
+                commonLinks: itemLinks,
               }))
               .filter(({ commonLinks }) => commonLinks.length > 0)
             : [];
