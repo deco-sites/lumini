@@ -1,6 +1,7 @@
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { usePartial } from "apps/website/hooks/usePartial.ts";
+import ProductVariations from "$store/islands/ProductVariations.tsx";
 
 interface Props {
   product: Product;
@@ -51,65 +52,10 @@ function VariantSelector({ product }: Props) {
         </ul>
       )}
 
-      {Object.entries(possibilities)
-        .filter(([name]) => !excludedKeys.includes(name))
-        .map(([name, links]) => {
-          const selectedColor = product?.additionalProperty?.find((item) =>
-            item.name === name
-          )?.value || "";
-
-          const colorLinks = possibilities[name] || [];
-
-          const filteredLinks = possibilities[name]
-            ? Object.entries(possibilities[name])
-              .map(([item, itemLinks]) => ({
-                item,
-                commonLinks: itemLinks,
-              }))
-              .filter(({ commonLinks }) => commonLinks.length > 0)
-            : [];
-
-          return (
-            <ul key={name} className="flex flex-col gap-4 w-full">
-              <li className="flex flex-col gap-2 w-full">
-                <p className="font-univers-next-pro-light text-lg font-medium">
-                  {name}:{" "}
-                  <span className="text-lightslategray lowercase">
-                    {product?.additionalProperty?.find((item) =>
-                      item.name === name
-                    )
-                      ?.value || ""}
-                  </span>
-                </p>
-                <ul className="flex flex-col gap-3 w-full">
-                  {filteredLinks.map(
-                    ({ item, commonLinks }, index) => {
-                      const isChecked =
-                        product?.additionalProperty?.find((item) =>
-                          item.name === name
-                        )
-                          ?.value === item;
-
-                      return (
-                        <li key={index}>
-                          <button
-                            {...usePartial({ href: commonLinks[0] })}
-                            title={`Change ${name}`}
-                            className={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
-                              isChecked && "bg-dark-gray text-white"
-                            }`}
-                          >
-                            {item}
-                          </button>
-                        </li>
-                      );
-                    },
-                  )}
-                </ul>
-              </li>
-            </ul>
-          );
-        })}
+      <ProductVariations
+        possibilities={possibilities}
+        excludedKeys={excludedKeys}
+      />
     </div>
   );
 }

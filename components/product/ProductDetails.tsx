@@ -21,7 +21,6 @@ import type { ProductDetailsPage, ProductLeaf } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
-import { usePartial } from "apps/website/hooks/usePartial.ts";
 import ProductDescription from "./ProductDescription.tsx";
 
 export interface Props {
@@ -176,6 +175,7 @@ function ProductInfo(
                   price={price}
                   discount={discount}
                   seller={seller}
+                  product={product}
                 />
               )}
               {platform === "wake" && (

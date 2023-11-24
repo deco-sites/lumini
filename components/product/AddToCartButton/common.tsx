@@ -56,14 +56,18 @@ const useAddToCart = ({
   return { onClick, loading };
 };
 
-export default function AddToCartButton(props: Props) {
+export default function AddToCartButton(
+  { disabled, ...props }: Props & { disabled: boolean },
+) {
   const btnProps = useAddToCart(props);
 
   return (
     <Button
       {...btnProps}
       data-deco="add-to-cart"
-      class="btn-primary h-[46px] max-w-[400px] w-full"
+      hasBtn={false}
+      disabled={disabled}
+      class="btn-primary h-[46px] w-full lg:max-w-[400px] lowercase font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
     >
       Adicionar à Sacola
     </Button>
