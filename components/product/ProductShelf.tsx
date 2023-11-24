@@ -42,13 +42,13 @@ function ProductShelf({
         <div class="flex gap-6">
           <div class="relative block">
             <Slider.PrevButton class="hover:cursor-pointer disabled:opacity-50">
-              <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+              <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
             </Slider.PrevButton>
           </div>
 
           <div class="relative block">
             <Slider.NextButton class="rotate-180 hover:cursor-pointer disabled:opacity-50">
-              <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+              <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
             </Slider.NextButton>
           </div>
         </div>
@@ -59,7 +59,7 @@ function ProductShelf({
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-full sm:w-[390px] lg:w-[400px] h-full first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              class="carousel-item w-full sm:w-[360px] lg:w-[400px] h-full first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -87,7 +87,7 @@ function ProductShelf({
         />
       </div>
 
-      <SliderJS rootId={id} />
+      <SliderJS rootId={id} infinite scroll="smooth" />
     </section>
   );
 }

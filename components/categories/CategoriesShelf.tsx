@@ -69,13 +69,13 @@ function CategoriesShelf({
 
         <>
           <div class="hidden relative sm:block z-10 col-start-1 row-start-3 -translate-y-3">
-            <Slider.PrevButton class="absolute right-[85%] rotate-180">
-              <Icon size={28} id="ChevronRight" strokeWidth={1} />
+            <Slider.PrevButton class="absolute right-[100%] rotate-180">
+              <Icon size={28} id="ChevronRight" strokeWidth={0.8} />
             </Slider.PrevButton>
           </div>
           <div class="hidden relative sm:block z-10 col-start-3 row-start-3 -translate-y-3">
-            <Slider.NextButton class="absolute left-[85%]">
-              <Icon size={28} id="ChevronRight" strokeWidth={1} />
+            <Slider.NextButton class="absolute left-[100%]">
+              <Icon size={28} id="ChevronRight" strokeWidth={0.8} />
             </Slider.NextButton>
           </div>
         </>
