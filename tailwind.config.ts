@@ -6,9 +6,9 @@ export default {
   content: ["./**/*.tsx"],
   theme: {
     fontFamily: {
-      "univers-next-pro-light": ["Univers Next Pro Light", "sans-serif"],
-      "univers-next-pro-regular": ["Univers Next Pro Regular", "sans-serif"],
-      "univers-next-pro-bold": ["Univers Next Pro Bold", "sans-serif"],
+      "univers-next-pro-light": ["UniversNextPro-Light", "sans-serif"],
+      "univers-next-pro-regular": ["UniversNextPro-Regular", "sans-serif"],
+      "univers-next-pro-bold": ["UniversNextPro-Bold", "sans-serif"],
     },
     container: {
       center: true,
@@ -23,6 +23,7 @@ export default {
         "gainsboro": "#e0e0e0",
         "gold": "#ffc900",
         "gray": "#c9c9c9",
+        "default-text": "#353535",
       },
     },
   },

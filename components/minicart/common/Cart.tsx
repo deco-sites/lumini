@@ -44,8 +44,6 @@ function Cart({
   const isEmpty = items.length === 0;
   const [shippingValue, setShippingValue] = useState<number | null>(null);
 
-  console.log(shippingValue);
-
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"

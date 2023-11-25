@@ -46,15 +46,17 @@ export default function SuggestionHero({
   return (
     <section class="flex flex-col sm:flex-row w-full lg:w-[90%] h-full ml-auto font-univers-next-pro-light font-light my-4 md:my-8 gap-6 sm:gap-12">
       <div class="flex flex-col gap-2.5 items-start justify-center sm:max-w-[50%] lg:max-w-[620px] px-2 lg:px-0">
-        <span class="text-sm">{subtitle ?? "conheça"}</span>
+        <span class="text-sm leading-[18px] text-black/50">
+          {subtitle ?? "conheça"}
+        </span>
         <h1 class="text-4xl font-univers-next-pro-bold font-bold text-dark-gray">
           {title ?? "led solutions"}
         </h1>
 
-        <p class="pt-2">{description ?? "lorem impsum"}</p>
+        <p class="pt-2 text-black/50">{description ?? "lorem impsum"}</p>
         {benefits && (
           <>
-            <span class="pb-3">
+            <span class="pb-3 text-black/50">
               {benefits.info ?? "principais benefícios do led:"}
             </span>
 

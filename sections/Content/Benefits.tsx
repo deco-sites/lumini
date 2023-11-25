@@ -164,7 +164,7 @@ export default function Benefits(
                     strokeWidth={0.01}
                     fill="currentColor"
                   />
-                  <span class="text-base leading-7 text-base-content">
+                  <span class="text-base leading-7 text-default-text">
                     {benefit.label}
                   </span>
                 </Slider.Item>

@@ -253,7 +253,7 @@ function ProductCard(
             <div class="flex flex-col gap-0 lowercase">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate text-base lg:text-lg text-black font-univers-next-pro-bold"
+                  class="truncate text-base lg:text-lg leading-[23px] text-default-text font-normal font-univers-next-pro-bold"
                   dangerouslySetInnerHTML={{
                     __html: product?.isVariantOf?.name ?? name ?? "",
                   }}
@@ -277,7 +277,7 @@ function ProductCard(
               } ${align === "center" ? "justify-center" : "justify-start"}`}
             >
               <div
-                class={`line-through text-[#A8A8A8] text-xs ${
+                class={`line-through text-[#A8A8A8] text-sm font-univers-next-pro-regular ${
                   l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                 }`}
               >
@@ -297,11 +297,12 @@ function ProductCard(
                   </p>
                 )}
                 <span class={isPLP ? "text-base" : "text-sm"}>
+                  {!isSearchbar && "a partir de "}
                   {isSearchbar && "Para"}{"  "}
                   {formatPrice(price, offers?.priceCurrency)}
                 </span>
                 {!isSearchbar && (
-                  <span class="text-gray-normal/80 text-base">
+                  <span class="text-gray-normal/80 leading-[18px] text-base">
                     {productCategory}
                   </span>
                 )}

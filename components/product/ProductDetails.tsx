@@ -22,6 +22,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ProductDescription from "./ProductDescription.tsx";
+import ShareButton from "$store/components/ui/ShareButton.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -124,11 +125,15 @@ function ProductInfo(
             </span>
           </div>
 
-          <WishlistButton
-            variant="icon"
-            productID={productID}
-            productGroupID={productGroupID}
-          />
+          <div class="flex items-center justify-center">
+            <WishlistButton
+              variant="icon"
+              productID={productID}
+              productGroupID={productGroupID}
+            />
+
+            <ShareButton />
+          </div>
         </div>
       </div>
 
@@ -278,7 +283,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
   const { page: { product: { image: imagesAvailable = [] } }, layout } = props;
   const images = imagesAvailable.filter((item) =>
-    item.alternateName !== "skucor"
+    item.alternateName !== "skucor" && item.name !== "hover"
   );
 
   const variant = layout?.image ?? "slider";
