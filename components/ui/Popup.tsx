@@ -176,13 +176,13 @@ export default function Popup({
             </button>
           </div>
           {bannerImage && (
-            <div class="hidden md:block max-w-[25%] relative">
+            <div class="hidden md:block w-full h-full max-w-[25%] relative">
               <Image
                 src={bannerImage.image}
                 width={bannerImage.width || 128}
                 height={bannerImage.height || 319}
                 alt={bannerImage.description}
-                class="object-contain object-center"
+                class="w-full h-full object-contain object-center"
                 loading="lazy"
               />
             </div>
