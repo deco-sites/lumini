@@ -157,7 +157,7 @@ export default function Popup({
       >
         <form
           method="dialog"
-          class="flex md:flex-row modal-box items-center overflow-visible max-w-lg w-full md:h-1/2 bg-white rounded-none p-0 font-univers-next-pro-regular"
+          class="flex md:flex-row modal-box items-center overflow-visible max-w-lg w-full md:h-[472px] bg-white rounded-none p-0 font-univers-next-pro-regular"
         >
           <div class="flex absolute top-2 right-2">
             <button
@@ -180,7 +180,7 @@ export default function Popup({
               <Image
                 src={bannerImage.image}
                 width={bannerImage.width || 128}
-                height={bannerImage.height || 319}
+                height={bannerImage.height || 472}
                 alt={bannerImage.description}
                 class="w-full h-full object-contain object-center"
                 loading="lazy"
