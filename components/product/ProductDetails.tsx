@@ -103,7 +103,7 @@ function ProductInfo(
       />
       {/* Code and name */}
       <div class="flex flex-col gap-4 mt-4 sm:mt-8">
-        <div class="lowercase text-lightslategray text-xs">
+        <div class="lowercase text-lightslategray/60 text-xs">
           <span>
             referência:{" "}
             {additionalProperty.find((item) => item.name === "RefId")?.value}
@@ -112,7 +112,7 @@ function ProductInfo(
 
         <div class="flex flex-row justify-between w-full">
           <div class="flex flex-col gap-1.5">
-            <h1 class="font-normal text-[25px] text-darkslategray lowercase">
+            <h1 class="font-normal font-univers-next-pro-bold leading-[29px] text-[25px] text-darkslategray lowercase">
               {layout?.name === "concat"
                 ? `${isVariantOf?.name} ${name}`
                 : layout?.name === "productGroup"
@@ -120,7 +120,7 @@ function ProductInfo(
                 : name}
             </h1>
 
-            <span class="text-lightslategray">
+            <span class="text-gray-normal/80 leading-6">
               {breadcrumbList && breadcrumbList?.itemListElement[1].name}
             </span>
           </div>
@@ -138,8 +138,8 @@ function ProductInfo(
       </div>
 
       {/* Sku Selector */}
-      <div class="flex flex-col gap-2 mt-4 w-full">
-        <p class="font-univers-next-pro-light text-lg font-medium">
+      <div class="flex flex-col gap-2 mt-4 w-full font-univers-next-pro-light leading-[21px]">
+        <p class="text-lg font-medium">
           cor:{" "}
           <span class="text-lightslategray lowercase">
             {additionalProperty[0].value}
@@ -153,16 +153,16 @@ function ProductInfo(
       <div class="border-t border-gainsboro pt-4 mt-8">
         <div class="flex flex-col gap-2 items-start normal-case">
           {(listPrice ?? 0) > price && (
-            <span class="line-through text-base-300 text-xs">
+            <span class="line-through text-[#a8a8a8] leading-[16px] text-sm font-univers-next-pro-light">
               {formatPrice(listPrice, offers?.priceCurrency)}
             </span>
           )}
-          <span class="font-medium text-xl text-black">
+          <span class="font-medium font-univers-next-pro-regular text-xl text-darkslategray leading-7">
             {formatPrice(price, offers?.priceCurrency)}
           </span>
         </div>
         {installments && (
-          <span class="text-sm text-base-300">
+          <span class="text-sm leading-4 font-univers-next-pro-light font-normal text-gray-normal">
             em até {installments.replace(".", ",")}
           </span>
         )}

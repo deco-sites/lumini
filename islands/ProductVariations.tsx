@@ -57,7 +57,7 @@ export default function ProductVariations(
                                 [name]: item,
                               }))}
                             title={`Change ${name}`}
-                            class={`flex py-2.5 pl-3 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold ${
+                            class={`flex py-2.5 pl-5 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-medium font-univers-next-pro-regular ${
                               isChecked && "bg-dark-gray text-white"
                             }`}
                           >

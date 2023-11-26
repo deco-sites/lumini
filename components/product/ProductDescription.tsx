@@ -13,12 +13,12 @@ function Downloads(
   if (!downloadLink || !downloadImage) return null;
 
   return (
-    <details class="collapse collapse-plus join-item w-full">
+    <details class="collapse collapse-plus join-item w-full font-univers-next-pro-regular leading-[18px] text-darkslategray">
       <summary class="collapse-title text-lg md:text-[32px] w-full border-b border-b-lightslategray/60 pb-1.5">
         downloads
       </summary>
       <div class="flex flex-col collapse-content w-full py-4 border-b border-b-lightslategray/60">
-        <span>manual de instalação</span>
+        <span class="leading-[18px] font-medium">manual de instalação</span>
         <a
           href={downloadLink}
           class="w-[150px] h-10"
@@ -40,7 +40,7 @@ function Dimensions(
   { image, imageDescription }: { image?: string; imageDescription?: string },
 ) {
   return (
-    <details class="collapse collapse-plus join-item w-full">
+    <details class="collapse collapse-plus join-item w-full font-univers-next-pro-regular leading-[18px] text-darkslategray">
       <summary class="collapse-title text-lg md:text-[32px] w-full border-b border-b-lightslategray/60 pb-1.5">
         dimensões
       </summary>
@@ -63,16 +63,16 @@ function Specification(
   },
 ) {
   return (
-    <details class="collapse collapse-plus join-item w-full">
+    <details class="collapse collapse-plus join-item w-full font-univers-next-pro-regular leading-[18px] text-darkslategray">
       <summary class="collapse-title text-lg md:text-[32px] w-full border-b border-b-lightslategray/60 pb-1.5">
         especificações
       </summary>
-      <div class="collapse-content w-full py-4 flex border-b border-b-lightslategray/60">
+      <div class="collapse-content w-full py-8 flex border-b border-b-lightslategray/60">
         <div class="flex flex-col gap-4 w-full">
           {lightSource && (
             <div class="flex flex-col w-full gap-1">
-              <span class="leading-[.04em]">fonte de luz</span>
-              <span class="text-gray-normal">
+              <span class="leading-[18px] pb-0.5">fonte de luz</span>
+              <span class="text-gray-normal/80 font-light font-univers-next-pro-light">
                 {lightSource}
               </span>
             </div>
@@ -80,15 +80,17 @@ function Specification(
 
           {materialUsed && (
             <div class="flex flex-col w-full gap-1">
-              <span class="leading-[.04em]">material utilizado</span>
-              <span class="text-gray-normal">alumínio pintado e concreto</span>
+              <span class="leading-[18px] pb-0.5">material utilizado</span>
+              <span class="text-gray-normal/80 font-light font-univers-next-pro-light">
+                alumínio pintado e concreto
+              </span>
             </div>
           )}
 
           {cable && (
             <div class="flex flex-col w-full gap-1">
-              <span class="leading-[.04em]">cabo</span>
-              <span class="text-gray-normal">
+              <span class="leading-[18px] pb-0.5">cabo</span>
+              <span class="text-gray-normal/80 font-light font-univers-next-pro-light">
                 {cable}
               </span>
             </div>
@@ -103,27 +105,31 @@ function Description(
   { designer, description }: { designer?: string; description?: string },
 ) {
   return (
-    <details class="collapse collapse-plus join-item w-full">
+    <details class="collapse collapse-plus join-item w-full font-univers-next-pro-regular leading-[18px] text-darkslategray">
       <summary class="collapse-title text-lg md:text-[32px] w-full border-b border-b-lightslategray/60 pb-1.5">
         descrição
       </summary>
       <div class="collapse-content w-full py-4 flex flex-row justify-between border-b border-b-lightslategray/60">
         <div class="flex flex-col gap-4 w-full">
           <div class="flex flex-col w-full gap-1">
-            <span class="leading-[.04em]">fabricante</span>
-            <span class="text-gray-normal">lumini, brasil</span>
+            <span class="leading-[18px]">fabricante</span>
+            <span class="text-gray-normal/80 font-light font-univers-next-pro-light">
+              lumini, brasil
+            </span>
           </div>
 
           <div class="flex flex-col w-full gap-1">
-            <span class="leading-[.04em]">designer</span>
-            <span class="text-gray-normal">{designer}</span>
+            <span class="leading-[18px]">designer</span>
+            <span class="text-gray-normal/80 font-light font-univers-next-pro-light">
+              {designer}
+            </span>
           </div>
         </div>
 
         <div class="flex flex-col gap-1 max-w-[856px]">
-          <h2 class="text-darkslategray">sobre o produto</h2>
+          <h2 class="text-darkslategray pb-1.5">sobre o produto</h2>
           <div
-            class="contents text-gray-normal"
+            class="contents text-gray-normal font-univers-next-pro-regular"
             dangerouslySetInnerHTML={{ __html: description || "" }}
           />
         </div>
@@ -182,8 +188,8 @@ export default function ProductDescription({ product }: Props) {
   const { downloadLink, downloadImage } = getDownloadInfo(downloadValue);
 
   return (
-    <section class="flex border-t border-t-lightslategray w-full h-full bg-ice-cube pt-4 pb-8">
-      <div class="flex flex-col gap-6 w-full mx-auto max-w-[1250px]">
+    <section class="flex border-t border-t-lightslategray/60 w-full h-full bg-ice-cube pt-4 pb-8">
+      <div class="flex flex-col gap-8 w-full mx-auto max-w-[1250px]">
         <Description designer={designer} description={description} />
         <Specification
           materialUsed={materialUsed}

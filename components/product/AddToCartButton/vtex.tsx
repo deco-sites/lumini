@@ -2,8 +2,9 @@ import { useCart } from "apps/vtex/hooks/useCart.ts";
 import Button, { Props as BtnProps } from "./common.tsx";
 import QuantitySelector from "$store/components/ui/QuantitySelector.tsx";
 import { useState } from "preact/compat";
-import type { Product } from "apps/commerce/types.ts";
+import type { Product, ProductLeaf } from "apps/commerce/types.ts";
 import { useUI } from "$store/sdk/useUI.ts";
+import { useOffer } from "$store/sdk/useOffer.ts";
 
 export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
   seller: string;
@@ -39,6 +40,22 @@ function AddToCartButton(props: Props) {
       );
     },
   );
+
+  function getAvailability(filteredProduct: ProductLeaf | undefined) {
+    if (!filteredProduct) return;
+
+    const { availability } = useOffer(filteredProduct.offers);
+    const additionalProperties = filteredProduct.additionalProperty || [];
+
+    if (additionalProperties.find((item) => item.value === "pronta-entrega")) {
+      return true;
+    }
+
+    return false;
+  }
+
+  const isAvailable = filteredProducts && filteredProducts.length === 1 &&
+    getAvailability(filteredProducts[0]);
 
   const [quantity, setQuantity] = useState(1);
 
@@ -76,7 +93,9 @@ function AddToCartButton(props: Props) {
 
         {filteredProducts && filteredProducts.length === 1 && (
           <div class="font-medium text-xl text-black mt-4">
-            <span>tempo de produção: 37 dias</span>
+            <span>
+              {isAvailable ? "pronta entrega" : "tempo de produção: 37 dias"}
+            </span>
           </div>
         )}
       </div>

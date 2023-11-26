@@ -67,9 +67,9 @@ export default function AddToCartButton(
       data-deco="add-to-cart"
       hasBtn={false}
       disabled={disabled}
-      class="btn-primary h-[46px] w-full lg:max-w-[400px] lowercase font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+      class="btn-primary h-[46px] w-full lg:max-w-[400px] lowercase leading-[14px] disabled:opacity-50 disabled:cursor-not-allowed font-univers-next-pro-bold"
     >
-      Adicionar à Sacola
+      adicionar ao carrinho
     </Button>
   );
 }
