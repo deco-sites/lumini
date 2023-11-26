@@ -109,7 +109,7 @@ function Description(
       <summary class="collapse-title text-lg md:text-[32px] w-full border-b border-b-lightslategray/60 pb-1.5">
         descrição
       </summary>
-      <div class="collapse-content w-full py-4 flex flex-row justify-between border-b border-b-lightslategray/60">
+      <div class="collapse-content w-full py-4 flex flex-row justify-between gap-3 border-b border-b-lightslategray/60">
         <div class="flex flex-col gap-4 w-full">
           <div class="flex flex-col w-full gap-1">
             <span class="leading-[18px]">fabricante</span>
@@ -189,7 +189,7 @@ export default function ProductDescription({ product }: Props) {
 
   return (
     <section class="flex border-t border-t-lightslategray/60 w-full h-full bg-ice-cube pt-4 pb-8">
-      <div class="flex flex-col gap-8 w-full mx-auto max-w-[1250px]">
+      <div class="flex flex-col gap-2 md:gap-4 lg:gap-8 w-full mx-auto max-w-[1250px]">
         <Description designer={designer} description={description} />
         <Specification
           materialUsed={materialUsed}

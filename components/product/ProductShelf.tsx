@@ -15,12 +15,24 @@ export interface Props {
   products: Product[] | null;
   title?: string;
   cardLayout?: cardLayout;
+  /**
+   * @format color
+   * @default #fff
+   */
+  flagTextColor?: string;
+  /**
+   * @format color
+   * @default #1d1d1b
+   */
+  flagBackgroundColor?: string;
 }
 
 function ProductShelf({
   products,
   title,
   cardLayout,
+  flagTextColor = "#fff",
+  flagBackgroundColor = "#1d1d1b",
 }: Props) {
   const id = useId();
   const platform = usePlatform();
@@ -66,6 +78,8 @@ function ProductShelf({
                 itemListName={title}
                 layout={cardLayout}
                 platform={platform}
+                flagTextColor={flagTextColor}
+                flagBackgroundColor={flagBackgroundColor}
               />
             </Slider.Item>
           ))}

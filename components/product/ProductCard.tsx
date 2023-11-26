@@ -46,6 +46,17 @@ interface Props {
   itemListName?: string;
   layout?: Layout;
 
+  /**
+   * @format color
+   * @default #fff
+   */
+  flagTextColor?: string;
+  /**
+   * @format color
+   * @default #1d1d1b
+   */
+  flagBackgroundColor?: string;
+
   platform?: Platform;
   isPLP?: boolean;
   isSearchbar?: boolean;
@@ -60,8 +71,17 @@ const WIDTH = 400;
 const HEIGHT = 400;
 
 function ProductCard(
-  { product, preload, itemListName, layout, platform, isPLP, isSearchbar }:
-    Props,
+  {
+    product,
+    preload,
+    itemListName,
+    layout,
+    platform,
+    isPLP,
+    isSearchbar,
+    flagBackgroundColor,
+    flagTextColor,
+  }: Props,
 ) {
   const {
     url,
@@ -173,7 +193,10 @@ function ProductCard(
           )}
         </div>
         {listPrice && price && listPrice > price && (
-          <div class="z-10 absolute top-0 right-0 flex py-1.5 px-2 text-white items-center justify-center w-10 h-5 bg-[#1d1d1b] font-univers-next-pro-light text-xs">
+          <div
+            style={{ color: flagTextColor, background: flagBackgroundColor }}
+            class="z-10 absolute top-0 right-0 flex py-1.5 px-2 items-center justify-center w-10 h-5 font-univers-next-pro-light text-xs"
+          >
             <span>-{discountPercentage}%</span>
           </div>
         )}
