@@ -163,7 +163,7 @@ export default function Popup({
             <button
               onClick={() =>
                 setCookieOnCloseModal("closed", modalCloseExpiredDate)}
-              class="flex items-center justify-center gap-1.5"
+              class="flex items-center justify-center gap-1.5 focus:outline-none"
               aria-label="Fechar"
             >
               <span class="hidden md:block">fechar</span>

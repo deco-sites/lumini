@@ -21,6 +21,8 @@ function ProductImageZoom({ images, width, height }: Props) {
   return (
     <>
       <Button
+        title="Zoom Button"
+        aria-label="open zoom on image"
         class="hidden sm:inline-flex btn-ghost"
         onClick={() => open.value = true}
       >

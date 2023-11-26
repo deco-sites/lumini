@@ -10,13 +10,20 @@ export type Props =
   & Pick<ProductListingPage, "filters" | "sortOptions">
   & {
     displayFilter?: boolean;
+    isUniqueModeActive?: boolean;
     isListModeActive?: boolean;
     productsQuantity?: number;
   };
 
 function SearchControls(
-  { filters, displayFilter, sortOptions, productsQuantity, isListModeActive }:
-    Props,
+  {
+    filters,
+    displayFilter,
+    sortOptions,
+    productsQuantity,
+    isUniqueModeActive,
+    isListModeActive,
+  }: Props,
 ) {
   const open = useSignal(false);
 
@@ -43,8 +50,8 @@ function SearchControls(
         </>
       }
     >
-      <div class="flex flex-col sm:flex-row justify-between mb-4 p-4 sm:mt-2 sm:mb-0 sm:p-0 sm:gap-4 sm:h-[53px] font-univers-next-pro-light">
-        <div class="flex flex-row items-center gap-6 lg:gap-24">
+      <div class="flex flex-col sm:flex-row justify-between mb-4 sm:mt-2 sm:mb-0 sm:gap-4 sm:h-[53px] font-univers-next-pro-light">
+        <div class="flex flex-row items-center gap-6 lg:gap-24 justify-between">
           {displayFilter && (
             <button
               class={`${
@@ -61,11 +68,41 @@ function SearchControls(
 
           <p class="flex items-center gap-1 text-[16px]">
             <span>produtos encontrados:</span>
-            <span class="text-[18px]">{productsQuantity}</span>
+            <span class="md:text-[18px]">{productsQuantity}</span>
           </p>
         </div>
 
         <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
+          <div class="flex lg:hidden items-center gap-4">
+            <a
+              aria-label="change elements to grid position"
+              href="?unique"
+              class="flex items-center gap-1.5 hover:cursor-pointer"
+            >
+              {Array(1).fill("").map((_) => (
+                <div
+                  class={`${
+                    isUniqueModeActive && "bg-black"
+                  } border border-black w-4 h-4`}
+                />
+              ))}
+            </a>
+
+            <a
+              aria-label="change elements to list position"
+              href="?list"
+              class="flex items-center gap-1.5 hover:cursor-pointer"
+            >
+              {Array(2).fill("").map((_) => (
+                <div
+                  class={`${
+                    !isUniqueModeActive && "bg-black"
+                  } border border-black w-4 h-4`}
+                />
+              ))}
+            </a>
+          </div>
+
           <div class="hidden lg:flex items-center gap-4">
             <a
               aria-label="change elements to grid position"

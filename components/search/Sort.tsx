@@ -41,7 +41,7 @@ function Sort({ sortOptions }: Props) {
       name="sort"
       aria-label="sort options"
       onInput={applySort}
-      class="w-[120px] h-[36px] px-1 rounded m-2 text-base-content cursor-pointer outline-none lowercase"
+      class="w-[120px] h-[36px] rounded-[2px] text-base-content cursor-pointer outline-none lowercase"
     >
       <option value="" hidden>
         Ordenar por
@@ -52,7 +52,7 @@ function Sort({ sortOptions }: Props) {
           label,
       })).filter(({ label }) => label).map(({ value, label }) => (
         <option key={value} value={value}>
-          <span class="text-sm">{label}</span>
+          <span class="text-sm py-2.5">{label}</span>
         </option>
       ))}
     </select>

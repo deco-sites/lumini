@@ -109,6 +109,7 @@ function ShippingSimulation({ items }: Props) {
           type="text"
           class="border border-gray bg-ice-cube text-sm text-black w-full h-10 max-w-[195px] pl-1"
           placeholder=""
+          aria-label="shipping simulation"
           value={postalCode.value}
           maxLength={8}
           size={8}

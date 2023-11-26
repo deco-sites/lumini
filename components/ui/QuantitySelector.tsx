@@ -43,6 +43,7 @@ function QuantitySelector(
         } text-center join-item [appearance:textfield] font-semibold`}
         type="number"
         inputMode="numeric"
+        aria-label="change number"
         pattern="[0-9]*"
         max={QUANTITY_MAX_VALUE}
         min={1}

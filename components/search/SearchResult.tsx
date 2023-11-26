@@ -42,6 +42,7 @@ function Result({
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
 
+  const isUniqueModeActive = layout?.columns?.mobile === 1;
   const isListModeActive = layout?.columns?.desktop === 4;
 
   const title = breadcrumb?.itemListElement?.slice(-1)[0]?.name ?? "";
@@ -64,6 +65,7 @@ function Result({
             sortOptions={sortOptions}
             filters={filters}
             displayFilter={layout?.variant === "drawer"}
+            isUniqueModeActive={isUniqueModeActive}
             isListModeActive={isListModeActive}
             productsQuantity={pageInfo.records}
           />
@@ -135,6 +137,13 @@ export const loader = (props: Props, req: Request) => {
     return {
       ...props,
       layout: { ...props.layout, columns: { desktop: 4 } },
+    };
+  }
+
+  if (url.searchParams.has("unique")) {
+    return {
+      ...props,
+      layout: { ...props.layout, columns: { mobile: 1 } },
     };
   }
 

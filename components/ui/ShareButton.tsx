@@ -3,7 +3,7 @@ import Icon from "$store/components/ui/Icon.tsx";
 export default function ShareButton() {
   return (
     <>
-      <a href="#my_modal_8">
+      <a href="#my_modal_8" aria-label="share icon">
         <Icon
           id="Share"
           size={24}
@@ -12,11 +12,11 @@ export default function ShareButton() {
         />
       </a>
 
-      <div class="modal" role="dialog" id="my_modal_8">
+      <div class="modal" role="dialog" id="my_modal_8" aria-label="modal">
         <div class="modal-box lg:w-[325px] border border-black/40 rounded-none bg-ice-cube">
-          <h3 class="text-center text-lg font-light font-univers-next-pro-light">
+          <span class="text-center text-lg font-light font-univers-next-pro-light">
             compartilhar
-          </h3>
+          </span>
 
           <div class="flex items-center justify-center gap-1.5 mt-2">
             <button
