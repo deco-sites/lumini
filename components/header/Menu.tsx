@@ -101,7 +101,7 @@ function Menu({ items, searchbar }: Props) {
             class="flex items-center gap-4 px-4 py-2"
             href="/wishlist"
           >
-            <Icon id="Heart" size={24} strokeWidth={2} />
+            <Icon id="Heart" size={24} strokeWidth={2} fill="none" />
             <span class="text-sm">Favoritos</span>
           </a>
         </li>

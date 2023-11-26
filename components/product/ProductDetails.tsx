@@ -151,7 +151,7 @@ function ProductInfo(
 
       {/* Prices */}
       <div class="border-t border-gainsboro pt-4 mt-8">
-        <div class="flex flex-row gap-2 items-center normal-case">
+        <div class="flex flex-col gap-2 items-start normal-case">
           {(listPrice ?? 0) > price && (
             <span class="line-through text-base-300 text-xs">
               {formatPrice(listPrice, offers?.priceCurrency)}
@@ -223,12 +223,6 @@ function ProductInfo(
             </>
           )
           : <OutOfStock productID={productID} />}
-      </div>
-      <div class="w-full border-b border-gainsboro pb-2">
-        <span class="text-lightslategray text-sm">
-          os preços podem variar de acordo com as características escolhidas do
-          produto.
-        </span>
       </div>
       {/* Shipping Simulation */}
       <div class="mt-8">

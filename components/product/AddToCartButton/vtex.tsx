@@ -53,19 +53,34 @@ function AddToCartButton(props: Props) {
     });
 
   return (
-    <div class="flex w-full h-full gap-4 lg:gap-10">
-      <QuantitySelector
-        quantity={quantity}
-        onChange={setQuantity}
-        isPdp
-      />
-      <Button
-        disabled={!filteredProducts ||
-          (filteredProducts && filteredProducts.length !== 1)}
-        onAddItem={onAddItem}
-        {...props}
-      />
-    </div>
+    <>
+      <div class="flex w-full h-full gap-4 lg:gap-10">
+        <QuantitySelector
+          quantity={quantity}
+          onChange={setQuantity}
+          isPdp
+        />
+        <Button
+          disabled={!filteredProducts ||
+            (filteredProducts && filteredProducts.length !== 1)}
+          onAddItem={onAddItem}
+          {...props}
+        />
+      </div>
+
+      <div class="flex flex-col w-full border-b border-gainsboro pb-2">
+        <span class="text-lightslategray text-sm">
+          os preços podem variar de acordo com as características escolhidas do
+          produto.
+        </span>
+
+        {filteredProducts && filteredProducts.length === 1 && (
+          <div class="font-medium text-xl text-black mt-4">
+            <span>tempo de produção: 37 dias</span>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
