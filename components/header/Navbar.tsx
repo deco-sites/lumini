@@ -42,6 +42,7 @@ function Navbar({ items, searchbar, logo }: {
               width={126}
               height={16}
               loading="eager"
+              aspect-ratio="3.51"
             />
           </a>
         )}
@@ -68,6 +69,7 @@ function Navbar({ items, searchbar, logo }: {
                   width={126}
                   height={16}
                   loading="eager"
+                  aspect-ratio="3.51"
                 />
               </a>
             )}
