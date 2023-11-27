@@ -12,22 +12,50 @@ function GlobalTags() {
       <link
         as="font"
         rel="preload"
-        type="font/woff2"
-        href={asset("/fonts/UniversNextPro-Light.woff2")}
+        type="font/ttf"
+        href={asset("/fonts/UniversNextPro-Light.ttf")}
       />
 
       <link
         as="font"
         rel="preload"
-        type="font/woff2"
-        href={asset("/fonts/UniversNextPro-Regular.woff2")}
+        type="font/ttf"
+        href={asset("/fonts/UniversNextPro-Regular.ttf")}
       />
 
       <link
         as="font"
         rel="preload"
-        type="font/woff2"
-        href={asset("/fonts/UniversNextPro-Bold.woff2")}
+        type="font/ttf"
+        href={asset("/fonts/UniversNextPro-Bold.ttf")}
+      />
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          @font-face {
+            font-family: 'UniversNextPro-Light';
+            font-style: light;
+            font-weight: 300;
+            font-display: swap;
+            src: url('${("/fonts/UniversNextPro-Light.ttf")}') format('truetype');
+          }
+          @font-face {
+            font-family: 'UniversNextPro-Regular';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('${("/fonts/UniversNextPro-Regular.ttf")}') format('truetype');
+          }
+          @font-face {
+            font-family: 'UniversNextPro-Bold';
+            font-style: bold;
+            font-weight: 700;
+            font-display: swap;
+            src: url('${("/fonts/UniversNextPro-Bold.ttf")}') format('truetype');
+          }
+          `,
+        }}
       />
 
       {/* Web Manifest */}

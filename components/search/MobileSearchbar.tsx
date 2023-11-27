@@ -112,7 +112,7 @@ function Searchbar({
 
             setSearch(value);
           }}
-          placeholder={placeholder}
+          placeholder={"o que você procura?"}
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"

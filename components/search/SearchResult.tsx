@@ -95,7 +95,7 @@ function Result({
             >
               <Icon id="ChevronLeft" size={24} strokeWidth={2} />
             </a>
-            <span class="btn btn-ghost join-item">
+            <span class="btn btn-ghost join-item font-normal font-univers-next-pro-regular lowercase">
               página {pageInfo.currentPage}
             </span>
             <a

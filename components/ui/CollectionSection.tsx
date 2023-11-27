@@ -25,7 +25,7 @@ export default function CollectionSection({ title, images }: Props) {
       class="w-full container max-w-[1230px] py-2 px-2 lg:px-0 flex flex-col gap-10"
     >
       <div class="flex justify-between w-full">
-        <h1 class="text-[21px] lg:text-4xl font-univers-next-pro-bold">
+        <h1 class="text-[21px] lg:text-4xl font-univers-next-pro-regular">
           {title || ""}
         </h1>
 

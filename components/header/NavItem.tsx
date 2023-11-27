@@ -36,14 +36,18 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                   <ul class="h-full gap-y-3" style={{ columnCount: 2 }}>
                     <li>
                       <a href={node.url}>
-                        <span class="text-sm">{node.name}</span>
+                        <span class="font-univers-next-pro-regular text-black/90">
+                          {node.name}
+                        </span>
                       </a>
                     </li>
 
                     {node.children?.map((leaf) => (
                       <li>
                         <a href={leaf.url}>
-                          <span class="text-sm">{leaf.name}</span>
+                          <span class="font-univers-next-pro-regular text-lightslategray">
+                            {leaf.name}
+                          </span>
                         </a>
                       </li>
                     ))}

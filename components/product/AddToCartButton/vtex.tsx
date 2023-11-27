@@ -112,7 +112,7 @@ function AddToCartButton(props: Props) {
         </span>
 
         {filteredProducts && filteredProducts.length === 1 && (
-          <div class="font-medium text-xl text-black my-4">
+          <div class="text-xl text-black font-univers-next-pro-regular my-4">
             <span>
               {isAvailable ? "pronta entrega" : "tempo de produção: 37 dias"}
             </span>

@@ -39,11 +39,11 @@ function DesignersCard({ name, country, link, hasImage }: IDesignersCard) {
       </a>
 
       <div class="flex flex-col gap-1 w-full">
-        <h1 class="text-lg leading-[18px] font-univers-next-pro-bold font-normal text-black">
+        <h1 class="text-lg leading-[18px] font-univers-next-pro-regular text-black">
           {name ?? "lorem impsum"}
         </h1>
 
-        {country && <span class="text-xs text-black/50">{country}</span>}
+        {country && <span class="text-xs text-black/70 pt-1">{country}</span>}
 
         <div class="flex items-center gap-2">
           <a href={link} class="underline pt-1.5 text-sm">conheça o trabalho</a>
