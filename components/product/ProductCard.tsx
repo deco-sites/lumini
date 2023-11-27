@@ -276,7 +276,7 @@ function ProductCard(
             <div class="flex flex-col gap-0 lowercase">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate text-base lg:text-lg leading-[23px] text-default-text font-normal font-univers-next-pro-bold"
+                  class="truncate text-base lg:text-lg leading-[23px] text-default-text font-normal font-univers-next-pro-regular"
                   dangerouslySetInnerHTML={{
                     __html: product?.isVariantOf?.name ?? name ?? "",
                   }}

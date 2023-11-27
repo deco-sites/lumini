@@ -18,7 +18,8 @@
 
   /* Allow changing font family via CMS */
   html {
-    @apply font-univers-next-pro-light;
+    @apply font-univers-next-pro-regular;
+    scroll-behavior: smooth;
   }
 
   mark {
