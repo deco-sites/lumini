@@ -105,14 +105,14 @@ function AddToCartButton(props: Props) {
         />
       </div>
 
-      <div class="flex flex-col w-full border-b border-gainsboro pb-2">
+      <div class="flex flex-col w-full border-b border-gainsboro pb-4">
         <span class="text-lightslategray text-sm">
           os preços podem variar de acordo com as características escolhidas do
           produto.
         </span>
 
         {filteredProducts && filteredProducts.length === 1 && (
-          <div class="font-medium text-xl text-black mt-4">
+          <div class="font-medium text-xl text-black my-4">
             <span>
               {isAvailable ? "pronta entrega" : "tempo de produção: 37 dias"}
             </span>

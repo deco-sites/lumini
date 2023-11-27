@@ -105,7 +105,10 @@ function Description(
   { designer, description }: { designer?: string; description?: string },
 ) {
   return (
-    <details class="collapse collapse-plus join-item w-full font-univers-next-pro-regular leading-[18px] text-darkslategray">
+    <details
+      open={true}
+      class="collapse collapse-plus join-item w-full font-univers-next-pro-regular leading-[18px] text-darkslategray"
+    >
       <summary class="collapse-title text-lg md:text-[32px] w-full border-b border-b-lightslategray/60 pb-1.5">
         descrição
       </summary>

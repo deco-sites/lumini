@@ -45,8 +45,8 @@ export interface Props {
   };
 }
 
-const WIDTH = 360;
-const HEIGHT = 360;
+const WIDTH = 709;
+const HEIGHT = 709;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 /**
@@ -300,7 +300,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       <>
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-1 sm:justify-center max-w-[1250px] mx-auto"
+          class="grid grid-cols-1 gap-4 sm:gap-1 sm:grid-cols-[57%_1fr] sm:grid-rows-1 sm:justify-center max-w-[1230px] mx-auto"
         >
           <div class="flex flex-col w-full md:gap-1.5">
             {/* Image Slider */}
@@ -327,19 +327,23 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                 ))}
               </Slider>
 
-              <Slider.PrevButton
-                class="no-animation absolute left-2 top-1/2"
-                disabled
-              >
-                <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
-              </Slider.PrevButton>
+              {images && images.length > 1 && (
+                <>
+                  <Slider.PrevButton
+                    class="no-animation absolute left-2 top-1/2"
+                    disabled
+                  >
+                    <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
+                  </Slider.PrevButton>
 
-              <Slider.NextButton
-                class="no-animation absolute right-2 top-1/2"
-                disabled={images.length < 2}
-              >
-                <Icon size={24} id="ChevronRight" strokeWidth={0.8} />
-              </Slider.NextButton>
+                  <Slider.NextButton
+                    class="no-animation absolute right-2 top-1/2"
+                    disabled={images.length < 2}
+                  >
+                    <Icon size={24} id="ChevronRight" strokeWidth={0.8} />
+                  </Slider.NextButton>
+                </>
+              )}
 
               <div class="absolute top-2 right-2">
                 <ProductImageZoom
@@ -351,26 +355,28 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             </div>
 
             {/* Dots */}
-            <ul class="flex gap-2 overflow-auto px-4 sm:px-0">
-              {images.map((img, index) => (
-                <li class="min-w-[63px] sm:min-w-[100px]">
-                  <Slider.Dot index={index}>
-                    <Image
-                      style={{ aspectRatio: ASPECT_RATIO }}
-                      class="group-disabled:border-base-300 group-disabled:border rounded"
-                      width={100}
-                      height={100}
-                      src={img.url!}
-                      alt={img.alternateName}
-                    />
-                  </Slider.Dot>
-                </li>
-              ))}
-            </ul>
+            {images && images.length > 1 && (
+              <ul class="flex gap-2 overflow-auto px-4 sm:px-0">
+                {images.map((img, index) => (
+                  <li class="min-w-[63px] sm:min-w-[100px]">
+                    <Slider.Dot index={index}>
+                      <Image
+                        style={{ aspectRatio: ASPECT_RATIO }}
+                        class="group-disabled:border-base-300 group-disabled:border rounded"
+                        width={100}
+                        height={100}
+                        src={img.url!}
+                        alt={img.alternateName}
+                      />
+                    </Slider.Dot>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* Product Info */}
-          <div class="px-4">
+          <div class="sm:pt-0.5 px-4">
             <ProductInfo
               {...props}
               skus={props?.page?.product?.isVariantOf?.hasVariant}
@@ -422,7 +428,7 @@ function ProductDetails({ page, layout }: Props) {
 
   return (
     <section class="flex flex-col items-center gap-20 mb-6">
-      <div class="mx-auto container py-0 sm:py-10 font-univers-next-pro-light relative">
+      <div class="mx-auto container py-0 sm:pt-[23px] sm:pb-10 font-univers-next-pro-light relative">
         {page && <Details page={page} layout={layout} />}
       </div>
 
