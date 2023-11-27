@@ -52,8 +52,8 @@ export default function OurStores({ title, cards }: Props) {
                 <button class="flex items-center bg-transparent group-hover:bg-[#1d1d1b] text-[#1d1d1b] group-hover:text-white py-2 px-4 border border-[#1d1d1b] group-hover:border-transparent my-4">
                   {card.titleButton ?? "ver no mapa"}
                   <Icon
-                    class="text-black group-hover:text-white"
-                    size={28}
+                    class="text-black group-hover:text-white ml-6"
+                    size={26}
                     id="ChevronRight"
                     strokeWidth={1}
                   />
