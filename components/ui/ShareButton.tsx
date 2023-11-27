@@ -13,8 +13,8 @@ export default function ShareButton() {
       </a>
 
       <div class="modal" role="dialog" id="my_modal_8" aria-label="modal">
-        <div class="modal-box lg:w-[325px] border border-black/40 rounded-none bg-ice-cube">
-          <span class="text-center text-lg font-light font-univers-next-pro-light">
+        <div class="modal-box place-items-center lg:w-[325px] border border-black/40 rounded-none bg-ice-cube">
+          <span class="flex items-center justify-center text-center text-lg font-light font-univers-next-pro-light">
             compartilhar
           </span>
 

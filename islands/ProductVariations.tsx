@@ -37,7 +37,7 @@ export default function ProductVariations(
           return (
             <ul key={name} className="flex flex-col gap-4 w-full">
               <li className="flex flex-col gap-2 w-full">
-                <p className="font-univers-next-pro-light text-lg font-medium">
+                <p className="font-univers-next-pro-light text-lg font-medium lowercase">
                   {name}:{" "}
                   <span className="text-lightslategray lowercase">
                     {selectedValue}
@@ -57,7 +57,7 @@ export default function ProductVariations(
                                 [name]: item,
                               }))}
                             title={`Change ${name}`}
-                            class={`flex py-2.5 pl-5 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-medium font-univers-next-pro-regular ${
+                            class={`flex py-2.5 pl-5 lowercase mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-medium font-univers-next-pro-regular ${
                               isChecked && "bg-dark-gray text-white"
                             }`}
                           >
