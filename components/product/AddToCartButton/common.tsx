@@ -67,7 +67,7 @@ export default function AddToCartButton(
       data-deco="add-to-cart"
       hasBtn={false}
       disabled={disabled}
-      class="btn-primary h-[46px] w-full lg:max-w-[400px] lowercase leading-[14px] disabled:opacity-50 disabled:cursor-not-allowed font-univers-next-pro-bold"
+      class="btn-primary h-[46px] w-full lg:max-w-[420px] lowercase leading-[14px] disabled:opacity-50 disabled:cursor-not-allowed font-univers-next-pro-bold"
     >
       adicionar ao carrinho
     </Button>

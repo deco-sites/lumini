@@ -11,11 +11,21 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
  */
 export interface Banner {
   /** @description desktop otimized image */
-  desktop: ImageWidget;
+  desktop: {
+    image: ImageWidget;
+    width?: number;
+    height?: number;
+  };
   /** @description mobile otimized image */
-  mobile: ImageWidget;
+  mobile: {
+    image: ImageWidget;
+    width?: number;
+    height?: number;
+  };
   /** @description Image's alt text */
   alt: string;
+  /** @description Image's link */
+  link?: string;
 }
 
 export interface Props {
@@ -32,47 +42,7 @@ export interface Props {
 }
 
 const DEFAULT_PROPS = {
-  images: [
-    {
-      alt: "/feminino",
-      action: {
-        href: "https://www.deco.cx/",
-        label: "deco.cx",
-        title: "Demo Store",
-        subTitle: "Visit our site and start building now:",
-      },
-      mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/24278f9e-412d-4a8a-b2d3-57353bb1b368",
-      desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/afa2c07c-74f4-496d-8647-5cc58f48117b",
-    },
-    {
-      alt: "/feminino",
-      action: {
-        href: "https://www.deco.cx/",
-        label: "deco.cx",
-        title: "Demo Store",
-        subTitle: "Visit our site and start building now:",
-      },
-      mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/eeaa624c-a3e1-45e8-a6fe-034233cfbcd0",
-      desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7949d031-9a79-4639-b85e-62fd90af85a9",
-    },
-    {
-      alt: "/feminino",
-      action: {
-        href: "https://www.deco.cx/",
-        label: "deco.cx",
-        title: "Demo Store",
-        subTitle: "Visit our site and start building now:",
-      },
-      mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ae89571c-4a7c-44bf-9aeb-a341fd049d19",
-      desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7ec121e4-5cfe-4b7b-b942-d1ed4493803d",
-    },
-  ],
+  images: [],
   preload: true,
 };
 
@@ -81,33 +51,34 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
     alt,
     mobile,
     desktop,
+    link,
   } = image;
 
   return (
     <a
-      href={"#"}
-      aria-label={"Banners"}
+      href={link || "#"}
+      aria-label={alt || "banner"}
       class="relative lg:min-h-[83vh] lg:max-h-[83vh] overflow-y-hidden w-full"
     >
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
           fetchPriority={lcp ? "high" : "auto"}
-          src={mobile}
-          width={768}
-          height={972}
+          src={mobile.image}
+          width={mobile.width || 768}
+          height={mobile.height || 972}
         />
         <Source
           media="(min-width: 768px)"
           fetchPriority={lcp ? "high" : "auto"}
-          src={desktop}
-          width={1280}
-          height={514}
+          src={desktop.image}
+          width={desktop.width || 1280}
+          height={desktop.height || 514}
         />
         <img
           class="object-cover w-full h-full"
           loading={lcp ? "eager" : "lazy"}
-          src={desktop}
+          src={desktop.image}
           alt={alt}
         />
       </Picture>

@@ -18,7 +18,7 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
   return (
     <div class="flex justify-between items-center px-4 mt-1 w-full">
       <form
-        class="flex items-center justify-center gap-2 w-full h-full"
+        class="flex items-center justify-center w-full border-b border-b-black pb-0.5 h-[46px]"
         onSubmit={async (e) => {
           e.preventDefault();
 
@@ -57,19 +57,10 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
           }
         }}
       >
-        <div class="flex items-center justify-center gap-3 w-full h-full border border-gray-200 bg-white rounded p-2 min-h-[48px]">
-          <Icon
-            id="ShoppingCart"
-            width={20}
-            height={20}
-            class={shippingValue ? "text-dark-pink" : "text-[#ccc]"}
-            strokeWidth={2}
-          />
+        <div class="flex justify-between items-center w-full h-full">
           <input
+            class="flex w-full text-base-content bg-transparent pl-1.5 focus:outline-none h-full"
             name="shipping"
-            class={`${
-              shippingValue && "text-dark-pink font-bold"
-            } w-full focus:outline-none`}
             type="text"
             maxLength={8}
             value={cep}
@@ -79,31 +70,24 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
                 setCep(newValue);
               }
             }}
-            placeholder={"Adicione o seu frete"}
+            placeholder={"adicione o seu frete"}
           />
+
+          <button
+            aria-label="shipping calculate"
+            type="submit"
+            class="disabled:loading pr-1.5 h-full"
+            disabled={loading}
+          >
+            <img
+              alt="right arrow image"
+              width={24}
+              height={24}
+              loading="lazy"
+              src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/hpa-newsletter-row___ef97774d74950b40c21bc4b0ba8ffec1.svg"
+            />
+          </button>
         </div>
-        {!shippingValue
-          ? (
-            <Button
-              type="submit"
-              htmlFor="shipping"
-              loading={loading}
-              class="w-[88px] text-sm border-none text-white normal-case font-medium"
-            >
-              Adicionar
-            </Button>
-          )
-          : (
-            <Button
-              class="text-lg border-transparent hover:border-transparent w-[88px]"
-              onClick={() => {
-                setShippingValue(null);
-                setCep("");
-              }}
-            >
-              X
-            </Button>
-          )}
       </form>
     </div>
   );
