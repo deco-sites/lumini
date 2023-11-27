@@ -157,7 +157,7 @@ function Cart({
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
                     data-deco="buy-button"
-                    class="btn-primary btn-block border-none"
+                    class="btn-primary btn-block border-none font-univers-next-pro-regular font-normal bg-darkslategray hover:bg-darkslategray/90 lowercase"
                     disabled={loading || isEmpty}
                     onClick={() => {
                       sendEvent({
@@ -173,7 +173,7 @@ function Cart({
                       });
                     }}
                   >
-                    fechar pedido
+                    finalizar compra
                   </Button>
                 </a>
               </div>
