@@ -22,17 +22,17 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
           type="checkbox"
           class="absolute left-0 w-full top-0"
         />
-        <div class="collapse-title min-h-0 p-0 py-2.5 font-bold text-lg px-0 flex items-center justify-between">
+        <div class="collapse-title min-h-0 p-0 py-2.5 font-normal text-xl px-0 flex items-center justify-between">
           {item.name}
         </div>
         <div class="collapse-content px-0">
           <div class="pt-0 px-0">
             {item.children?.map(({ children }) => (
-              <ul class="border-l border-l-gold pl-3 gap-0.5">
+              <ul class="border-l border-l-gold pl-5 gap-1">
                 <li>
                   <a
                     href={item.url}
-                    class="w-full block font-normal text-sm"
+                    class="w-full block font-normal text-base text-gray-normal"
                   >
                     {item.name}
                   </a>
@@ -42,7 +42,7 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
                     <li>
                       <a
                         href={child.url}
-                        class="w-full block font-normal text-sm"
+                        class="w-full block font-normal text-base text-gray-normal"
                       >
                         {child.name}
                       </a>
@@ -70,9 +70,9 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
 
 function Menu({ items, searchbar }: Props) {
   return (
-    <div class="flex flex-col h-full">
+    <div class="flex flex-col h-full font-univers-next-pro-light">
       {searchbar && (
-        <div class="px-4 pt-2 pb-4">
+        <div class="px-4 py-4">
           <Searchbar {...searchbar} />
         </div>
       )}
@@ -83,6 +83,16 @@ function Menu({ items, searchbar }: Props) {
             <MenuItem item={item} />
           </li>
         ))}
+
+        <li>
+          <MenuItem
+            item={{
+              "@type": "SiteNavigationElement",
+              name: "atendimento",
+              url: "/contato",
+            }}
+          />
+        </li>
       </ul>
 
       <ul class="flex flex-col py-2 bg-base-200 border-t border-t-border-base-300">
@@ -92,7 +102,7 @@ function Menu({ items, searchbar }: Props) {
             href="/login"
           >
             <Icon id="User" size={24} strokeWidth={2} />
-            <span class="text-sm">Minha conta</span>
+            <span class="text-sm">minha conta</span>
           </a>
         </li>
 
@@ -102,7 +112,7 @@ function Menu({ items, searchbar }: Props) {
             href="/wishlist"
           >
             <Icon id="Heart" size={24} strokeWidth={2} fill="none" />
-            <span class="text-sm">Favoritos</span>
+            <span class="text-sm">favoritos</span>
           </a>
         </li>
       </ul>

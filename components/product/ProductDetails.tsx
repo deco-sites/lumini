@@ -428,7 +428,7 @@ function ProductDetails({ page, layout }: Props) {
 
   return (
     <section class="flex flex-col items-center gap-20 mb-6">
-      <div class="mx-auto container py-0 sm:pt-[23px] sm:pb-10 font-univers-next-pro-light relative">
+      <div class="mx-auto container py-0 sm:pt-[23px] sm:pb-4 font-univers-next-pro-light relative">
         {page && <Details page={page} layout={layout} />}
       </div>
 
