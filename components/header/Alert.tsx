@@ -8,7 +8,7 @@ export interface Props {
 function Alert({ alerts = [] }: Props) {
   return (
     <div class="w-full">
-      <div class="flex items-center justify-end w-full bg-black gap-6 py-0.5 pr-1.5 lg:pr-16">
+      <div class="flex items-center justify-end w-full bg-[#1d1d1b] gap-6 py-[1px] pr-1.5 lg:pr-16">
         {alerts.map((alert) => (
           <a
             href={alert.href}
