@@ -14,10 +14,30 @@ export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
 function AddToCartButton(props: Props) {
   const { variations } = useUI();
 
-  const desiredProperties = {
-    ...variations.value,
-    cor: props?.product?.additionalProperty?.[0]?.value,
-  };
+  function getDesiredProperties(value?: string) {
+    if (value) {
+      const desiredPropertiesWithColor = {
+        ...variations.value,
+        cor: props?.product?.additionalProperty?.find((item) =>
+          item.name === "cor" || item.name === "COR"
+        )?.value,
+      };
+
+      return desiredPropertiesWithColor;
+    }
+
+    const desiredProperties = {
+      ...variations.value,
+    };
+
+    return desiredProperties;
+  }
+
+  const desiredProperties = getDesiredProperties(
+    props?.product?.additionalProperty?.find((item) =>
+      item.name === "cor" || item.name === "COR"
+    )?.value,
+  );
 
   const filteredProducts = props?.product?.isVariantOf?.hasVariant?.filter(
     (product) => {
