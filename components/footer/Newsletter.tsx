@@ -63,7 +63,7 @@ function Newsletter(
       <div class="flex flex-col gap-4">
         {isSubmitted.value ? <p>obrigado!</p> : (
           <form
-            class="flex items-center justify-center w-[90%] sm:w-full border-b border-b-black pb-0.5 h-[46px]"
+            class="flex items-center justify-center w-[90%] sm:w-full border-b border-b-black pb-0.5 h-[48px]"
             onSubmit={handleSubmit}
           >
             <div class="flex justify-between items-center w-full h-full">
