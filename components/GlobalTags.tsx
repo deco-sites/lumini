@@ -12,22 +12,22 @@ function GlobalTags() {
       <link
         as="font"
         rel="preload"
-        type="font/ttf"
-        href={asset("/fonts/UniversNextPro-Light.ttf")}
+        type="font/woff2"
+        href={asset("/fonts/UniversNextPro-Light.woff2")}
       />
 
       <link
         as="font"
         rel="preload"
-        type="font/ttf"
-        href={asset("/fonts/UniversNextPro-Regular.ttf")}
+        type="font/woff2"
+        href={asset("/fonts/UniversNextPro-Regular.woff2")}
       />
 
       <link
         as="font"
         rel="preload"
-        type="font/ttf"
-        href={asset("/fonts/UniversNextPro-Bold.ttf")}
+        type="font/woff2"
+        href={asset("/fonts/UniversNextPro-Bold.woff2")}
       />
 
       <style
@@ -38,21 +38,21 @@ function GlobalTags() {
             font-style: light;
             font-weight: 300;
             font-display: swap;
-            src: url('${("/fonts/UniversNextPro-Light.ttf")}') format('truetype');
+            src: url('${("/fonts/UniversNextPro-Light.woff2")}') format('truetype');
           }
           @font-face {
             font-family: 'UniversNextPro-Regular';
             font-style: normal;
             font-weight: 400;
             font-display: swap;
-            src: url('${("/fonts/UniversNextPro-Regular.ttf")}') format('truetype');
+            src: url('${("/fonts/UniversNextPro-Regular.woff2")}') format('truetype');
           }
           @font-face {
             font-family: 'UniversNextPro-Bold';
             font-style: bold;
             font-weight: 700;
             font-display: swap;
-            src: url('${("/fonts/UniversNextPro-Bold.ttf")}') format('truetype');
+            src: url('${("/fonts/UniversNextPro-Bold.woff2")}') format('truetype');
           }
           `,
         }}
