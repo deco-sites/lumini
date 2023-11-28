@@ -6,9 +6,6 @@ function GlobalTags() {
       {/* Enable View Transitions API */}
       <meta name="view-transition" content="same-origin" />
 
-      {/* Tailwind v3 CSS file */}
-      <link href={asset("/styles.css")} rel="stylesheet" />
-
       <link
         as="font"
         rel="preload"
@@ -57,6 +54,9 @@ function GlobalTags() {
           `,
         }}
       />
+
+      {/* Tailwind v3 CSS file */}
+      <link href={asset("/styles.css")} rel="stylesheet" />
 
       {/* Web Manifest */}
       <link rel="manifest" href={asset("/site.webmanifest")} />

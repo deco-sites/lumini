@@ -30,7 +30,7 @@ const Aside = (
   },
 ) => (
   <div
-    class={`bg-base-100 grid h-full divide-y max-w-[100%] ${
+    class={`bg-base-100 grid h-full divide-y divide-[#efefef] max-w-[100%] ${
       !isMinicart ? "w-[95%] sm:w-auto" : "w-auto grid-rows-[auto_1fr]"
     }`}
   >

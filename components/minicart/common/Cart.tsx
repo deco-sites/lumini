@@ -79,7 +79,7 @@ function Cart({
               {items.map((item, index) => (
                 <li
                   key={index}
-                  class="pb-4 border-b border-b-gray-100 last:border-none"
+                  class="pb-4 border-b border-b-[#efefef] last:border-none"
                 >
                   <CartItem
                     item={item}
@@ -94,7 +94,7 @@ function Cart({
             </ul>
 
             {/* Cart Footer */}
-            <footer class="w-full bg-ice-cube border-t border-t-gray-100">
+            <footer class="w-full bg-ice-cube border-t border-t-[#efefef]">
               {/* Subtotal */}
               <div class="py-2 flex flex-col">
                 <div class="w-full flex justify-between px-4 pb-2">

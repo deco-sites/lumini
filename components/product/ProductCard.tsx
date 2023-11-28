@@ -302,32 +302,29 @@ function ProductCard(
                 } ${align === "center" ? "justify-center" : "justify-start"}`}
               >
                 <div
-                  class={`line-through text-[#A8A8A8] text-xs sm:text-sm font-univers-next-pro-regular ${
-                    l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                  class={`flex w-full gap-1 sm:gap-0 font-univers-next-pro-regular ${
+                    !isSearchbar
+                      ? "justify-between flex-col md:flex-row"
+                      : "flex-col justify-center"
                   }`}
                 >
-                  {formatPrice(listPrice, offers?.priceCurrency)}
-                </div>
-                <div
-                  class={`flex flex-col sm:flex-row w-full gap-1 sm:gap-0 font-univers-next-pro-regular ${
-                    !isSearchbar ? "justify-between" : "flex-col justify-center"
-                  }`}
-                >
-                  {isSearchbar && (
-                    <p class="text-xs sm:text-sm text-base-300">
-                      De{"  "}
-                      <span class="line-through">
-                        {formatPrice(listPrice, offers?.priceCurrency)}
-                      </span>
-                    </p>
-                  )}
+                  <p
+                    class={`${
+                      isSearchbar && "text-center justify-center"
+                    } flex items-center gap-0.5 text-xs sm:text-sm text-base-300`}
+                  >
+                    {isSearchbar && <span>de</span>}
+                    <span class="line-through">
+                      {formatPrice(listPrice, offers?.priceCurrency)}
+                    </span>
+                  </p>
                   <span
                     class={isPLP
                       ? "text-xs sm:text-base"
                       : "text-xs sm:text-sm"}
                   >
                     {!isSearchbar && "a partir de "}
-                    {isSearchbar && "Para"}{"  "}
+                    {isSearchbar && "para"}{"  "}
                     {formatPrice(price, offers?.priceCurrency)}
                   </span>
                   {!isSearchbar && (

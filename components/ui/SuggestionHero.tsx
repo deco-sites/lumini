@@ -1,4 +1,3 @@
-import { Picture, Source } from "apps/website/components/Picture.tsx";
 import Image from "apps/website/components/Image.tsx";
 
 import type { ImageWidget } from "apps/admin/widgets.ts";
@@ -9,20 +8,12 @@ export interface Props {
   description: string;
   benefits?: {
     info: string;
-    hasImage: {
-      mobile: {
-        image: ImageWidget;
-        width?: number;
-        height?: number;
-      };
-      desktop: {
-        image: ImageWidget;
-        width?: number;
-        height?: number;
-      };
+    images: {
+      url: ImageWidget;
       description: string;
-      preload?: boolean;
-    };
+      width?: number;
+      height?: number;
+    }[];
   };
   asideImage: {
     image: ImageWidget;
@@ -60,28 +51,16 @@ export default function SuggestionHero({
               {benefits.info ?? "principais benefícios do led:"}
             </span>
 
-            <Picture preload={benefits.hasImage.preload}>
-              <Source
-                media="(max-width: 767px)"
-                fetchPriority={benefits.hasImage.preload ? "high" : "auto"}
-                src={benefits.hasImage.mobile.image}
-                width={benefits.hasImage.mobile.width ?? 345}
-                height={benefits.hasImage.mobile.height ?? 170}
-              />
-              <Source
-                media="(min-width: 768px)"
-                fetchPriority={benefits.hasImage.preload ? "high" : "auto"}
-                src={benefits.hasImage.desktop.image}
-                width={benefits.hasImage.desktop.width ?? 550}
-                height={benefits.hasImage.desktop.height ?? 0}
-              />
-              <img
-                class="object-cover w-full h-full"
-                loading={benefits.hasImage.preload ? "eager" : "lazy"}
-                src={benefits.hasImage.desktop.image}
-                alt={benefits.hasImage.description}
-              />
-            </Picture>
+            <div class="flex flex-col lg:flex-row gap-1 items-start lg:items-center">
+              {benefits?.images?.map((item) => (
+                <Image
+                  src={item.url}
+                  alt={item.description}
+                  width={item.width || 120}
+                  height={item.height || 60}
+                />
+              ))}
+            </div>
           </>
         )}
       </div>
