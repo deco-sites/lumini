@@ -34,13 +34,13 @@ function SearchControls(
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col lg:w-1/4 h-full divide-y divide-base-200 py-7 px-4 lg:px-9 overflow-auto">
+          <div class="bg-base-100 flex flex-col w-[85%] lg:w-1/4 h-full divide-y divide-base-200 py-7 px-4 lg:px-9 overflow-auto">
             <div class="flex justify-between items-center pl-1.5 pr-3 pb-4">
               <h1>
                 <span class="font-medium text-[21px]">filtrar por</span>
               </h1>
               <button onClick={() => open.value = false}>
-                <Icon id="XMark" size={24} strokeWidth={2} />
+                <Icon id="XMark" size={24} strokeWidth={1} />
               </button>
             </div>
             <div class="flex-grow">

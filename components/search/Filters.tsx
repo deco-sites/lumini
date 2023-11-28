@@ -80,7 +80,7 @@ function Filters({ filters }: Props) {
                   {filter.label}
                 </span>
               </div>
-              <div class="collapse-content transition-all duration-700 pt-1 max-h-[200px] overflow-auto pl-2">
+              <div class="collapse-content transition-all duration-700 pt-1 max-h-[255px] overflow-auto pl-2">
                 <FilterValues {...filter} />
               </div>
             </div>

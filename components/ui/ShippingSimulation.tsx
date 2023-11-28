@@ -75,7 +75,9 @@ function ShippingSimulation({ items }: Props) {
   const { simulate, cart } = useCart();
 
   const handleSimulation = useCallback(async () => {
-    if (postalCode.value.length !== 8) {
+    const definitivePostalCode = postalCode.value.replace("-", "");
+
+    if (definitivePostalCode.length !== 8) {
       return;
     }
 
@@ -83,7 +85,7 @@ function ShippingSimulation({ items }: Props) {
       loading.value = true;
       simulateResult.value = await simulate({
         items: items,
-        postalCode: postalCode.value,
+        postalCode: definitivePostalCode,
         country: cart.value?.storePreferencesData.countryCode || "BRA",
       });
     } finally {
@@ -111,8 +113,8 @@ function ShippingSimulation({ items }: Props) {
           placeholder=""
           aria-label="shipping simulation"
           value={postalCode.value}
-          maxLength={8}
-          size={8}
+          maxLength={9}
+          size={9}
           onChange={(e: { currentTarget: { value: string } }) => {
             postalCode.value = e.currentTarget.value;
           }}

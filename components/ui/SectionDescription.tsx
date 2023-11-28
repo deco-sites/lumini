@@ -9,7 +9,7 @@ export interface Props {
 }
 
 export default function SectionDescription(
-  { title, description, textEndAt = 450, hasMostPaddingBottom = false  }: Props,
+  { title, description, textEndAt = 450, hasMostPaddingBottom = false }: Props,
 ) {
   return (
     <section
@@ -30,4 +30,4 @@ export default function SectionDescription(
       </div>
     </section>
   );
-} 
+}

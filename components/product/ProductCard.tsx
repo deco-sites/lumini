@@ -290,63 +290,69 @@ function ProductCard(
               )}
             </div>
           )}
-        {l?.hide?.allPrices ? "" : (
-          <div class="flex flex-col gap-2">
-            <div
-              class={`flex flex-col w-full gap-0 ${
-                l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row lg:gap-2"
-                  : ""
-              } ${align === "center" ? "justify-center" : "justify-start"}`}
-            >
+        {l?.hide?.allPrices
+          ? ""
+          : (
+            <div class="flex flex-col gap-2 font-univers-next-pro-regular">
               <div
-                class={`line-through text-[#A8A8A8] text-sm font-univers-next-pro-regular ${
-                  l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                }`}
+                class={`flex flex-col w-full gap-0 ${
+                  l?.basics?.oldPriceSize === "Normal"
+                    ? "lg:flex-row lg:gap-2"
+                    : ""
+                } ${align === "center" ? "justify-center" : "justify-start"}`}
               >
-                {formatPrice(listPrice, offers?.priceCurrency)}
-              </div>
-              <div
-                class={`flex w-full ${
-                  !isSearchbar ? "justify-between" : "flex-col justify-center"
-                }`}
-              >
-                {isSearchbar && (
-                  <p class="text-sm text-base-300">
-                    De{"  "}
-                    <span class="line-through">
-                      {formatPrice(listPrice, offers?.priceCurrency)}
-                    </span>
-                  </p>
-                )}
-                <span class={isPLP ? "text-base" : "text-sm"}>
-                  {!isSearchbar && "a partir de "}
-                  {isSearchbar && "Para"}{"  "}
-                  {formatPrice(price, offers?.priceCurrency)}
-                </span>
-                {!isSearchbar && (
-                  <span class="text-gray-normal/80 leading-[18px] text-base">
-                    {productCategory}
-                  </span>
-                )}
-              </div>
-            </div>
-            {!installments || l?.hide?.installments
-              ? ""
-              : (
-                <div class="text-base-300 text-sm">
-                  ou {installments.replace(".", ",")}
+                <div
+                  class={`line-through text-[#A8A8A8] text-xs sm:text-sm font-univers-next-pro-regular ${
+                    l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                  }`}
+                >
+                  {formatPrice(listPrice, offers?.priceCurrency)}
                 </div>
-              )}
-          </div>
-        )}
+                <div
+                  class={`flex flex-col sm:flex-row w-full gap-1 sm:gap-0 font-univers-next-pro-regular ${
+                    !isSearchbar ? "justify-between" : "flex-col justify-center"
+                  }`}
+                >
+                  {isSearchbar && (
+                    <p class="text-xs sm:text-sm text-base-300">
+                      De{"  "}
+                      <span class="line-through">
+                        {formatPrice(listPrice, offers?.priceCurrency)}
+                      </span>
+                    </p>
+                  )}
+                  <span
+                    class={isPLP
+                      ? "text-xs sm:text-base"
+                      : "text-xs sm:text-sm"}
+                  >
+                    {!isSearchbar && "a partir de "}
+                    {isSearchbar && "Para"}{"  "}
+                    {formatPrice(price, offers?.priceCurrency)}
+                  </span>
+                  {!isSearchbar && (
+                    <span class="text-gray-normal/80 leading-[18px] text-xs sm:text-base">
+                      {productCategory}
+                    </span>
+                  )}
+                </div>
+              </div>
+              {!installments || l?.hide?.installments
+                ? ""
+                : (
+                  <div class="text-base-300 text-sm">
+                    ou {installments.replace(".", ",")}
+                  </div>
+                )}
+            </div>
+          )}
 
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (
           <>
             {l?.hide?.skuSelector ? "" : (
               <ul
-                class={`flex items-center gap-2 w-full ${
+                class={`flex items-center gap-1 w-full ${
                   align === "center" ? "justify-center" : "justify-start"
                 } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
               >

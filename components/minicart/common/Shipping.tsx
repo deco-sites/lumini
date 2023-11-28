@@ -62,12 +62,14 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
             class="flex w-full text-base-content bg-transparent pl-1.5 focus:outline-none h-full"
             name="shipping"
             type="text"
-            maxLength={8}
+            maxLength={9}
             value={cep}
+            autocomplete="off"
             onChange={(e) => {
               if (e.target instanceof HTMLInputElement) {
                 const newValue = e.target.value;
-                setCep(newValue);
+                const value = newValue.replace("-", "");
+                setCep(value);
               }
             }}
             placeholder={"adicione o seu frete"}

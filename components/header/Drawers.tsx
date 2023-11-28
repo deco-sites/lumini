@@ -46,7 +46,7 @@ const Aside = (
             class="btn btn-ghost"
             onClick={onClose}
           >
-            <Icon id="XMark" size={24} strokeWidth={2} />
+            <Icon id="XMark" size={24} strokeWidth={1} />
           </Button>
         )}
       </div>

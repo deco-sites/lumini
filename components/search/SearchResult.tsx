@@ -93,7 +93,7 @@ function Result({
               href={pageInfo.previousPage ?? "#"}
               class="btn btn-ghost join-item"
             >
-              <Icon id="ChevronLeft" size={24} strokeWidth={2} />
+              <Icon id="ChevronLeft" size={26} strokeWidth={2} />
             </a>
             <span class="btn btn-ghost join-item font-normal font-univers-next-pro-regular lowercase">
               página {pageInfo.currentPage}
@@ -104,7 +104,7 @@ function Result({
               href={pageInfo.nextPage ?? "#"}
               class="btn btn-ghost join-item"
             >
-              <Icon id="ChevronRight" size={24} strokeWidth={2} />
+              <Icon id="ChevronRight" size={26} strokeWidth={2} />
             </a>
           </div>
         </div>

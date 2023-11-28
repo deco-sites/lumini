@@ -51,7 +51,7 @@ export default function CollectionSection({ title, images }: Props) {
           {images?.map((item, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[300px] sm:w-[360px] lg:w-[400px] h-full"
+              class="carousel-item w-full sm:w-[360px] lg:w-[400px] h-full"
             >
               <a href={item.link}>
                 <Image

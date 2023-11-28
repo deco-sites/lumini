@@ -11,7 +11,7 @@ export default function ContainerInstitutional({ sideMenu, sections }: Props) {
   return (
     <section class="flex items-center justify-center px-4 my-16 font-univers-next-pro-light w-full">
       <div class="flex flex-col sm:flex-row container mx-auto w-full max-w-[1280px] gap-6">
-        <aside class="w-[20%] md:mt-12">
+        <aside class="w-full sm:w-[20%] md:mt-12">
           <Component {...props} />
         </aside>
 
