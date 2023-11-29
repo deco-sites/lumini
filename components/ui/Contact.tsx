@@ -5,15 +5,15 @@ export default function Contact() {
         <div class="w-full h-full flex items-center justify-center my-20">
           <h1 class="text-[32px]">atendimento loja virtual</h1>
         </div>
-        <div class="flex mb-16">
+        <div class="flex flex-col lg:flex-row mb-16">
           <div class="flex flex-col ">
-            <div class="flex items-center justify-center gap-2 ">
+            <div class="flex items-center justify-center gap-2">
               <div class="flex items-center justify-center">
                 <img
                   src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/phone___a27e116138fc7df681c54f5ca091ae86.svg"
                   width={24}
                   height={24}
-                  alt=""
+                  alt="image"
                 />
               </div>
               <div class="flex flex-col">
@@ -21,13 +21,14 @@ export default function Contact() {
                 <p class="text-[12px]">de seg a sex das 09h ás 18h</p>
               </div>
             </div>
+
             <div class="flex items-center justify-center gap-2 mt-4">
               <div class="flex items-center justify-center">
                 <img
                   src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/whatsapp___062a7a168ddac7146ac16e2f0087a3aa.png"
                   width={24}
                   height={24}
-                  alt=""
+                  alt="image"
                 />
               </div>
               <div class="flex flex-col">
@@ -36,8 +37,10 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div class="w-[50px] h-[50px] border-r border-solid border-dark-gray mt-7">
+
+          <div class="w-[50px] h-[50px] border-b md:border-b-0 md:border-r border-solid border-dark-gray lg:mt-7 ml-[100px] lg:ml-0 mb-[25px] lg:mb-0">
           </div>
+
           <div class="flex flex-col ">
             <div class="flex items-center justify-center gap-2 mt-[38px] ml-[50px]">
               <div class="flex items-center justify-center">
