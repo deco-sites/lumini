@@ -14,6 +14,10 @@ export interface Props {
     description?: HTMLWidget;
     titleButton?: string;
     linkButton?: string;
+    imageIcon:{
+      linkIcon: ImageWidget; 
+      descriptionIcon?: string; 
+    }
   }[];
 }
 
@@ -51,11 +55,12 @@ export default function OurStores({ title, cards }: Props) {
               <a href={card.linkButton} class="w-full flex items-center group">
                 <button class="flex items-center bg-transparent group-hover:bg-[#1d1d1b] text-[#1d1d1b] group-hover:text-white py-2 px-4 border border-[#1d1d1b] group-hover:border-transparent my-4">
                   {card.titleButton ?? "ver no mapa"}
-                  <Icon
-                    class="text-black group-hover:text-white ml-6"
-                    size={26}
-                    id="ChevronRight"
-                    strokeWidth={1}
+                  <Image
+                    class="text-black group-hover:text-white ml-3"
+                    src={card.imageIcon.linkIcon}
+                    width={20}
+                    height={14}
+                    alt={card.imageIcon.descriptionIcon}
                   />
                 </button>
               </a>
