@@ -14,7 +14,13 @@ export default function MenuButton() {
         displayMenu.value = true;
       }}
     >
-      <Icon id="Bars3" size={24} strokeWidth={0.01} />
+      <img
+        src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/menu-search___4c965b2906cb6932a8ffedf4dc03f907.svg"
+        alt="Menu Icon"
+        width={37}
+        height={30}
+        loading="eager"
+      />
     </Button>
   );
 }

@@ -1,5 +1,7 @@
 import { itemToAnalyticsItem, useCart } from "apps/vtex/hooks/useCart.ts";
 import BaseCart from "../common/Cart.tsx";
+import { invoke } from "$store/runtime.ts";
+import { useEffect, useState } from "preact/compat";
 
 function Cart() {
   const { cart, loading, updateItems, addCouponsToCart } = useCart();
@@ -11,6 +13,33 @@ function Cart() {
   const currency = cart.value?.storePreferencesData.currencyCode ?? "BRL";
   const coupon = cart.value?.marketingData?.coupon ?? undefined;
 
+  // const [additionalPropertiesMap, setAdditionalPropertiesMap] = useState([]);
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     if (!items || items.length === 0) return;
+
+  //     const ids = items.map(item => item.id);
+
+  //     const data = await invoke.vtex.loaders.intelligentSearch.productList({
+  //       props: {
+  //         ids,
+  //         count: 10
+  //       }
+  //     });
+
+  //     const map = data?.reduce((result, product) => {
+  //       result = product?.isVariantOf?.hasVariant || [];
+
+  //       return result;
+  //     }, []);
+
+  //     setAdditionalPropertiesMap(map || []);
+  //   }
+
+  //   getData();
+  // }, [items]);
+
   return (
     <BaseCart
       items={items.map((item) => {
@@ -18,10 +47,13 @@ function Cart() {
         const categoryName =
           productCategoriesArray[productCategoriesArray.length - 1] ?? null;
 
+        // const additionalProperties = additionalPropertiesMap || [];
+
         return {
           image: { src: item.imageUrl, alt: item.skuName },
           quantity: item.quantity,
           name: categoryName || item.name,
+          additionalProperty: [],
           price: {
             sale: item.sellingPrice / 100,
             list: item.listPrice / 100,
@@ -41,7 +73,6 @@ function Cart() {
         updateItems({ orderItems: [{ index, quantity }] })}
       itemToAnalyticsItem={(index) => {
         const item = items[index];
-
         return item && itemToAnalyticsItem({ ...item, coupon }, index);
       }}
       checkoutHref="/checkout"

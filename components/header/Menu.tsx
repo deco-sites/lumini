@@ -22,17 +22,17 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
           type="checkbox"
           class="absolute left-0 w-full top-0"
         />
-        <div class="collapse-title min-h-0 p-0 py-2.5 font-normal text-xl px-0 flex items-center justify-between">
+        <div class="collapse-title min-h-0 p-0 py-2.5 font-normal text-xl px-0 flex items-center justify-between text-[#333]">
           {item.name}
         </div>
         <div class="collapse-content px-0">
           <div class="pt-0 px-0">
             {item.children?.map(({ children }) => (
-              <ul class="border-l border-l-gold pl-5 gap-1">
+              <ul class="border-l-2 border-solid border-l-gold pl-5 gap-1.5">
                 <li>
                   <a
                     href={item.url}
-                    class="w-full block font-normal text-base text-gray-normal"
+                    class="w-full block font-normal text-base text-[#333]"
                   >
                     {item.name}
                   </a>
@@ -42,7 +42,7 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
                     <li>
                       <a
                         href={child.url}
-                        class="w-full block font-normal text-base text-gray-normal"
+                        class="w-full block font-normal text-base text-[#333]"
                       >
                         {child.name}
                       </a>
@@ -72,12 +72,12 @@ function Menu({ items, searchbar }: Props) {
   return (
     <div class="flex flex-col h-full font-univers-next-pro-light">
       {searchbar && (
-        <div class="px-4 py-4">
+        <div class="px-6 pt-6 pb-4">
           <Searchbar {...searchbar} />
         </div>
       )}
 
-      <ul class="px-4 flex-grow flex flex-col">
+      <ul class="px-6 pt-3 flex-grow flex flex-col">
         {items.map((item) => (
           <li>
             <MenuItem item={item} />
@@ -95,20 +95,23 @@ function Menu({ items, searchbar }: Props) {
         </li>
       </ul>
 
-      <ul class="flex flex-col py-2 bg-base-200 border-t border-t-border-base-300">
+      <ul class="flex flex-col py-5 bg-ice-cube border-t border-t-[#efefef]">
         <li>
           <a
-            class="flex items-center gap-4 px-4 py-2"
+            class="flex items-center gap-4 px-6 py-4"
             href="/login"
           >
             <Icon id="User" size={24} strokeWidth={2} />
-            <span class="text-sm">minha conta</span>
+            <p class="flex flex-col text-sm">
+              <span>minha conta</span>
+              <a href="/account" class="underline">entrar ou criar conta</a>
+            </p>
           </a>
         </li>
 
         <li>
           <a
-            class="flex items-center gap-4 px-4 py-2"
+            class="flex items-center gap-4 px-6 py-4"
             href="/wishlist"
           >
             <Icon id="Heart" size={24} strokeWidth={2} fill="none" />
