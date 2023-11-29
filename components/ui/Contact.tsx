@@ -38,7 +38,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div class="w-[50px] h-[50px] border-b lg:border-r border-solid border-dark-gray lg:mt-7 ml-[100px] lg:ml-0 mb-[25px] lg:mb-0">
+          <div class="w-[50px] h-[50px] sm:border-b md:border-r border-solid border-dark-gray lg:mt-7 ml-[100px] lg:ml-0 mb-[25px] lg:mb-0">
           </div>
 
           <div class="flex flex-col ">
