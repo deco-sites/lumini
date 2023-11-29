@@ -22,14 +22,14 @@ export default function CollectionSection({ title, images }: Props) {
   return (
     <section
       id={id}
-      class="w-full container max-w-[1230px] py-2 px-2 lg:px-0 flex flex-col gap-10"
+      class="w-full container max-w-[1230px] py-2 px-2 xl:px-0 flex flex-col gap-10"
     >
       <div class="flex justify-between w-full">
         <h1 class="text-[21px] lg:text-4xl font-univers-next-pro-regular">
           {title || ""}
         </h1>
 
-        <div class="flex gap-6">
+        <div class="hidden lg:flex gap-6">
           <div class="relative block">
             <Slider.PrevButton class="hover:cursor-pointer disabled:opacity-50">
               <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
@@ -44,12 +44,12 @@ export default function CollectionSection({ title, images }: Props) {
         </div>
       </div>
 
-      <div class="container max-w-[1230px] grid grid-cols-[48px_1fr_48px]">
-        <Slider class="carousel carousel-center sm:carousel-end gap-2.5 col-span-full row-start-2 row-end-5">
+      <div class="container max-w-[1230px] grid lg:grid-cols-[48px_1fr_48px]">
+        <Slider class="lg:carousel lg:carousel-end lg:gap-2.5 lg:col-span-full lg:row-start-2 lg:row-end-5">
           {images?.map((item, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[300px] sm:w-[360px] lg:w-[400px] h-full"
+              class="lg:carousel-item w-full lg:w-[400px] lg:h-full first:pt-0 pt-4 lg:pt-0"
             >
               <a href={item.link}>
                 <Image

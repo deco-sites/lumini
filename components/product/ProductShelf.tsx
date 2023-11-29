@@ -44,9 +44,9 @@ function ProductShelf({
   return (
     <section
       id={id}
-      class="w-full container max-w-[1230px] py-2 flex flex-col gap-10"
+      class="w-full container max-w-[1230px] py-2 flex flex-col gap-10 px-2 xl:px-0"
     >
-      <div class="flex justify-between w-full px-2 lg:px-0">
+      <div class="flex justify-between w-full">
         <h1 class="text-[21px] lg:text-4xl font-univers-next-pro-regular text-black">
           {title || ""}
         </h1>

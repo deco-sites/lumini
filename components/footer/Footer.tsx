@@ -217,7 +217,7 @@ function Footer({
       <div class="w-full">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div class="flex flex-col gap-7 w-full">
-            <div class="flex items-center justify-center w-full px-2 lg:px-0">
+            <div class="flex items-center justify-center w-full px-2 xl:px-0">
               <div class="flex flex-col md:flex-row md:justify-center lg:justify-between md:flex-wrap lg:flex-nowrap gap-8 xl:max-w-[1250px] w-full">
                 {_logo}
                 {_sectionLinks}
@@ -228,7 +228,7 @@ function Footer({
             <div class="hidden lg:block">
               <Divider />
             </div>
-            <div class="flex items-center justify-center w-full px-2 lg:px-0">
+            <div class="flex items-center justify-center w-full px-2 xl:px-0">
               <div class="flex flex-col md:flex-row xl:max-w-[1250px] lg:justify-end w-full">
                 {_payments}
                 {
@@ -240,7 +240,7 @@ function Footer({
               </div>
             </div>
             <Divider />
-            <div class="flex flex-col md:flex-row max-w-[1250px] items-start justify-start md:items-center md:justify-between w-full text-xs mx-auto gap-2 px-2 lg:px-0">
+            <div class="flex flex-col md:flex-row max-w-[1250px] items-start justify-start md:items-center md:justify-between w-full text-xs mx-auto gap-2 px-2 xl:px-0">
               <span>
                 lumini soluções em iluminação ltda. cnpj 40.418.865/0002-78
               </span>
