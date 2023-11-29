@@ -31,7 +31,7 @@ export default function CollectionSection({ title, images }: Props) {
           {title || ""}
         </h1>
 
-        <div class="flex gap-6">
+        <div class="flex items-center gap-6">
           <div class="relative block">
             <Slider.PrevButton class="hover:cursor-pointer disabled:opacity-50">
               <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />

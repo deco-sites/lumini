@@ -22,14 +22,14 @@ export default function CollectionSection({ title, images }: Props) {
   return (
     <section
       id={id}
-      class="w-full container max-w-[1230px] py-2 px-2 xl:px-0 flex flex-col gap-10"
+      class="w-full container max-w-[1230px] py-2 px-2 xl:px-0 flex flex-col gap-10 lg:mt-5"
     >
       <div class="flex justify-between w-full">
         <h1 class="text-[21px] lg:text-4xl font-univers-next-pro-regular">
           {title || ""}
         </h1>
 
-        <div class="hidden lg:flex gap-6">
+        <div class="hidden lg:flex items-center gap-6">
           <div class="relative block">
             <Slider.PrevButton class="hover:cursor-pointer disabled:opacity-50">
               <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
