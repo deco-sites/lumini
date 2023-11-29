@@ -1,8 +1,5 @@
 import { useState } from "preact/hooks";
 
-import Button from "$store/components/ui/Button.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
-
 export interface Props {
   coupon?: string;
   onAddCoupon: (text: string) => Promise<void>;
@@ -26,8 +23,7 @@ function Coupon({ coupon, onAddCoupon }: Props) {
 
           try {
             setLoading(true);
-            const coupon = await onAddCoupon(text);
-            console.log(coupon);
+            await onAddCoupon(text);
           } finally {
             setLoading(false);
           }
