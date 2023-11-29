@@ -132,7 +132,7 @@ function ProductInfo(
               productGroupID={productGroupID}
             />
 
-            <ShareButton />
+            <ShareButton url={url || ""} />
           </div>
         </div>
       </div>
