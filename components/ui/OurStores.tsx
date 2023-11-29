@@ -14,10 +14,10 @@ export interface Props {
     description?: HTMLWidget;
     titleButton?: string;
     linkButton?: string;
-    imageIcon:{
-      linkIcon: ImageWidget; 
-      descriptionIcon?: string; 
-    }
+    imageIcon: {
+      linkIcon: ImageWidget;
+      descriptionIcon?: string;
+    };
   }[];
 }
 

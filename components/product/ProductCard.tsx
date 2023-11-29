@@ -60,6 +60,7 @@ interface Props {
   platform?: Platform;
   isPLP?: boolean;
   isSearchbar?: boolean;
+  isGridColsTwo?: boolean;
 }
 
 const relative = (url: string) => {
@@ -81,6 +82,7 @@ function ProductCard(
     isSearchbar,
     flagBackgroundColor,
     flagTextColor,
+    isGridColsTwo = false,
   }: Props,
 ) {
   const {
@@ -140,7 +142,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full lg:min-h-[487px] lg:max-h-[487px] px-2 lg:px-0 ${
+      class={`card card-compact group w-full xl:min-h-[487px] xl:max-h-[487px] ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -304,26 +306,31 @@ function ProductCard(
                 <div
                   class={`flex w-full gap-1 sm:gap-0 font-univers-next-pro-regular ${
                     !isSearchbar
-                      ? "justify-between flex-col"
+                      ? `justify-between ${
+                        isGridColsTwo ? "flex-col lg:flex-row" : "flex-row"
+                      }`
                       : "flex-col justify-center"
                   }`}
                 >
-                  <p
-                    class={`${
-                      isSearchbar && "text-center justify-center"
-                    } flex items-center gap-0.5 text-xs sm:text-sm text-base-300`}
-                  >
-                    {isSearchbar && <span>de</span>}
-                    <span class="line-through">
-                      {formatPrice(listPrice, offers?.priceCurrency)}
-                    </span>
-                  </p>
+                  {isSearchbar && (
+                    <p
+                      class={`flex items-center text-center justify-center gap-0.5 text-xs sm:text-sm text-base-300`}
+                    >
+                      <div class="flex items-center gap-0.5">
+                        <span>de</span>
+
+                        <span class="line-through">
+                          {formatPrice(listPrice, offers?.priceCurrency)}
+                        </span>
+                      </div>
+                    </p>
+                  )}
                   <span
                     class={isPLP
                       ? "text-xs sm:text-base"
                       : "text-xs sm:text-sm"}
                   >
-                    {!isSearchbar && "a partir de "}
+                    {/* {!isSearchbar && "a partir de "} */}
                     {isSearchbar && "para"}{"  "}
                     {formatPrice(price, offers?.priceCurrency)}
                   </span>

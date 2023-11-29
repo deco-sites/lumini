@@ -72,7 +72,7 @@ function SearchControls(
           </p>
         </div>
 
-        <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
+        <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-[6rem] lg:gap-[7.4rem] sm:border-none">
           <div class="flex lg:hidden items-center gap-4">
             <a
               aria-label="change elements to grid position"
