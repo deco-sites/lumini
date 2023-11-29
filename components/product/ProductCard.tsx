@@ -304,7 +304,7 @@ function ProductCard(
                 <div
                   class={`flex w-full gap-1 sm:gap-0 font-univers-next-pro-regular ${
                     !isSearchbar
-                      ? "justify-between flex-col md:flex-row"
+                      ? "justify-between flex-col"
                       : "flex-col justify-center"
                   }`}
                 >
