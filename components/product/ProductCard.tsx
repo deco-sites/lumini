@@ -103,6 +103,12 @@ function ProductCard(
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
+  const priceVariations = isVariantOf?.hasVariant?.map((item) =>
+    item?.offers?.highPrice
+  );
+  const hasVariation = priceVariations?.every((item) => item === price);
+  console.log(hasVariation);
+
   const discountPercentage = Math.round(
     ((listPrice! - price!) / listPrice!) * 100,
   );
@@ -189,6 +195,7 @@ function ProductCard(
         >
           {platform === "vtex" && (
             <WishlistButton
+              size={600}
               productGroupID={productGroupID}
               productID={productID}
             />
@@ -326,7 +333,7 @@ function ProductCard(
                     </p>
                   )}
                   <span class="text-xs sm:text-base text-[#353535]">
-                    {!isSearchbar && "a partir de "}
+                    {!isSearchbar && !hasVariation && "a partir de "}
                     {isSearchbar && "para"}{"  "}
                     {formatPrice(price, offers?.priceCurrency)}
                   </span>

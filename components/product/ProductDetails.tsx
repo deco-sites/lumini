@@ -128,6 +128,7 @@ function ProductInfo(
           <div class="flex items-center justify-center">
             <WishlistButton
               variant="icon"
+              size={24}
               productID={productID}
               productGroupID={productGroupID}
             />
