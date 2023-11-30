@@ -2,6 +2,7 @@ import { itemToAnalyticsItem, useCart } from "apps/vtex/hooks/useCart.ts";
 import BaseCart from "../common/Cart.tsx";
 import { invoke } from "$store/runtime.ts";
 import { useEffect, useState } from "preact/compat";
+import { Product } from "apps/commerce/types.ts";
 
 function Cart() {
   const { cart, loading, updateItems, addCouponsToCart } = useCart();
@@ -13,32 +14,28 @@ function Cart() {
   const currency = cart.value?.storePreferencesData.currencyCode ?? "BRL";
   const coupon = cart.value?.marketingData?.coupon ?? undefined;
 
-  // const [additionalPropertiesMap, setAdditionalPropertiesMap] = useState([]);
+  const [newProperties, setNewProperties] = useState<Product[] | null>([]);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     if (!items || items.length === 0) return;
+  useEffect(() => {
+    async function getData() {
+      if (!items || items.length === 0) return;
 
-  //     const ids = items.map(item => item.id);
+      const ids = items.map((item) => item.id);
 
-  //     const data = await invoke.vtex.loaders.intelligentSearch.productList({
-  //       props: {
-  //         ids,
-  //         count: 10
-  //       }
-  //     });
+      const data = await invoke.vtex.loaders.intelligentSearch.productList({
+        props: {
+          ids,
+          count: items.length,
+        },
+      });
 
-  //     const map = data?.reduce((result, product) => {
-  //       result = product?.isVariantOf?.hasVariant || [];
+      if (data) {
+        setNewProperties(data);
+      }
+    }
 
-  //       return result;
-  //     }, []);
-
-  //     setAdditionalPropertiesMap(map || []);
-  //   }
-
-  //   getData();
-  // }, [items]);
+    getData();
+  }, [items]);
 
   return (
     <BaseCart
@@ -47,13 +44,19 @@ function Cart() {
         const categoryName =
           productCategoriesArray[productCategoriesArray.length - 1] ?? null;
 
-        // const additionalProperties = additionalPropertiesMap || [];
+        const correspondingProduct = newProperties?.find(
+          (product) => product.inProductGroupWithID === item.productId,
+        ) || null;
+
+        const matcherItem = correspondingProduct?.isVariantOf?.hasVariant?.find(
+          (filteredProduct) => filteredProduct.productID === item.id,
+        ) || null;
 
         return {
           image: { src: item.imageUrl, alt: item.skuName },
           quantity: item.quantity,
           name: categoryName || item.name,
-          additionalProperty: [],
+          additionalProperty: matcherItem?.additionalProperty || [],
           price: {
             sale: item.sellingPrice / 100,
             list: item.listPrice / 100,
