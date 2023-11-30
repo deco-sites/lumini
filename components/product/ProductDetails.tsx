@@ -284,7 +284,8 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
   const { page: { product: { image: imagesAvailable = [] } }, layout } = props;
   const images = imagesAvailable.filter((item) =>
-    item.alternateName !== "skucor" && item.name !== "hover"
+    item.alternateName !== "skucor" && item.name !== "hover" &&
+    item.alternateName !== "ordenacao1"
   );
 
   const variant = layout?.image ?? "slider";
@@ -359,13 +360,13 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             {images && images.length > 1 && (
               <ul class="flex gap-2 overflow-auto px-4 sm:px-0">
                 {images.map((img, index) => (
-                  <li class="min-w-[63px] sm:min-w-[100px]">
+                  <li class="min-w-[63px] sm:min-w-[130px]">
                     <Slider.Dot index={index}>
                       <Image
                         style={{ aspectRatio: ASPECT_RATIO }}
                         class="group-disabled:border-base-300 group-disabled:border rounded"
-                        width={100}
-                        height={100}
+                        width={130}
+                        height={130}
                         src={img.url!}
                         alt={img.alternateName}
                       />
@@ -400,9 +401,9 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       {/* Image slider */}
       <ul class="carousel carousel-center gap-6">
         {[images[0], images[1] ?? images[0]].map((img, index) => (
-          <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
+          <li class="carousel-item min-w-[129vw] sm:min-w-[24vw]">
             <Image
-              sizes="(max-width: 640px) 100vw, 24vw"
+              sizes="(max-width: 640px) 129vw, 24vw"
               style={{ aspectRatio: ASPECT_RATIO }}
               src={img.url!}
               alt={img.alternateName}

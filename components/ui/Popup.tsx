@@ -72,7 +72,7 @@ function InputNewsletter(
     <input
       name={name}
       type={type}
-      class="input lg:h-10 h-7 px-5 join-item w-full mb-2.5 first:mt-5 border border-[#cacaca] placeholder:text-placeholder !outline-none lg:text-base text-xs"
+      class="input h-10 px-5 join-item w-full first:mt-5 border border-[#cacaca] placeholder:text-placeholder !outline-none lg:text-base text-xs"
       placeholder={placeholder}
       required={required}
     />
@@ -157,7 +157,7 @@ export default function Popup({
       >
         <form
           method="dialog"
-          class="flex md:flex-row modal-box items-center overflow-visible max-w-lg w-full md:h-[472px] bg-white rounded-none p-0 font-univers-next-pro-regular"
+          class="flex md:flex-row modal-box items-center overflow-visible max-w-lg w-[90%] md:w-full md:h-[472px] bg-white rounded-none py-8 px-0 lg:py-0 font-univers-next-pro-regular"
         >
           <div class="flex absolute top-2 right-2">
             <button
@@ -219,7 +219,7 @@ export default function Popup({
                         {form?.button?.label || "enviar"}
                       </button>
 
-                      <p class="text-sm text-start text-gray-base/80">
+                      <p class="text-sm text-start text-gray-normal/80 pb-4 leading-tight">
                         {description ||
                           "a lumini utiliza o e-mail fornecido para enviar novidades e ofertas por e-mail. ao enviar, você confirma que leu e concorda com a política de privacidade."}
                       </p>

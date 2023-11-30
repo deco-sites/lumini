@@ -79,7 +79,7 @@ function CartItem(
       />
 
       <div class="flex flex-col">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-start">
           <div class="flex flex-col gap-0.5">
             <span class="lowercase text-[#353535]">{name}</span>
 
@@ -105,7 +105,7 @@ function CartItem(
               });
             })}
           >
-            <Icon id="Trash" size={24} />
+            <Icon id="XMark" size={24} strokeWidth={0.8} />
           </Button>
         </div>
         <div class="flex items-center justify-between gap-2 w-full">

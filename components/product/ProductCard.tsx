@@ -107,7 +107,6 @@ function ProductCard(
     item?.offers?.highPrice
   );
   const hasVariation = priceVariations?.every((item) => item === price);
-  console.log(hasVariation);
 
   const discountPercentage = Math.round(
     ((listPrice! - price!) / listPrice!) * 100,

@@ -43,7 +43,7 @@ function Sort({ sortOptions }: Props) {
       onInput={applySort}
       class="w-[120px] h-[36px] rounded-[2px] text-base-content cursor-pointer outline-none lowercase"
     >
-      <option value="" hidden>
+      <option value="" hidden class="text-[25px]">
         Ordenar por
       </option>
       {sortOptions.map(({ value, label }) => ({

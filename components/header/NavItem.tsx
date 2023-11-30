@@ -45,7 +45,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                     {node.children?.map((leaf) => (
                       <li>
                         <a href={leaf.url}>
-                          <span class="font-univers-next-pro-regular text-lightslategray">
+                          <span class="font-univers-next-pro-regular text-black/90">
                             {leaf.name}
                           </span>
                         </a>
