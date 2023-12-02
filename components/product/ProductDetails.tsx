@@ -43,6 +43,17 @@ export interface Props {
      */
     name?: "concat" | "productGroup" | "product";
   };
+
+  /**
+   * @format color
+   * @default #fff
+   */
+  flagTextColor?: string;
+  /**
+   * @format color
+   * @default #1d1d1b
+   */
+  flagBackgroundColor?: string;
 }
 
 const WIDTH = 709;
@@ -288,6 +299,15 @@ function Details(props: { page: ProductDetailsPage } & Props) {
     item.alternateName !== "ordenacao1"
   );
 
+  const {
+    price = 0,
+    listPrice,
+  } = useOffer(props.page.product.offers);
+
+  const discountPercentage = Math.round(
+    ((listPrice! - price!) / listPrice!) * 100,
+  );
+
   const variant = layout?.image ?? "slider";
 
   /**
@@ -307,6 +327,18 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           <div class="flex flex-col w-full md:gap-1.5">
             {/* Image Slider */}
             <div class="relative">
+              {listPrice && price && listPrice > price && (
+                <div
+                  style={{
+                    color: props.flagTextColor,
+                    background: props.flagBackgroundColor,
+                  }}
+                  class="z-10 absolute top-0 left-0 flex py-2 px-4 items-center justify-center w-10 h-5 font-univers-next-pro-light text-xs"
+                >
+                  <span>-{discountPercentage}%</span>
+                </div>
+              )}
+
               <Slider class="carousel carousel-center gap-6 w-screen sm:w-full">
                 {images.map((img, index) => (
                   <Slider.Item
@@ -425,13 +457,22 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   );
 }
 
-function ProductDetails({ page, layout }: Props) {
+function ProductDetails(
+  { page, layout, flagTextColor, flagBackgroundColor }: Props,
+) {
   if (!page || !page.product) return <NotFound />;
 
   return (
     <section class="flex flex-col items-center gap-20 mb-6">
       <div class="mx-auto container py-0 sm:pt-[23px] sm:pb-4 font-univers-next-pro-light relative">
-        {page && <Details page={page} layout={layout} />}
+        {page && (
+          <Details
+            page={page}
+            layout={layout}
+            flagTextColor={flagTextColor}
+            flagBackgroundColor={flagBackgroundColor}
+          />
+        )}
       </div>
 
       <ProductDescription product={page.product} />
