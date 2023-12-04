@@ -97,8 +97,7 @@ function ProductCard(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const description = product.description || isVariantOf?.description;
-  const [front, back] =
-    images?.filter((item) => item.alternateName !== "skucor") ?? [];
+  const [front, back] = images?.filter((item) => item.name !== "skucor") ?? [];
   const { listPrice, price, installments } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
