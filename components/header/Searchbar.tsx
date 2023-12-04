@@ -30,7 +30,7 @@ function SearchbarModal({ searchbar, isMobile }: Props) {
       hasBackgroundTransparent={true}
     >
       <div
-        class="absolute top-0 bg-base-100 w-full"
+        class="absolute top-0 bg-base-100 w-full pb-4"
         style={{ marginTop: "110px" }}
       >
         <Searchbar {...searchbar} />

@@ -37,7 +37,9 @@ function SearchControls(
           <div class="bg-base-100 flex flex-col w-[85%] lg:w-1/4 h-full divide-y divide-base-200 py-7 px-4 lg:px-9 overflow-auto">
             <div class="flex justify-between items-center pl-1.5 pr-3 pb-4">
               <h1>
-                <span class="font-medium text-[21px]">filtrar por</span>
+                <span class="text-black font-univers-next-pro-regular text-[25px]">
+                  filtrar por
+                </span>
               </h1>
               <button onClick={() => open.value = false}>
                 <Icon id="XMark" size={24} strokeWidth={1} />
@@ -51,7 +53,7 @@ function SearchControls(
       }
     >
       <div class="flex flex-col sm:flex-row justify-between mb-4 sm:mt-2 sm:mb-0 sm:gap-4 sm:h-[53px] font-univers-next-pro-light">
-        <div class="flex flex-row items-center gap-6 lg:gap-24 justify-between">
+        <div class="flex flex-row items-center gap-6 lg:gap-24 justify-between pb-3 lg:pb-0">
           {displayFilter && (
             <button
               class={`${
@@ -72,7 +74,7 @@ function SearchControls(
           </p>
         </div>
 
-        <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-[6rem] lg:gap-[7.4rem] sm:border-none">
+        <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-[4rem] lg:gap-[5.5rem] sm:border-none">
           <div class="flex lg:hidden items-center gap-4">
             <a
               aria-label="change elements to grid position"
@@ -83,7 +85,7 @@ function SearchControls(
                 <div
                   class={`${
                     isUniqueModeActive && "bg-black"
-                  } border border-black w-4 h-4`}
+                  } border border-black w-5 h-5`}
                 />
               ))}
             </a>
@@ -97,7 +99,7 @@ function SearchControls(
                 <div
                   class={`${
                     !isUniqueModeActive && "bg-black"
-                  } border border-black w-4 h-4`}
+                  } border border-black w-5 h-5`}
                 />
               ))}
             </a>
@@ -113,7 +115,7 @@ function SearchControls(
                 <div
                   class={`${
                     !isListModeActive && "bg-black"
-                  } border border-black w-4 h-4`}
+                  } border border-black w-5 h-5`}
                 />
               ))}
             </a>
@@ -127,7 +129,7 @@ function SearchControls(
                 <div
                   class={`${
                     isListModeActive && "bg-black"
-                  } border border-black w-4 h-4`}
+                  } border border-black w-5 h-5`}
                 />
               ))}
             </a>

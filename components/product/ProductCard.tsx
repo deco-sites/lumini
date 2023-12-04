@@ -103,6 +103,11 @@ function ProductCard(
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
+  const priceVariations = isVariantOf?.hasVariant?.map((item) =>
+    item?.offers?.highPrice
+  );
+  const hasVariation = priceVariations?.every((item) => item === price);
+
   const discountPercentage = Math.round(
     ((listPrice! - price!) / listPrice!) * 100,
   );
@@ -189,6 +194,7 @@ function ProductCard(
         >
           {platform === "vtex" && (
             <WishlistButton
+              size={600}
               productGroupID={productGroupID}
               productID={productID}
             />
@@ -278,7 +284,7 @@ function ProductCard(
             <div class="flex flex-col gap-0 lowercase">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate text-base lg:text-lg leading-[23px] text-[#333] font-univers-next-pro-regular"
+                  class="truncate text-base lg:text-xl leading-[23px] text-[#353535] font-univers-next-pro-regular"
                   dangerouslySetInnerHTML={{
                     __html: product?.isVariantOf?.name ?? name ?? "",
                   }}
@@ -325,17 +331,13 @@ function ProductCard(
                       </div>
                     </p>
                   )}
-                  <span
-                    class={isPLP
-                      ? "text-xs sm:text-base"
-                      : "text-xs sm:text-sm"}
-                  >
-                    {/* {!isSearchbar && "a partir de "} */}
+                  <span class="text-xs sm:text-base text-[#353535]">
+                    {!isSearchbar && !hasVariation && "a partir de "}
                     {isSearchbar && "para"}{"  "}
                     {formatPrice(price, offers?.priceCurrency)}
                   </span>
                   {!isSearchbar && (
-                    <span class="text-gray-normal/80 leading-[18px] text-xs sm:text-base">
+                    <span class="text-gray-normal/80 leading-[18px] text-base">
                       {productCategory}
                     </span>
                   )}

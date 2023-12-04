@@ -15,6 +15,11 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
   const [loading, setLoading] = useState(false);
   const [cep, setCep] = useState("");
 
+  function removeShippingValue() {
+    setShippingValue(null);
+    setCep("");
+  }
+
   return (
     <div class="flex justify-between items-center px-4 mt-1 w-full">
       <form
@@ -75,20 +80,34 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
             placeholder={"adicione o seu frete"}
           />
 
-          <button
-            aria-label="shipping calculate"
-            type="submit"
-            class="disabled:loading pr-1.5 h-full"
-            disabled={loading}
-          >
-            <img
-              alt="right arrow image"
-              width={24}
-              height={24}
-              loading="lazy"
-              src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/hpa-newsletter-row___ef97774d74950b40c21bc4b0ba8ffec1.svg"
-            />
-          </button>
+          {shippingValue === null
+            ? (
+              <button
+                aria-label="shipping calculate"
+                type="submit"
+                class="disabled:loading pr-1.5 h-full"
+                disabled={loading}
+              >
+                <img
+                  alt="right arrow image"
+                  width={24}
+                  height={24}
+                  loading="lazy"
+                  src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/hpa-newsletter-row___ef97774d74950b40c21bc4b0ba8ffec1.svg"
+                />
+              </button>
+            )
+            : (
+              <button
+                aria-label="remove shipping value"
+                type="button"
+                onClick={removeShippingValue}
+                class="disabled:loading pr-1.5 h-full"
+                disabled={loading}
+              >
+                <Icon id="XMark" size={24} strokeWidth={1} loading="lazy" />
+              </button>
+            )}
         </div>
       </form>
     </div>

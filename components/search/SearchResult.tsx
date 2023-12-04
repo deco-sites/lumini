@@ -57,7 +57,7 @@ function Result({
             />
           </div>
 
-          <h1 class="font-bold font-univers-next-pro-bold text-[32px]">
+          <h1 class="font-univers-next-pro-regular text-[#353535] text-[32px] pb-5 lg:pb-0">
             {title ?? "pendente"}
           </h1>
 

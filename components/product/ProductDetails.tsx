@@ -43,6 +43,17 @@ export interface Props {
      */
     name?: "concat" | "productGroup" | "product";
   };
+
+  /**
+   * @format color
+   * @default #fff
+   */
+  flagTextColor?: string;
+  /**
+   * @format color
+   * @default #1d1d1b
+   */
+  flagBackgroundColor?: string;
 }
 
 const WIDTH = 709;
@@ -128,30 +139,18 @@ function ProductInfo(
           <div class="flex items-center justify-center">
             <WishlistButton
               variant="icon"
+              size={24}
               productID={productID}
               productGroupID={productGroupID}
             />
 
-            <ShareButton />
+            <ShareButton url={url || ""} />
           </div>
         </div>
       </div>
 
       {/* Sku Selector */}
       <div class="flex flex-col gap-2 mt-4 w-full font-univers-next-pro-light leading-[21px]">
-        {additionalProperty.find((item) =>
-              item.name === "cor" || item.name === "COR"
-            )?.value !== undefined && (
-          <p class="text-lg font-medium">
-            cor:{" "}
-            <span class="text-lightslategray lowercase">
-              {additionalProperty.find((item) =>
-                item.name === "cor" || item.name === "COR"
-              )?.value || ""}
-            </span>
-          </p>
-        )}
-
         <ProductSelector product={product} />
       </div>
 
@@ -283,7 +282,17 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
   const { page: { product: { image: imagesAvailable = [] } }, layout } = props;
   const images = imagesAvailable.filter((item) =>
-    item.alternateName !== "skucor" && item.name !== "hover"
+    item.alternateName !== "skucor" && item.name !== "hover" &&
+    item.alternateName !== "ordenacao1"
+  );
+
+  const {
+    price = 0,
+    listPrice,
+  } = useOffer(props.page.product.offers);
+
+  const discountPercentage = Math.round(
+    ((listPrice! - price!) / listPrice!) * 100,
   );
 
   const variant = layout?.image ?? "slider";
@@ -305,6 +314,18 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           <div class="flex flex-col w-full md:gap-1.5">
             {/* Image Slider */}
             <div class="relative">
+              {listPrice && price && listPrice > price && (
+                <div
+                  style={{
+                    color: props.flagTextColor,
+                    background: props.flagBackgroundColor,
+                  }}
+                  class="z-10 absolute top-0 left-0 flex py-2 px-4 items-center justify-center w-10 h-5 font-univers-next-pro-light text-xs"
+                >
+                  <span>-{discountPercentage}%</span>
+                </div>
+              )}
+
               <Slider class="carousel carousel-center gap-6 w-screen sm:w-full">
                 {images.map((img, index) => (
                   <Slider.Item
@@ -358,13 +379,13 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             {images && images.length > 1 && (
               <ul class="flex gap-2 overflow-auto px-4 sm:px-0">
                 {images.map((img, index) => (
-                  <li class="min-w-[63px] sm:min-w-[100px]">
+                  <li class="min-w-[63px] sm:min-w-[130px]">
                     <Slider.Dot index={index}>
                       <Image
                         style={{ aspectRatio: ASPECT_RATIO }}
                         class="group-disabled:border-base-300 group-disabled:border rounded"
-                        width={100}
-                        height={100}
+                        width={130}
+                        height={130}
                         src={img.url!}
                         alt={img.alternateName}
                       />
@@ -399,9 +420,9 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       {/* Image slider */}
       <ul class="carousel carousel-center gap-6">
         {[images[0], images[1] ?? images[0]].map((img, index) => (
-          <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
+          <li class="carousel-item min-w-[129vw] sm:min-w-[24vw]">
             <Image
-              sizes="(max-width: 640px) 100vw, 24vw"
+              sizes="(max-width: 640px) 129vw, 24vw"
               style={{ aspectRatio: ASPECT_RATIO }}
               src={img.url!}
               alt={img.alternateName}
@@ -423,13 +444,22 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   );
 }
 
-function ProductDetails({ page, layout }: Props) {
+function ProductDetails(
+  { page, layout, flagTextColor, flagBackgroundColor }: Props,
+) {
   if (!page || !page.product) return <NotFound />;
 
   return (
     <section class="flex flex-col items-center gap-20 mb-6">
       <div class="mx-auto container py-0 sm:pt-[23px] sm:pb-4 font-univers-next-pro-light relative">
-        {page && <Details page={page} layout={layout} />}
+        {page && (
+          <Details
+            page={page}
+            layout={layout}
+            flagTextColor={flagTextColor}
+            flagBackgroundColor={flagBackgroundColor}
+          />
+        )}
       </div>
 
       <ProductDescription product={page.product} />

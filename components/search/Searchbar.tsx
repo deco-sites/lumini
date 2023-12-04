@@ -143,7 +143,8 @@ function Searchbar({
                       <Icon
                         id="MagnifyingGlass"
                         size={24}
-                        strokeWidth={0.01}
+                        strokeWidth={1}
+                        loading="lazy"
                       />
                     </span>
                     <span dangerouslySetInnerHTML={{ __html: term }} />

@@ -3,7 +3,7 @@ import Icon from "$store/components/ui/Icon.tsx";
 import QuantitySelector from "$store/components/ui/QuantitySelector.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
-import { AnalyticsItem } from "apps/commerce/types.ts";
+import { AnalyticsItem, PropertyValue } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import { useCallback, useState } from "preact/hooks";
 
@@ -13,6 +13,7 @@ export interface Item {
     alt: string;
   };
   name: string;
+  additionalProperty?: PropertyValue[];
   quantity: number;
   price: {
     sale: number;
@@ -45,6 +46,11 @@ function CartItem(
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
 
+  const additionalProperty = item?.additionalProperty?.filter(
+    (item) =>
+      item?.name && !["category", "cluster", "RefId"].includes(item.name),
+  ) ?? [];
+
   const withLoading = useCallback(
     <A,>(cb: (args: A) => Promise<void>) => async (e: A) => {
       try {
@@ -73,8 +79,16 @@ function CartItem(
       />
 
       <div class="flex flex-col">
-        <div class="flex justify-between items-center">
-          <span class="lowercase">{name}</span>
+        <div class="flex justify-between items-start">
+          <div class="flex flex-col gap-0.5">
+            <span class="lowercase text-[#353535]">{name}</span>
+
+            {additionalProperty?.map((item) => (
+              <div class="flex items-center justify-start text-sm text-[#353535] lowercase">
+                {item.name}: {item.value}
+              </div>
+            ))}
+          </div>
           <Button
             aria-label="remove item"
             disabled={loading || isGift}
@@ -91,7 +105,7 @@ function CartItem(
               });
             })}
           >
-            <Icon id="Trash" size={24} />
+            <Icon id="XMark" size={24} strokeWidth={0.8} />
           </Button>
         </div>
         <div class="flex items-center justify-between gap-2 w-full">
@@ -100,7 +114,7 @@ function CartItem(
             {formatPrice(list, currency, locale)}
           </span> */
           }
-          <span class="text-sm text-secondary">
+          <span class="text-sm text-[#353535]">
             {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
           </span>
 

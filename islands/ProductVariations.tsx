@@ -1,7 +1,10 @@
 import { useState } from "preact/compat";
 import { useUI } from "$store/sdk/useUI.ts";
+import type { ProductGroup } from "apps/commerce/types.ts";
 
 export interface Props {
+  isVariantOf?: ProductGroup;
+  colorPossibilities: Record<string, string[]>;
   possibilities: Record<string, Record<string, string[]>>;
   excludedKeys: string[];
 }
@@ -11,7 +14,7 @@ interface Variations {
 }
 
 export default function ProductVariations(
-  { possibilities, excludedKeys }: Props,
+  { colorPossibilities, possibilities, excludedKeys, isVariantOf }: Props,
 ) {
   const [filteredVariations, setFilteredVariations] = useState<Variations>({});
   const { variations } = useUI();
@@ -19,7 +22,50 @@ export default function ProductVariations(
   variations.value = filteredVariations;
 
   return (
-    <>
+    <div class="flex flex-col gap-4 w-full lowercase">
+      {colorPossibilities && Object.entries(colorPossibilities).length > 0 && (
+        <div class="flex flex-col gap-4 w-full">
+          <p className="font-univers-next-pro-light text-lg font-medium lowercase">
+            cor:{" "}
+            <span className="text-lightslategray lowercase">
+              {filteredVariations["cor"]}
+            </span>
+          </p>
+
+          <ul class="flex flex-row items-center gap-2">
+            {Object.entries(colorPossibilities).map(([value, links]) => (
+              <li
+                key={value}
+                class={`${
+                  filteredVariations["cor"] === value && "border border-black"
+                } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
+              >
+                {links.length > 0 && (
+                  <button
+                    onClick={() =>
+                      setFilteredVariations((prev) => ({
+                        ...prev,
+                        "cor": value,
+                      }))}
+                  >
+                    <img
+                      src={isVariantOf?.hasVariant?.find(
+                        (item) => item.url === links[0],
+                      )?.image?.find(
+                        (item) => item.alternateName === "skucor",
+                      )?.url ?? ""}
+                      width={40}
+                      height={40}
+                      alt={`Imagem de ${value}`}
+                    />
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {Object.entries(possibilities)
         .filter(([name]) => !excludedKeys.includes(name))
         .map(([name]) => {
@@ -72,6 +118,6 @@ export default function ProductVariations(
             </ul>
           );
         })}
-    </>
+    </div>
   );
 }

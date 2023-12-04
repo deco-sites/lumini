@@ -31,22 +31,24 @@ const Aside = (
 ) => (
   <div
     class={`bg-base-100 grid h-full divide-y divide-[#efefef] max-w-[100%] ${
-      !isMinicart ? "w-[95%] sm:w-auto" : "w-auto grid-rows-[auto_1fr]"
+      !isMinicart ? "w-[85%] sm:w-auto" : "w-auto grid-rows-[auto_1fr]"
     }`}
   >
     {title && (
       <div class="flex justify-between items-center">
         <h1 class="px-4 py-3">
-          <span class="font-medium text-2xl lowercase">{title}</span>
+          <span class="font-univers-next-pro-regular text-[#353535] text-2xl lowercase">
+            {title}
+          </span>
         </h1>
         {onClose && (
           <Button
             title="close button"
             aria-label="close modal"
-            class="btn btn-ghost"
+            class="btn btn-ghost hover:bg-transparent"
             onClick={onClose}
           >
-            <Icon id="XMark" size={24} strokeWidth={1} />
+            <Icon id="XMark" size={28} strokeWidth={1.75} />
           </Button>
         )}
       </div>

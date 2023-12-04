@@ -87,12 +87,12 @@ function Searchbar({
       <form
         id={id}
         action={action}
-        class="flex flex-grow relative h-[40px] px-0 border-b border-b-dark-pink"
+        class="flex flex-grow relative h-[40px] px-0 border-b"
       >
         <input
           ref={searchInputRef}
           id={useId()}
-          class="flex-grow w-[80%] outline-none placeholder-shown:sibling:hidden placeholder:text-sm md:placeholder:text-base"
+          class="flex-grow w-[80%] outline-none placeholder-shown:sibling:hidden placeholder:text-sm placeholder:text-[#333]"
           aria-label="Barra de pesquisa"
           aria-expanded={showSuggestions ? "true" : "false"}
           name={name}
@@ -128,10 +128,9 @@ function Searchbar({
         }
         <button
           type="submit"
-          class="btn-ghost bg-transparent"
+          class="btn-ghost bg-transparent border-none"
           aria-label="Search"
           for={id}
-          tabIndex={-1}
         >
           {loading.value
             ? <span class="loading loading-spinner loading-xs" />
@@ -139,8 +138,8 @@ function Searchbar({
               <Icon
                 id="MagnifyingGlass"
                 size={24}
-                strokeWidth={0.01}
-                class="text-dark-pink"
+                strokeWidth={1}
+                loading="lazy"
               />
             )}
         </button>
