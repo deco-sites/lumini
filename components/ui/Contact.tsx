@@ -8,7 +8,6 @@ export default function Contact() {
 
         <div class="flex flex-col lg:flex-row mb-16">
           <div class="flex flex-col ">
-
             <div class="flex items-center justify-center gap-2">
               <div class="flex items-center justify-center">
                 <img
