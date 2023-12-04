@@ -84,7 +84,7 @@ function CartItem(
             <span class="lowercase text-[#353535]">{name}</span>
 
             {additionalProperty?.map((item) => (
-              <div class="flex items-center justify-start text-sm text-[#353535]">
+              <div class="flex items-center justify-start text-sm text-[#353535] lowercase">
                 {item.name}: {item.value}
               </div>
             ))}

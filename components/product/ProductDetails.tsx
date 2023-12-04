@@ -151,19 +151,6 @@ function ProductInfo(
 
       {/* Sku Selector */}
       <div class="flex flex-col gap-2 mt-4 w-full font-univers-next-pro-light leading-[21px]">
-        {additionalProperty.find((item) =>
-              item.name === "cor" || item.name === "COR"
-            )?.value !== undefined && (
-          <p class="text-lg font-medium">
-            cor:{" "}
-            <span class="text-lightslategray lowercase">
-              {additionalProperty.find((item) =>
-                item.name === "cor" || item.name === "COR"
-              )?.value || ""}
-            </span>
-          </p>
-        )}
-
         <ProductSelector product={product} />
       </div>
 
