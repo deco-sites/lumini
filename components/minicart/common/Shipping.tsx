@@ -80,19 +80,8 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
             placeholder={"adicione o seu frete"}
           />
 
-          {shippingValue
+          {shippingValue === null
             ? (
-              <button
-                aria-label="remove shipping value"
-                type="button"
-                onClick={removeShippingValue}
-                class="disabled:loading pr-1.5 h-full"
-                disabled={loading}
-              >
-                <Icon id="XMark" size={24} strokeWidth={1} loading="lazy" />
-              </button>
-            )
-            : (
               <button
                 aria-label="shipping calculate"
                 type="submit"
@@ -106,6 +95,17 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
                   loading="lazy"
                   src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/hpa-newsletter-row___ef97774d74950b40c21bc4b0ba8ffec1.svg"
                 />
+              </button>
+            )
+            : (
+              <button
+                aria-label="remove shipping value"
+                type="button"
+                onClick={removeShippingValue}
+                class="disabled:loading pr-1.5 h-full"
+                disabled={loading}
+              >
+                <Icon id="XMark" size={24} strokeWidth={1} loading="lazy" />
               </button>
             )}
         </div>
