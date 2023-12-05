@@ -39,7 +39,7 @@ function QuantitySelector(
       </Button>
       <input
         class={`${
-          isPdp ? "w-16" : "w-5"
+          isPdp ? "w-10 md:w-16" : "w-5"
         } text-center join-item [appearance:textfield] font-semibold`}
         type="number"
         inputMode="numeric"
