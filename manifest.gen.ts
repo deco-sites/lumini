@@ -2,7 +2,8 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
+import * as $$$0 from "./loaders/extensions/productInventory.ts";
+import * as $$$1 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$$$$0 from "./sections/Article/Article.tsx";
 import * as $$$$$$1 from "./sections/Article/HTML.tsx";
 import * as $$$$$$2 from "./sections/Category/CategoryBanner.tsx";
@@ -53,7 +54,8 @@ import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
 const manifest = {
   "loaders": {
-    "deco-sites/lumini/loaders/Layouts/ProductCard.tsx": $$$0,
+    "deco-sites/lumini/loaders/extensions/productInventory.ts": $$$0,
+    "deco-sites/lumini/loaders/Layouts/ProductCard.tsx": $$$1,
   },
   "sections": {
     "deco-sites/lumini/sections/Article/Article.tsx": $$$$$$0,
