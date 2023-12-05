@@ -185,7 +185,7 @@ function ProductInfo(
                   price={price}
                   discount={discount}
                   seller={seller}
-                  product={product}
+                  products={isVariantOf?.hasVariant || []}
                 />
               )}
               {platform === "wake" && (

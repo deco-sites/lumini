@@ -8,7 +8,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 
 export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
   seller: string;
-  product: Product;
+  products?: ProductLeaf[];
 }
 
 function AddToCartButton(props: Props) {
@@ -18,7 +18,7 @@ function AddToCartButton(props: Props) {
     ...variations.value,
   };
 
-  const filteredProducts = props?.product?.isVariantOf?.hasVariant?.filter(
+  const filteredProducts = props?.products?.filter(
     (product) => {
       const additionalProperties = product.additionalProperty || [];
 
@@ -43,16 +43,15 @@ function AddToCartButton(props: Props) {
   function getAvailability(filteredProduct: ProductLeaf | undefined) {
     if (!filteredProduct) return;
 
-    const { availability } = useOffer(filteredProduct.offers);
     const additionalProperties = filteredProduct.additionalProperty || [];
-    const inventoryLevel =
-      filteredProduct.offers?.offers[0].inventoryLevel.value || 1000000;
+    const inventoryLevel = filteredProduct.offers?.offers[0].inventoryLevel
+      .value;
 
-    if (inventoryLevel != 1000000) return false;
+    if (inventoryLevel == 1000000) return false;
 
     if (
       additionalProperties.find((item) => item.value === "pronta-entrega") &&
-      inventoryLevel == 1000000
+      inventoryLevel != 1000000
     ) {
       return true;
     }
