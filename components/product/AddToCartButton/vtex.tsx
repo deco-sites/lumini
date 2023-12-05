@@ -45,8 +45,15 @@ function AddToCartButton(props: Props) {
 
     const { availability } = useOffer(filteredProduct.offers);
     const additionalProperties = filteredProduct.additionalProperty || [];
+    const inventoryLevel =
+      filteredProduct.offers?.offers[0].inventoryLevel.value || 1000000;
 
-    if (additionalProperties.find((item) => item.value === "pronta-entrega")) {
+    if (inventoryLevel != 1000000) return false;
+
+    if (
+      additionalProperties.find((item) => item.value === "pronta-entrega") &&
+      inventoryLevel == 1000000
+    ) {
       return true;
     }
 
