@@ -35,7 +35,7 @@ export default function SuggestionHero({
   asideImage,
 }: Props) {
   return (
-    <section class="flex flex-col items-center justify-center sm:flex-row w-full h-full ml-auto lg:ml-0 font-univers-next-pro-light font-light my-4 md:my-8 gap-6 sm:gap-12">
+    <section class=" flex flex-col items-center justify-center sm:flex-row w-full h-full lg:w-[85%] ml-auto font-univers-next-pro-light font-light my-4 md:my-8 gap-6 sm:gap-12">
       <div class="flex flex-col gap-2.5 items-start justify-center sm:max-w-[50%] lg:max-w-[620px] px-2">
         <span class="text-sm leading-[18px] text-black/50">
           {subtitle ?? "conheça"}
@@ -66,14 +66,14 @@ export default function SuggestionHero({
       </div>
 
       {asideImage && (
-        <aside class="max-w-[940px] w-full h-[80%] my-5">
+        <aside class="w-full h-full flex items-start justify-end my-5 overflow-hidden">
           <Image
             src={asideImage.image}
             width={asideImage.width ?? 842}
             height={asideImage.height ?? 453}
             loading={asideImage.loading ?? "lazy"}
             alt={asideImage.description}
-            class="object-cover w-full h-full xl:ml-[152px]"
+            class="object-cover"
           />
         </aside>
       )}
