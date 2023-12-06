@@ -2,6 +2,7 @@ import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
 import Filters from "$store/components/search/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
+import CustomPagination from "./CustomPagination.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
@@ -87,25 +88,7 @@ function Result({
 
         <div class="flex justify-center my-4">
           <div class="join">
-            <a
-              aria-label="previous page link"
-              rel="prev"
-              href={pageInfo.previousPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronLeft" size={26} strokeWidth={2} />
-            </a>
-            <span class="btn btn-ghost join-item font-normal font-univers-next-pro-regular lowercase">
-              página {pageInfo.currentPage}
-            </span>
-            <a
-              aria-label="next page link"
-              rel="next"
-              href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronRight" size={26} strokeWidth={2} />
-            </a>
+            <CustomPagination pageInfo={page?.pageInfo} />
           </div>
         </div>
       </div>
