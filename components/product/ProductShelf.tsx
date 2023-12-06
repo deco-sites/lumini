@@ -52,13 +52,13 @@ function ProductShelf({
         </h1>
 
         <div class="flex items-center gap-6">
-          <div class="relative block">
+          <div class="relative flex">
             <Slider.PrevButton class="hover:cursor-pointer disabled:opacity-50">
               <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
             </Slider.PrevButton>
           </div>
 
-          <div class="relative block">
+          <div class="relative flex">
             <Slider.NextButton class="rotate-180 hover:cursor-pointer disabled:opacity-50">
               <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
             </Slider.NextButton>
