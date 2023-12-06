@@ -23,6 +23,7 @@ import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ProductDescription from "./ProductDescription.tsx";
 import ShareButton from "$store/components/ui/ShareButton.tsx";
+import AugmentedReality from "$store/components/product/AugmentedReality.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -286,6 +287,11 @@ function Details(props: { page: ProductDetailsPage } & Props) {
     item.alternateName !== "ordenacao1"
   );
 
+  const augmentedReality =
+    props.page.product?.isVariantOf?.additionalProperty?.find((item) =>
+      item.name === "Realidade Aumentada"
+    )?.value || null;
+
   const {
     price = 0,
     listPrice,
@@ -394,6 +400,8 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                 ))}
               </ul>
             )}
+
+            {augmentedReality && <AugmentedReality html={augmentedReality} />}
           </div>
 
           {/* Product Info */}

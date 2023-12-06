@@ -26,6 +26,36 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #f9f9f9 inset !important;
 }
 
+
+mobiliar-viewer-ar {
+  background: #ffffff !important;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  border: solid 1px #969799;
+  height: 45px;
+  padding: 0 15px;
+
+  &::before {
+    content: '';
+    width: 30px;
+    height: 34px;
+    background: url(https://tezexb.vteximg.com.br/arquivos/icon-realidade-aumentada.jpg);
+    margin-right: 12px;
+
+    @media (max-width: 640px) {
+      width: 34px;
+    }
+  }
+
+  &::after {
+    content: 'veja em sua casa através da realidade aumentada';
+    width: auto;
+    text-align: center;
+  }
+}
+
 @layer base {
 
   /* Allow changing font family via CMS */
