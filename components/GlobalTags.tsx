@@ -11,7 +11,7 @@ function GlobalTags() {
 
       <link
         as="font"
-        rel="preload"
+        rel="preload prefetch"
         type="font/woff2"
         crossOrigin="anonymous"
         href={asset("/fonts/UniversNextPro-Light.woff2")}
@@ -19,7 +19,7 @@ function GlobalTags() {
 
       <link
         as="font"
-        rel="preload"
+        rel="preload prefetch"
         type="font/woff2"
         crossOrigin="anonymous"
         href={asset("/fonts/UniversNextPro-Regular.woff2")}
@@ -27,7 +27,7 @@ function GlobalTags() {
 
       <link
         as="font"
-        rel="preload"
+        rel="preload prefetch"
         type="font/woff2"
         crossOrigin="anonymous"
         href={asset("/fonts/UniversNextPro-Bold.woff2")}
@@ -63,6 +63,9 @@ function GlobalTags() {
 
       {/* Web Manifest */}
       <link rel="manifest" href={asset("/site.webmanifest")} />
+
+      {/* 3RD Script */}
+      <script src="https://mobiliar3d.com/js/mobiliar.widgets.min.js" defer />
     </Head>
   );
 }
