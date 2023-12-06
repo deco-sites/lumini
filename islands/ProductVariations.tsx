@@ -52,7 +52,9 @@ export default function ProductVariations(
                       src={isVariantOf?.hasVariant?.find(
                         (item) => item.url === links[0],
                       )?.image?.find(
-                        (item) => item.alternateName === "skucor",
+                        (item) =>
+                          item.alternateName === "skucor" ||
+                          item.name === "skucor",
                       )?.url ?? ""}
                       width={40}
                       height={40}
