@@ -124,7 +124,7 @@ function ProductInfo(
 
         <div class="flex flex-row justify-between w-full">
           <div class="flex flex-col gap-1.5">
-            <h1 class="font-normal font-univers-next-pro-regular leading-[29px] text-[25px] text-darkslategray lowercase">
+            <h1 class="lowercase font-normal font-univers-next-pro-regular leading-[29px] text-[25px] text-darkslategray">
               {layout?.name === "concat"
                 ? `${isVariantOf?.name} ${name}`
                 : layout?.name === "productGroup"
