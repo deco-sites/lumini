@@ -46,9 +46,9 @@ function CategoriesShelf({
 
       <div
         id={id}
-        class="container max-w-[1230px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
+        class="container max-w-[1200px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-5 col-span-full row-start-2 row-end-5">
+        <Slider class="carousel carousel-center sm:carousel-end gap-[14px] col-span-full row-start-2 row-end-5">
           {categories?.map((category, index) => (
             <Slider.Item
               index={index}
@@ -69,12 +69,12 @@ function CategoriesShelf({
 
         <>
           <div class="hidden relative sm:block z-10 col-start-1 row-start-3 -translate-y-3">
-            <Slider.PrevButton class="absolute right-[100%] rotate-180">
+            <Slider.PrevButton class="absolute right-[100%] rotate-180 mr-5">
               <Icon size={28} id="ChevronRight" strokeWidth={0.8} />
             </Slider.PrevButton>
           </div>
           <div class="hidden relative sm:block z-10 col-start-3 row-start-3 -translate-y-3">
-            <Slider.NextButton class="absolute left-[100%]">
+            <Slider.NextButton class="absolute left-[100%] ml-5">
               <Icon size={28} id="ChevronRight" strokeWidth={0.8} />
             </Slider.NextButton>
           </div>
