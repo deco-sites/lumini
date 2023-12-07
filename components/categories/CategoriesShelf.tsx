@@ -48,6 +48,7 @@ function CategoriesShelf({
         id={id}
         class="container max-w-[1200px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
       >
+        
         <Slider class="carousel carousel-center sm:carousel-end gap-[14px] col-span-full row-start-2 row-end-5">
           {categories?.map((category, index) => (
             <Slider.Item
