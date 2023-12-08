@@ -22,7 +22,7 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
           type="checkbox"
           class="absolute left-0 w-full top-0"
         />
-        <div class="collapse-title min-h-0 p-0 py-2.5 font-normal text-xl px-0 flex items-center justify-between text-[#333]">
+        <div class="collapse-title min-h-0 p-0 py-2.5 font-normal text-lg px-0 flex items-center justify-between text-[#333]">
           {item.name}
         </div>
         <div class="collapse-content px-0">
