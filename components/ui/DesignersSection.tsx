@@ -26,7 +26,7 @@ export interface Props {
 
 function DesignersCard({ name, country, link, hasImage }: IDesignersCard) {
   return (
-    <div class="flex flex-row-reverse md:flex-col items-center md:items-start md:first:border-l border-r last:border-none border-black px-5 h-[280px] md:h-[400px] gap-0.5">
+    <div class="flex flex-row-reverse md:flex-col items-center md:items-start md:first:border-l border-r last:border-none border-black px-5 lg:px-7 h-[280px] md:h-[400px] gap-0.5">
       <a href={link} class="w-[238px] h-[180px] md:h-[280px]">
         <Image
           src={hasImage.image}
@@ -38,12 +38,14 @@ function DesignersCard({ name, country, link, hasImage }: IDesignersCard) {
         />
       </a>
 
-      <div class="flex flex-col gap-1 w-full">
-        <h1 class="text-lg leading-[18px] font-univers-next-pro-regular text-black">
-          {name ?? "lorem impsum"}
-        </h1>
+      <div class="flex flex-col gap-1 w-full h-full justify-center lg:justify-between pt-0.5">
+        <div class="flex flex-col">
+          <h1 class="text-[20px] leading-[23px] font-univers-next-pro-regular text-[#3f3f40]">
+            {name ?? "lorem impsum"}
+          </h1>
 
-        {country && <span class="text-xs text-black/70 pt-1">{country}</span>}
+          {country && <span class="text-xs text-[#777] pt-1">{country}</span>}
+        </div>
 
         <div class="flex items-center gap-2">
           <a href={link} class="underline pt-1.5 text-sm">conheça o trabalho</a>
@@ -67,11 +69,11 @@ export default function DesignersSection(
   return (
     <section class="flex flex-col md:flex-row w-full lg:w-[85%] h-full ml-auto font-univers-next-pro-light font-light my-6 md:my-14 gap-6 sm:gap-12">
       <div class="flex flex-col gap-2.5 items-start justify-center sm:max-w-[50%] lg:min-w-[500px] lg:max-w-full px-2 lg:px-0">
-        <h1 class="text-4xl font-univers-next-pro-bold font-bold text-dark-gray">
+        <h1 class="text-4xl font-univers-next-pro-bold font-bold leading-[41px] text-dark-gray">
           {title ?? "designers"}
         </h1>
 
-        <p class="pt-2.5 lg:max-w-[314px] text-black/50">
+        <p class="pt-2.5 lg:max-w-[314px] text-[#777]">
           {description ?? "lorem impsum"}
         </p>
 

@@ -18,7 +18,7 @@ export default function Designers({ cards }: Props) {
     <section class="w-full h-full flex items-center justify-center mb-4 px-4 lg:px-0 font-univers-next-pro-regular">
       <div class="max-w-[1250px] h-full flex flex-col items-center justify-center mx-auto">
         <div class="w-full my-[68px] text-start">
-          <p class="w-full text-[32px] font-normal"> 
+          <p class="w-full text-[32px] font-normal">
             designers
           </p>
         </div>
