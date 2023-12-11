@@ -23,7 +23,7 @@ export default function AboutSection(
           <p dangerouslySetInnerHTML={{ __html: subTitle ?? "" }} />
           <div class="my-8">
             <a href={linkButton}>
-              <button class="bg-transparent text-black font-semibold py-2 px-4 border border-black">
+              <button class="bg-transparent text-[14px] leading-[21px] text-[#353535] font-normal py-[10px] px-6 border border-black">
                 {titleButton}
               </button>
             </a>
