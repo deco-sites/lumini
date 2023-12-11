@@ -33,11 +33,12 @@ export default function Awards({ title, awards, interval }: Props) {
               class="carousel-item w-[215px] h-[116px]"
             >
               <div class="flex items-center justify-center w-full h-full py-1.5 shadow-xl rounded-md">
-                <Image
+                <img
                   src={award.image}
-                  alt={award.description}
                   width={award.width ?? 127}
                   height={award.height ?? 86}
+                  loading="lazy" 
+                  alt={award.description}
                 />
               </div>
             </Slider.Item>
