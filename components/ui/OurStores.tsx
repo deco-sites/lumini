@@ -44,16 +44,16 @@ export default function OurStores({ title, cards }: Props) {
               <div class="my-2">
                 <p
                   dangerouslySetInnerHTML={{ __html: card.city ?? "" }}
-                  class="text-2xl font-semibold my-2"
+                  class="my-2"
                 />
 
                 <p
                   dangerouslySetInnerHTML={{ __html: card.description ?? "" }}
-                  class="text-base my-2"
+                  class="my-2"
                 />
               </div>
               <a href={card.linkButton} class="w-full flex items-center group">
-                <button class="flex items-center bg-transparent group-hover:bg-[#1d1d1b] text-[#1d1d1b] group-hover:text-white py-2 px-4 border border-[#1d1d1b] group-hover:border-transparent my-4">
+                <button class="flex items-center bg-transparent group-hover:bg-[#1d1d1b] text-[14px] leading-[14px] text-[#1d1d1b] group-hover:text-white py-2 px-4 border border-[#1d1d1b] group-hover:border-transparent my-4">
                   {card.titleButton ?? "ver no mapa"}
                   <Image
                     class="text-black group-hover:text-white ml-3"
