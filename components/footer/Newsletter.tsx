@@ -46,7 +46,7 @@ function Newsletter(
 
   return (
     <div
-      class={`flex ${
+      class={`flex lg:w-[25%] ${
         tiled
           ? "flex-col gap-4 lg:flex-row lg:w-full lg:justify-between"
           : "flex-col gap-4"
