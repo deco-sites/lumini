@@ -30,11 +30,11 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                 loading="lazy"
               />
             )}
-            <ul class="flex items-start justify-center gap-6">
+            <ul class="flex items-start justify-center gap-6 mr-[70px]">
               {children.map((node) => (
                 <li class="p-6">
-                  <ul class="h-full gap-y-3" style={{ columnCount: 2 }}>
-                    <li>
+                  <ul class="h-full" style={{ columnCount: 2 }}>
+                    <li class="pb-0.5">
                       <a href={node.url}>
                         <span class="font-univers-next-pro-regular text-black/90">
                           {node.name}
@@ -43,7 +43,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                     </li>
 
                     {node.children?.map((leaf) => (
-                      <li>
+                      <li class="pb-0.5">
                         <a href={leaf.url}>
                           <span class="font-univers-next-pro-regular text-black/90">
                             {leaf.name}
