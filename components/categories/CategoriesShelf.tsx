@@ -34,7 +34,7 @@ function CategoriesShelf({
   }
 
   return (
-    <div class="w-full container py-8 flex flex-col gap-12 lg:gap-16 lg:py-10">
+    <div class="w-full container pt-8 pb-8 flex flex-col gap-12 lg:gap-16 lg:pt-10 lg:pb-20">
       {title || description && (
             <Header
               title={title || ""}
@@ -46,20 +46,20 @@ function CategoriesShelf({
 
       <div
         id={id}
-        class="container max-w-[1230px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
+        class="container max-w-[1200px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-5 col-span-full row-start-2 row-end-5">
+        <Slider class="carousel carousel-center sm:carousel-end gap-[13px] col-span-full row-start-2 row-end-5">
           {categories?.map((category, index) => (
             <Slider.Item
               index={index}
               class="carousel-item w-[130px] h-[160px] sm:w-[180px] sm:h-[222px] first:pl-4 last:pr-4 sm:first:pl-1 sm:last:pr-1"
             >
               <a href={category.link}>
-                <Image
+                <img
                   src={category.image}
                   width={180}
                   height={222}
-                  loading="eager"
+                  loading="lazy"
                   alt={category.description}
                 />
               </a>
