@@ -37,7 +37,7 @@ export default function Awards({ title, awards, interval }: Props) {
                   src={award.image}
                   width={award.width ?? 127}
                   height={award.height ?? 86}
-                  loading="lazy" 
+                  loading="lazy"
                   alt={award.description}
                 />
               </div>

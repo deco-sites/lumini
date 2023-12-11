@@ -44,14 +44,14 @@ export default function CollectionSection({ title, images }: Props) {
         </div>
       </div>
 
-      <div class="container max-w-[1230px] grid lg:grid-cols-[48px_1fr_48px]">
-        <Slider class="lg:carousel lg:carousel-end lg:gap-2.5 lg:col-span-full lg:row-start-2 lg:row-end-5">
+      <div class="container max-w-[1230px] grid sm:grid-cols-[48px_1fr_48px]">
+        <Slider class="sm:carousel sm:carousel-end sm:gap-[0.8rem] sm:col-span-full sm:row-start-2 sm:row-end-5">
           {images?.map((item, index) => (
             <Slider.Item
               index={index}
-              class="lg:carousel-item w-full lg:w-[400px] lg:h-full first:pt-0 pt-4 lg:pt-0"
+              class="sm:carousel-item w-full sm:w-[32.3%] xl:w-[400px] sm:h-full first:pt-0 pt-4 sm:pt-0"
             >
-              <a href={item.link}>
+              <a href={item.link} class="w-full h-full">
                 <Image
                   src={item.image}
                   width={item.width ?? 400}
