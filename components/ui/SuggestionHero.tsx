@@ -53,11 +53,12 @@ export default function SuggestionHero({
 
             <div class="flex flex-col lg:flex-row gap-1 items-start lg:items-center">
               {benefits?.images?.map((item) => (
-                <Image
+                <img
                   src={item.url}
-                  alt={item.description}
                   width={item.width || 120}
                   height={item.height || 60}
+                  loading="lazy"
+                  alt={item.description}
                 />
               ))}
             </div>
