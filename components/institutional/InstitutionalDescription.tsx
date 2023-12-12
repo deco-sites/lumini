@@ -11,7 +11,9 @@ export default function InstitutionalDescription(
 ) {
   return (
     <div class="flex flex-col gap-6 w-full">
-      <p class="font-univers-next-pro-regular text-xl text-[#353535] lg:text-2xl">{title}</p>
+      <p class="font-univers-next-pro-regular text-xl text-[#353535] lg:text-2xl">
+        {title}
+      </p>
       {description && (
         <div dangerouslySetInnerHTML={{ __html: description || "" }} />
       )}

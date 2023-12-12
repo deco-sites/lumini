@@ -56,10 +56,13 @@ function Dimensions(
 }
 
 function Specification(
-  { cable, lightSource, materialUsed }: {
+  { cable, lightSource, materialUsed, weight, obs, dimmable }: {
     cable?: string;
+    weight?: string;
     lightSource?: string;
     materialUsed?: string;
+    obs?: string;
+    dimmable?: string;
   },
 ) {
   return (
@@ -78,11 +81,38 @@ function Specification(
             </div>
           )}
 
+          {dimmable && (
+            <div class="flex flex-col w-full gap-1">
+              <span class="leading-[18px] pb-0.5">dimerizável</span>
+              <span class="text-gray-normal/80 font-light font-univers-next-pro-light">
+                {dimmable}
+              </span>
+            </div>
+          )}
+
           {materialUsed && (
             <div class="flex flex-col w-full gap-1">
               <span class="leading-[18px] pb-0.5">material utilizado</span>
               <span class="text-gray-normal/80 font-light font-univers-next-pro-light">
-                alumínio pintado e concreto
+                {materialUsed}
+              </span>
+            </div>
+          )}
+
+          {weight && (
+            <div class="flex flex-col w-full gap-1">
+              <span class="leading-[18px] pb-0.5">peso</span>
+              <span class="text-gray-normal/80 font-light font-univers-next-pro-light">
+                {weight}
+              </span>
+            </div>
+          )}
+
+          {obs && (
+            <div class="flex flex-col w-full gap-1">
+              <span class="leading-[18px] pb-0.5">obs</span>
+              <span class="text-gray-normal/80 font-light font-univers-next-pro-light">
+                {obs}
               </span>
             </div>
           )}
@@ -132,7 +162,7 @@ function Description(
         <div class="flex flex-col gap-1 max-w-[856px]">
           <h2 class="text-darkslategray pb-1.5">sobre o produto</h2>
           <div
-            class="contents text-gray-normal font-univers-next-pro-regular"
+            class="text-gray-normal/80 font-light font-univers-next-pro-light text-justify"
             dangerouslySetInnerHTML={{ __html: description || "" }}
           />
         </div>
@@ -184,6 +214,9 @@ export default function ProductDescription({ product }: Props) {
     getProperty(product, "162");
   const lightSource = getProperty(product, "fonte de luz");
   const cable = getProperty(product, "cabo");
+  const weight = getProperty(product, "peso");
+  const dimmable = getProperty(product, "dimerizável");
+  const obs = getProperty(product, "obs");
   const materialUsed = getProperty(product, "material utilizado");
   const imageValue = getProperty(product, "Imagem");
   const { image, imageDescription } = getImageInfo(imageValue);
@@ -195,6 +228,9 @@ export default function ProductDescription({ product }: Props) {
       <div class="flex flex-col gap-2 md:gap-4 lg:gap-8 w-full mx-auto max-w-[1250px]">
         <Description designer={designer} description={description} />
         <Specification
+          dimmable={dimmable}
+          obs={obs}
+          weight={weight}
           materialUsed={materialUsed}
           cable={cable}
           lightSource={lightSource}
