@@ -98,6 +98,9 @@ function ProductCard(
   const productGroupID = isVariantOf?.productGroupID;
   const description = product.description || isVariantOf?.description;
   const [front, back] = images?.filter((item) => item.name !== "skucor") ?? [];
+  const [firstImage] = images?.filter((item) => item.name === "ordenacao1") ??
+    [];
+  const [secondImage] = images?.filter((item) => item.name === "hover") ?? [];
   const { listPrice, price, installments } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
@@ -214,8 +217,8 @@ function ProductCard(
           class="grid grid-cols-1 grid-rows-1 w-full"
         >
           <img
-            src={front.url!}
-            alt={front.alternateName}
+            src={(firstImage || front).url!}
+            alt={(firstImage || front).alternateName}
             width={WIDTH}
             height={HEIGHT}
             class={`bg-base-100 col-span-full row-span-full w-full ${
@@ -231,8 +234,9 @@ function ProductCard(
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
             <img
-              src={back?.url ?? front.url!}
-              alt={back?.alternateName ?? front.alternateName}
+              src={(secondImage || back)?.url ?? (firstImage || front).url!}
+              alt={(secondImage || back)?.alternateName ??
+                (firstImage || front).alternateName}
               width={WIDTH}
               height={HEIGHT}
               class="bg-base-100 col-span-full row-span-full transition-opacity w-full opacity-0 lg:group-hover:opacity-100"
