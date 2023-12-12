@@ -26,7 +26,7 @@ export interface Props {
 
 function DesignersCard({ name, country, link, hasImage }: IDesignersCard) {
   return (
-    <div class="flex flex-row-reverse md:flex-col items-center md:items-start md:first:border-l border-r last:border-none border-black px-5 lg:px-7 h-[280px] md:h-[400px] gap-0.5">
+    <div class="flex flex-row-reverse md:flex-col items-center md:items-start md:first:border-l border-r last:border-none border-black pl-4 pr-6 h-[280px] md:h-[400px] gap-0.5">
       <a href={link} class="w-[238px] h-[180px] md:h-[280px]">
         <Image
           src={hasImage.image}
@@ -73,14 +73,14 @@ export default function DesignersSection(
           {title ?? "designers"}
         </h1>
 
-        <p class="pt-2.5 lg:max-w-[314px] text-[#777]">
+        <p class="pt-2.5 lg:max-w-[274px] text-[#777] text-sm leading-4">
           {description ?? "lorem impsum"}
         </p>
 
         {hasButton && (
           <a
             href={hasButton.link ?? "/designers"}
-            class="flex items-center justify-center py-2.5 mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-[90%] lg:w-[65%] text-sm text-center duration-200 transition-colors"
+            class="flex items-center justify-center font-univers-next-pro-regular py-2.5 mt-1 border border-dark-gray hover:bg-dark-gray hover:text-white w-[90%] lg:w-[65%] text-sm text-center duration-200 transition-colors"
           >
             {hasButton.title ?? "conheça todos os nossos designers"}
           </a>
