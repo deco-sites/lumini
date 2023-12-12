@@ -54,7 +54,11 @@ function Newsletter(
     >
       <div class="flex flex-col gap-4">
         {content?.title && (
-          <span class={tiled ? "text-2xl lg:text-3xl" : "text-lg"}>
+          <span
+            class={tiled
+              ? "text-2xl lg:text-3xl"
+              : "text-lg text-[#353535] leading-[24px]"}
+          >
             {content?.title}
           </span>
         )}
