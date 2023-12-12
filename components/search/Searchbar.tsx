@@ -19,7 +19,7 @@ import { useSuggestions } from "$store/sdk/useSuggestions.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 import { Suggestion } from "apps/commerce/types.ts";
 import { Resolved } from "deco/engine/core/resolver.ts";
-import { useEffect, useRef } from "preact/compat";
+import { useEffect, useRef, useState } from "preact/compat";
 import type { Platform } from "$store/apps/site.ts";
 
 // Editable props
@@ -62,69 +62,98 @@ function Searchbar({
   const id = useId();
   const { displaySearchPopup } = useUI();
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const modal = useRef<HTMLDivElement>(null);
   const { setQuery, payload, loading } = useSuggestions(loader);
   const { products = [], searches = [] } = payload.value ?? {};
   const hasProducts = Boolean(products.length);
   const hasTerms = Boolean(searches.length);
+  const [term, setTerm] = useState("");
 
   useEffect(() => {
     if (displaySearchPopup.value === true) {
       searchInputRef.current?.focus();
     }
-  }, [displaySearchPopup.value]);
+
+    function handleClickOutside(event: MouseEvent) {
+      const target = event.target as HTMLElement;
+
+      if (
+        modal.current &&
+        !modal.current.contains(target) &&
+        (searchInputRef.current !== target as HTMLInputElement) &&
+        !target.closest('[aria-label="Search"]')
+      ) {
+        displaySearchPopup.value = false;
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [displaySearchPopup.value, modal]);
 
   return (
     <div
-      class="max-w-[800px] container w-full grid gap-8 px-4 pt-10 overflow-y-hidden"
+      class="w-full grid overflow-y-hidden"
       style={{ gridTemplateRows: "min-content auto" }}
     >
       <form
         id={id}
         action={action}
-        class="flex items-center justify-center gap-4"
+        class="flex items-center justify-center w-full pt-10 pb-2 bg-base-100"
       >
-        <input
-          ref={searchInputRef}
-          id="search-input"
-          class="border-b border-b-black/70 pb-1 h-[38px] flex-grow pl-2 focus:outline-none placeholder:text-gray-100 text-sm"
-          name={name}
-          onInput={(e) => {
-            const value = e.currentTarget.value;
+        <div class="flex items-center justify-center gap-4 max-w-[800px] container">
+          <input
+            ref={searchInputRef}
+            id="search-input"
+            class="border-b border-b-black/70 pb-1 h-[38px] flex-grow pl-2 focus:outline-none placeholder:text-gray-100 text-sm"
+            name={name}
+            onInput={(e) => {
+              const value = e.currentTarget.value;
 
-            if (value) {
-              sendEvent({
-                name: "search",
-                params: { search_term: value },
-              });
-            }
+              if (value) {
+                sendEvent({
+                  name: "search",
+                  params: { search_term: value },
+                });
+              }
 
-            setQuery(value);
-          }}
-          placeholder={placeholder}
-          role="combobox"
-          aria-controls="search-suggestion"
-          aria-label="Barra de pesquisa"
-          aria-expanded={displaySearchPopup.value}
-          autocomplete="off"
-        />
+              setQuery(value);
+              setTerm(value);
+            }}
+            placeholder={placeholder}
+            role="combobox"
+            aria-controls="search-suggestion"
+            aria-label="Barra de pesquisa"
+            aria-expanded={displaySearchPopup.value}
+            autocomplete="off"
+          />
 
-        <button
-          type="submit"
-          class="flex items-center justify-center w-[170px] h-[38px] cursor-pointer border text-black hover:text-white hover:bg-darkslategray text-sm"
-          aria-label="Search"
-          for={id}
-          tabIndex={-1}
-        >
-          {loading.value
-            ? <span class="loading loading-spinner loading-xs" />
-            : <span>pesquisar</span>}
-        </button>
+          <button
+            type="submit"
+            class="flex items-center justify-center w-[170px] h-[38px] cursor-pointer border text-black hover:text-white hover:bg-darkslategray text-sm"
+            aria-label="Search"
+            for={id}
+            tabIndex={-1}
+          >
+            {loading.value
+              ? <span class="loading loading-spinner loading-xs" />
+              : <span>pesquisar</span>}
+          </button>
+        </div>
       </form>
 
       <div
-        class={`${!hasProducts && !hasTerms ? "hidden" : ""}`}
+        ref={modal}
+        class={`${
+          !hasProducts && !hasTerms ? "hidden" : ""
+        } max-w-[800px] container bg-base-100 pt-4`}
       >
-        <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[190px_1fr] md:divide-x md:divide-slate-100 pb-1">
+        <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[190px_1fr] md:divide-x md:divide-slate-100 pb-1 px-3">
           <div class="flex flex-col gap-6">
             <span
               role="heading"
@@ -175,6 +204,7 @@ function Searchbar({
                         productDescription: true,
                         cta: false,
                         skuSelector: true,
+                        installments: true,
                       },
                       basics: {
                         contentAlignment: "Center",
@@ -185,16 +215,14 @@ function Searchbar({
                 </Slider.Item>
               ))}
             </Slider>
-            {
-              /* {products && products.length > 0 && (
+            {hasProducts && products && products.length > 0 && (
               <a
                 href={`/s?q=${term}`}
-                class="mt-5 underline text-gray text-xs"
+                class="flex justify-center mt-1.5 pb-6 underline text-[#777] text-sm"
               >
                 veja todos os {products.length} produtos
               </a>
-            )} */
-            }
+            )}
           </div>
         </div>
       </div>
