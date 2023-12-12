@@ -72,7 +72,7 @@ function InputNewsletter(
     <input
       name={name}
       type={type}
-      class="input h-10 px-5 join-item w-full first:mt-5 border border-[#cacaca] placeholder:text-placeholder !outline-none lg:text-base text-xs"
+      class="input h-10 pl-2 !py-0.5 w-full rounded-none border border-[#cacaca] placeholder:text-placeholder !outline-none lg:text-base text-xs bg-[#f5f5f5]"
       placeholder={placeholder}
       required={required}
     />
@@ -163,7 +163,7 @@ export default function Popup({
             <button
               onClick={() =>
                 setCookieOnCloseModal("closed", modalCloseExpiredDate)}
-              class="flex items-center justify-center gap-1.5 focus:outline-none"
+              class="flex items-center justify-center gap-1.5 focus:outline-none text-base leading-[18px]"
               aria-label="Fechar"
             >
               <span class="hidden md:block">fechar</span>
@@ -200,8 +200,8 @@ export default function Popup({
                   onSubmit={handleSubmit}
                 >
                   <div class="max-w-[280px] text-center flex flex-col h-full gap-2 md:gap-0 justify-between">
-                    <h1
-                      class="text-lg font-univers-next-pro-regular leading-7 text-start font-medium"
+                    <div
+                      class="text-[21px] font-univers-next-pro-regular leading-[27px] text-start text-[#353535]"
                       dangerouslySetInnerHTML={{
                         __html: text ||
                           "cadastre-se e ganhe 5% off na sua primeira compra.",
@@ -213,20 +213,22 @@ export default function Popup({
 
                       <button
                         type="submit"
-                        class="px-2.5 h-9 w-full flex items-center justify-center text-lg text-black bg-lightslategray"
+                        class="px-2.5 h-9 w-full flex items-center justify-center text-sm leading-[14px] text-darkslategray bg-lightslategray"
                         disabled={loading}
                       >
                         {form?.button?.label || "enviar"}
                       </button>
 
-                      <p class="text-sm text-start text-gray-normal/80 pb-4 leading-tight">
+                      <p class="text-xs text-start text-[#989797] pb-4 leading-[14px]">
                         {description ||
                           "a lumini utiliza o e-mail fornecido para enviar novidades e ofertas por e-mail. ao enviar, você confirma que leu e concorda com a política de privacidade."}
                       </p>
                     </div>
 
-                    <div class="flex flex-col text-xs text-start">
-                      {details?.map((detail) => <span>{detail}</span>)}
+                    <div class="flex flex-col text-xs text-start lg:min-w-[300px]">
+                      {details?.map((detail) => (
+                        <span class="w-full">{detail}</span>
+                      ))}
                     </div>
                   </div>
                 </form>
