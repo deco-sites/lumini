@@ -61,6 +61,7 @@ interface Props {
   isPLP?: boolean;
   isSearchbar?: boolean;
   isGridColsTwo?: boolean;
+  isGridColsFour?: boolean;
 }
 
 const relative = (url: string) => {
@@ -83,6 +84,7 @@ function ProductCard(
     flagBackgroundColor,
     flagTextColor,
     isGridColsTwo = false,
+    isGridColsFour = false,
   }: Props,
 ) {
   const {
@@ -94,7 +96,6 @@ function ProductCard(
     isVariantOf,
   } = product;
   const id = `product-card-${productID}`;
-  const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const description = product.description || isVariantOf?.description;
   const [front, back] = images?.filter((item) => item.name !== "skucor") ?? [];
@@ -149,9 +150,11 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full xl:min-h-[487px] xl:max-h-[487px] ${
-        align === "center" ? "text-center" : "text-start"
-      } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
+      class={`card card-compact group w-full ${
+        !isGridColsFour && "xl:min-h-[487px] xl:max-h-[487px]"
+      } ${align === "center" ? "text-center" : "text-start"} ${
+        l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
+      }
         ${
         l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
@@ -287,7 +290,7 @@ function ProductCard(
             <div class="flex flex-col gap-0 lowercase">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate text-base lg:text-xl leading-[28px] text-[#353535] font-univers-next-pro-regular"
+                  class="truncate text-base lg:text-xl leading-[23px] text-[#353535] font-univers-next-pro-regular"
                   dangerouslySetInnerHTML={{
                     __html: product?.isVariantOf?.name ?? name ?? "",
                   }}
@@ -321,7 +324,8 @@ function ProductCard(
                       : "flex-col justify-center"
                   }`}
                 >
-                  {isSearchbar && (
+                  {
+                    /* {isSearchbar && (
                     <p
                       class={`flex items-center text-center justify-center gap-0.5 text-xs sm:text-sm text-base-300`}
                     >
@@ -333,14 +337,15 @@ function ProductCard(
                         </span>
                       </div>
                     </p>
-                  )}
-                  <span class="text-xs sm:text-base text-[#353535]">
+                  )} */
+                  }
+                  <span class="text-xs sm:text-base text-[#353535] leading-[18px]">
                     {!isSearchbar && !hasVariation && "a partir de "}
-                    {isSearchbar && "para"}{"  "}
+                    {/* {isSearchbar && "para"}{"  "} */}
                     {formatPrice(price, offers?.priceCurrency)}
                   </span>
                   {!isSearchbar && (
-                    <span class="text-gray-normal/80 leading-[18px] text-base">
+                    <span class="text-gray-normal/80 text-base">
                       {productCategory}
                     </span>
                   )}

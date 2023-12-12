@@ -26,7 +26,7 @@ export default function SectionVideo(
           src={link}
           alt={description}
           loading="lazy"
-          class="w-full h-full object-cover pt-[80px]"
+          class="w-full h-full object-cover pt-20 pb-[60px]"
         />
       </div>
     </section>

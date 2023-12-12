@@ -39,18 +39,20 @@ export default function SectionPerson(
               dangerouslySetInnerHTML={{ __html: subTitle ?? "" }}
               class="mb-2"
             />
-            <div class="w-[24px] h-[24px] flex cursor-pointer bg-black rounded-full">
-              {socialMedia?.map((item) => (
-                <a href={item.url}>
-                  <Image
-                    src={item.link}
-                    width={24}
-                    height={24}
-                    alt={item.description}
-                  />
-                </a>
-              ))}
-            </div>
+            {socialMedia && socialMedia.length > 0 && (
+              <div class="w-[24px] h-[24px] flex gap-1.5 cursor-pointer bg-black rounded-full">
+                {socialMedia?.map((item) => (
+                  <a href={item.url}>
+                    <Image
+                      src={item.link}
+                      width={24}
+                      height={24}
+                      alt={item.description}
+                    />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>

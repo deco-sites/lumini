@@ -20,7 +20,7 @@ export default function Awards({ title, awards, interval }: Props) {
   const id = useId();
 
   return (
-    <section class="flex flex-col gap-6 w-full h-full px-4 lg:px-0 mb-5">
+    <section class="flex flex-col gap-6 w-full h-full px-4 lg:px-0 mb-5 lg:mb-32">
       <div class="container max-w-[1250px]">
         <h1 class="text-[32px]">{title}</h1>
       </div>

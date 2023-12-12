@@ -44,6 +44,7 @@ function ProductGallery({ products, layout }: Props) {
           platform={platform}
           isPLP={true}
           isGridColsTwo={mobile === "grid-cols-2"}
+          isGridColsFour={desktop === "lg:grid-cols-4"}
         />
       ))}
     </div>
