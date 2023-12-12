@@ -15,8 +15,8 @@ export default function SectionVideo(
   { link, width, height, description }: Props,
 ) {
   return (
-    <section class="w-full h-full flex items-center justify-center my-2 mx-auto">
-      <div class="max-w-[1250px] w-full h-full p-4 md:p-0">
+    <section class="w-full h-full flex items-center justify-center mx-auto">
+      <div class="max-w-[1250px] w-full h-full">
         <Video
           width={width || 900}
           height={height || 773}
@@ -26,7 +26,7 @@ export default function SectionVideo(
           src={link}
           alt={description}
           loading="lazy"
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover pt-[80px]"
         />
       </div>
     </section>
