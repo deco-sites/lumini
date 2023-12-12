@@ -15,7 +15,7 @@ export default function Social(
   return (
     <>
       {content && content.items && content.items.length > 0 && (
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 lg:-translate-y-1">
           {content.title && (
             <span class="text-[18px] text-[#353535]">{content.title}</span>
           )}

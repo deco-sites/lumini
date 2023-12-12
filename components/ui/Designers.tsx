@@ -15,7 +15,7 @@ export interface Props {
 
 export default function Designers({ cards }: Props) {
   return (
-    <section class="w-full h-full flex items-center justify-center mb-4 px-4 lg:px-0 font-univers-next-pro-regular">
+    <section class="w-full h-full flex items-center justify-center mb-16 px-4 lg:px-0 font-univers-next-pro-regular">
       <div class="max-w-[1250px] h-full flex flex-col items-center justify-center mx-auto">
         <div class="w-full my-[68px] text-start">
           <p class="w-full text-[32px] font-normal">
@@ -33,11 +33,17 @@ export default function Designers({ cards }: Props) {
                   alt={card.image.description}
                 />
               </a>
-              <h1 class="text-sm lg:text-[24px] mx-0 my-5">{card.name}</h1>
-              <p class="text-xs sm:text-sm">{card.nationality}</p>
+              <h1 class="text-sm lg:text-[24px] mx-0 mt-3 mb-1 font-univers-next-pro-bold font-bold text-[#3f3f40] leading-7">
+                {card.name}
+              </h1>
+              <p class="text-xs sm:text-base text-[#777] pt-1 leading-[18px]">
+                {card.nationality}
+              </p>
               <div class="flex items-center mt-2">
                 <a href={card.linkPage}>
-                  <p class="text-sm underline">conheça o trabalho</p>
+                  <p class="text-sm underline leading-[14px] text-[#353535]">
+                    conheça o trabalho
+                  </p>
                 </a>
                 <div class="text-[17px] font-extralight pl-2">+</div>
               </div>
