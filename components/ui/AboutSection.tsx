@@ -29,7 +29,7 @@ export default function AboutSection(
           </div>
         </div>
         {image && (
-          <div class="max-w-[500px] w-full h-full mt-[75px] mr-10">
+          <div class="max-w-[500px] w-full h-full mt-7 mr-10">
             <Image
               class=""
               src={image.linkImage}
