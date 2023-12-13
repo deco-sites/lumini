@@ -26,6 +26,16 @@ export interface Props {
   page: ProductListingPage | null;
   layout?: Layout;
   cardLayout?: CardLayout;
+  /**
+   * @format color
+   * @default #fff
+   */
+  flagTextColor?: string;
+  /**
+   * @format color
+   * @default #1d1d1b
+   */
+  flagBackgroundColor?: string;
 }
 
 function NotFound() {
@@ -40,6 +50,8 @@ function Result({
   page,
   layout,
   cardLayout,
+  flagTextColor = "#fff",
+  flagBackgroundColor = "#1d1d1b",
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
 
@@ -81,7 +93,12 @@ function Result({
           <div class="flex-grow">
             <ProductGallery
               products={products}
-              layout={{ card: cardLayout, columns: layout?.columns }}
+              layout={{
+                card: cardLayout,
+                columns: layout?.columns,
+                flagTextColor,
+                flagBackgroundColor,
+              }}
             />
           </div>
         </div>

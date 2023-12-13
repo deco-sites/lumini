@@ -14,6 +14,8 @@ export interface Props {
   layout?: {
     card?: CardLayout;
     columns?: Columns;
+    flagTextColor?: string;
+    flagBackgroundColor?: string;
   };
 }
 
@@ -45,6 +47,8 @@ function ProductGallery({ products, layout }: Props) {
           isPLP={true}
           isGridColsTwo={mobile === "grid-cols-2"}
           isGridColsFour={desktop === "lg:grid-cols-4"}
+          flagBackgroundColor={layout?.flagBackgroundColor}
+          flagTextColor={layout?.flagTextColor}
         />
       ))}
     </div>
