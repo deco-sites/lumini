@@ -23,7 +23,7 @@ export default function SectionPerson(
     <div class="w-full h-full flex items-center justify-center">
       <section class="max-w-[1250px] h-full flex items-start justify-center my-20">
         <div class="w-full h-full flex flex-col md:flex-row items-start justify-center">
-          <div class="bg-cover">
+          <div class="bg-cover pt-[5px]">
             <Image
               src={imagePerson.link}
               width={593}
@@ -31,8 +31,8 @@ export default function SectionPerson(
               alt={imagePerson.description}
             />
           </div>
-          <div class="max-w-[593px] flex flex-col gap-4 md:ml-16">
-            <p class="text-[32px] text-black mt-2 md:mt-0">
+          <div class="max-w-[593px] flex flex-col gap-2 md:ml-16">
+            <p class="text-4xl font-univers-next-pro-regular text-black">
               {name}
             </p>
             <p
