@@ -26,7 +26,7 @@ export interface Props {
 
 function DesignersCard({ name, country, link, hasImage }: IDesignersCard) {
   return (
-    <div class="flex flex-row-reverse md:flex-col items-center md:items-start md:first:border-l border-r last:border-none border-black pl-4 pr-6 h-[280px] md:h-[400px] gap-0.5">
+    <div class="flex flex-row-reverse md:flex-col items-center md:items-start md:first:border-l border-r last:border-none border-black first:pl-6 pl-4 pr-6 h-[280px] md:h-[400px] gap-0.5">
       <a href={link} class="w-[238px] h-[180px] md:h-[280px]">
         <Image
           src={hasImage.image}
@@ -48,7 +48,12 @@ function DesignersCard({ name, country, link, hasImage }: IDesignersCard) {
         </div>
 
         <div class="flex items-center gap-2">
-          <a href={link} class="underline pt-1.5 text-sm">conheça o trabalho</a>
+          <a
+            href={link}
+            class="underline pt-1.5 text-sm leading-[14px] text-[#353535]"
+          >
+            conheça o trabalho
+          </a>
           <Icon
             id="Plus"
             loading="lazy"

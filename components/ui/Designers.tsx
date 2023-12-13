@@ -33,7 +33,7 @@ export default function Designers({ cards }: Props) {
                   alt={card.image.description}
                 />
               </a>
-              <h1 class="text-sm lg:text-[24px] mx-0 mt-3 mb-1 font-univers-next-pro-bold font-bold text-[#3f3f40] leading-7">
+              <h1 class="text-sm lg:text-[24px] mx-0 mt-3 mb-1 font-univers-next-pro-regular text-[#3f3f40] leading-7">
                 {card.name}
               </h1>
               <p class="text-xs sm:text-base text-[#777] pt-1 leading-[18px]">

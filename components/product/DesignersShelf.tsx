@@ -47,7 +47,7 @@ function ProductShelf({
   return (
     <div class="w-full container max-w-[1230px] py-2 flex flex-col gap-10 px-2 xl:px-0">
       <div class="flex w-full">
-        <h1 class="text-[21px] lg:text-[37px] lg:leading-[56px] text-darkslategray font-univers-next-pro-regular">
+        <h1 class="text-[21px] lg:text-[40px] lg:leading-[60px] text-darkslategray font-univers-next-pro-regular">
           {title || ""}
         </h1>
       </div>

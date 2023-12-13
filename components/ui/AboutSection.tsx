@@ -15,7 +15,7 @@ export default function AboutSection(
   { title, subTitle, titleButton, linkButton, image }: Props,
 ) {
   return (
-    <section class="max-w-[1250px] flex items-center justify-center mx-auto px-4 lg:px-0">
+    <section class="max-w-[1250px] flex items-center justify-center mx-auto px-4 lg:px-0 pb-12 lg:pb-24">
       <div class="w-full h-full flex flex-col md:flex-row items-center justify-between gap-3">
         <div class="max-w-[540px] w-full h-full flex flex-col">
           <h1 dangerouslySetInnerHTML={{ __html: title ?? "" }} />

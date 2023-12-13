@@ -151,7 +151,7 @@ function Searchbar({
         ref={modal}
         class={`${
           !hasProducts && !hasTerms ? "hidden" : ""
-        } max-w-[800px] container bg-base-100 pt-4`}
+        } max-w-[800px] container bg-base-100 pt-4 h-[500px] shadow-lg`}
       >
         <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[190px_1fr] md:divide-x md:divide-slate-100 pb-1 px-3">
           <div class="flex flex-col gap-6">
@@ -187,7 +187,7 @@ function Searchbar({
               role="heading"
               aria-level={3}
             >
-              produtos sugeridos
+              {term ? `produtos para ${term}` : "produtos sugeridos"}
             </span>
             <Slider class="carousel gap-3">
               {products?.slice(0, 3)?.map((product, index) => (
@@ -218,7 +218,7 @@ function Searchbar({
             {hasProducts && products && products.length > 0 && (
               <a
                 href={`/s?q=${term}`}
-                class="flex justify-center mt-1.5 pb-6 underline text-[#777] text-sm"
+                class="flex items-center justify-center mt-10 pb-1 underline text-[#777] text-sm"
               >
                 veja todos os {products.length} produtos
               </a>

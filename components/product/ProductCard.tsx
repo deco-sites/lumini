@@ -151,7 +151,7 @@ function ProductCard(
     <div
       id={id}
       class={`card card-compact group w-full ${
-        !isGridColsFour && "xl:min-h-[487px] xl:max-h-[487px]"
+        !isGridColsFour && !isSearchbar && "xl:min-h-[487px] xl:max-h-[487px]"
       } ${align === "center" ? "text-center" : "text-start"} ${
         l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
       }
@@ -345,7 +345,7 @@ function ProductCard(
                     {formatPrice(price, offers?.priceCurrency)}
                   </span>
                   {!isSearchbar && (
-                    <span class="text-gray-normal/80 text-base">
+                    <span class="text-[#777] leading-[18px] text-base font-univers-next-pro-light">
                       {productCategory}
                     </span>
                   )}
