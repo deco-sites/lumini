@@ -88,55 +88,54 @@ function CartItem(
                 {item.name}: {item.value}
               </div>
             ))}
+
+            <div class="flex items-center justify-between gap-2 w-full pt-0.5">
+              <span class="text-sm text-[#353535]">
+                {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
+              </span>
+            </div>
           </div>
-          <Button
-            aria-label="remove item"
-            disabled={loading || isGift}
-            loading={loading}
-            class="btn-ghost btn-square hover:bg-transparent"
-            onClick={withLoading(async () => {
-              const analyticsItem = itemToAnalyticsItem(index);
 
-              await onUpdateQuantity(0, index);
+          <div class="flex flex-col gap-2 items-end">
+            <Button
+              aria-label="remove item"
+              disabled={loading || isGift}
+              loading={loading}
+              class="btn-ghost btn-square hover:bg-transparent"
+              onClick={withLoading(async () => {
+                const analyticsItem = itemToAnalyticsItem(index);
 
-              analyticsItem && sendEvent({
-                name: "remove_from_cart",
-                params: { items: [analyticsItem] },
-              });
-            })}
-          >
-            <Icon id="XMark" size={24} strokeWidth={0.8} />
-          </Button>
-        </div>
-        <div class="flex items-center justify-between gap-2 w-full">
-          {
-            /* <span class="line-through text-base-300 text-sm">
-            {formatPrice(list, currency, locale)}
-          </span> */
-          }
-          <span class="text-sm text-[#353535]">
-            {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
-          </span>
+                await onUpdateQuantity(0, index);
 
-          <QuantitySelector
-            disabled={loading || isGift}
-            quantity={quantity}
-            onChange={withLoading(async (quantity) => {
-              const analyticsItem = itemToAnalyticsItem(index);
-              const diff = quantity - item.quantity;
-
-              await onUpdateQuantity(quantity, index);
-
-              if (analyticsItem) {
-                analyticsItem.quantity = diff;
-
-                sendEvent({
-                  name: diff < 0 ? "remove_from_cart" : "add_to_cart",
+                analyticsItem && sendEvent({
+                  name: "remove_from_cart",
                   params: { items: [analyticsItem] },
                 });
-              }
-            })}
-          />
+              })}
+            >
+              <Icon id="XMark" size={24} strokeWidth={0.8} />
+            </Button>
+
+            <QuantitySelector
+              disabled={loading || isGift}
+              quantity={quantity}
+              onChange={withLoading(async (quantity) => {
+                const analyticsItem = itemToAnalyticsItem(index);
+                const diff = quantity - item.quantity;
+
+                await onUpdateQuantity(quantity, index);
+
+                if (analyticsItem) {
+                  analyticsItem.quantity = diff;
+
+                  sendEvent({
+                    name: diff < 0 ? "remove_from_cart" : "add_to_cart",
+                    params: { items: [analyticsItem] },
+                  });
+                }
+              })}
+            />
+          </div>
         </div>
       </div>
     </div>

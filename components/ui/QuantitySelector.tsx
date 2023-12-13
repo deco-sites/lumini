@@ -22,7 +22,7 @@ function QuantitySelector(
     <div
       class={`${
         isPdp ? "max-h-[48px]" : "max-h-[35px]"
-      }  join border rounded-none w-min`}
+      } flex items-center justify-center join border rounded-none w-min`}
     >
       <Button
         class="btn-ghost join-item"
@@ -54,7 +54,7 @@ function QuantitySelector(
         size={3}
       />
       <Button
-        class="h-[35px] btn-ghost join-item"
+        class="btn-ghost join-item"
         style={{
           width: `${isPdp ? "42px" : "30px"}`,
           height: `${isPdp ? "48px" : "35px"}`,
