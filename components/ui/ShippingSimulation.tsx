@@ -43,27 +43,30 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 p-4 bg-base-200 rounded-[4px]">
+    <ul class="flex flex-col gap-4 py-3 border-y border-y-gainsboro">
+      <li class="flex items-center text-white leading-[14px] text-xs bg-[#353535] font-univers-next-pro-light py-2 pl-2">
+        <span class="min-w-[80px]">
+          valor
+        </span>
+
+        <span>
+          prazo de entrega
+        </span>
+      </li>
+
       {methods.map((method) => (
-        <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
-          <span class="text-button text-center lowercase">
-            Entrega {method.name}
-          </span>
-          <span class="text-button">
-            até {formatShippingEstimate(method.shippingEstimate)}
-          </span>
-          <span class="text-base font-semibold text-right">
+        <li class="flex items-center text-[#979899] leading-[16px] text-sm pl-2">
+          <span class="min-w-[80px]">
             {method.price === 0 ? "frete grátis" : (
               formatPrice(method.price / 100, currencyCode, locale)
             )}
           </span>
+
+          <span>
+            em até {formatShippingEstimate(method.shippingEstimate)}
+          </span>
         </li>
       ))}
-      <span class="text-base-300 lowercase">
-        Os prazos de entrega começam a contar a partir da confirmação do
-        pagamento e podem variar de acordo com a quantidade de produtos na
-        sacola.
-      </span>
     </ul>
   );
 }

@@ -98,6 +98,21 @@ mobiliar-viewer-ar {
     background: #3f3f3f;
     border-radius: 100vh;
   }
+
+  .scrollbar-slider::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-slider::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #efefef;
+  }
+
+  .scrollbar-slider::-webkit-scrollbar-thumb {
+    background: #868686;
+    border-radius: 100vh;
+  }
 }
 
 .group:disabled .group-disabled\:animate-progress {

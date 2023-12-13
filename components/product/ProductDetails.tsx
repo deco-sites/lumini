@@ -383,7 +383,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
             {/* Dots */}
             {images && images.length > 1 && (
-              <ul class="flex gap-2 overflow-auto px-4 sm:px-0">
+              <ul class="flex gap-[13px] overflow-auto px-4 sm:px-0 scrollbar-slider">
                 {images.map((img, index) => (
                   <li class="min-w-[63px] sm:min-w-[130px]">
                     <Slider.Dot index={index}>
