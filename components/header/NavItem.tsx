@@ -30,7 +30,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                 loading="lazy"
               />
             )}
-            <ul class="flex items-start justify-center gap-6 mr-[75px]">
+            <ul class="flex items-start justify-center gap-6 mr-[80px]">
               {children.map((node) => (
                 <li class="p-6">
                   <ul class="h-full" style={{ columnCount: 2 }}>
