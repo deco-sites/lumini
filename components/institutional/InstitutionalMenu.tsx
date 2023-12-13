@@ -7,7 +7,7 @@ export interface Group {
 
 export default function InstitutionalMenu({ groups }: Group) {
   return (
-    <ul class="flex flex-col w-full gap-5 font-univers-next-pro-regular">
+    <ul class="flex flex-col w-full gap-5 font-univers-next-pro-regular mt-3">
       <li class="font-univers-next-pro-bold">informações</li>
       {groups?.map((group) => (
         <li>

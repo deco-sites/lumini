@@ -15,7 +15,7 @@ export default function InstitutionalDescription(
         {title}
       </p>
       {description && (
-        <div dangerouslySetInnerHTML={{ __html: description || "" }} />
+        <div class="font-univers-next-pro-regular" dangerouslySetInnerHTML={{ __html: description || "" }} />
       )}
     </div>
   );
