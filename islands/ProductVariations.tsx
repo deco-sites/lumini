@@ -22,12 +22,12 @@ export default function ProductVariations(
   variations.value = filteredVariations;
 
   return (
-    <div class="flex flex-col gap-4 w-full lowercase">
+    <div class="flex flex-col gap-9 w-full lowercase">
       {colorPossibilities && Object.entries(colorPossibilities).length > 0 && (
         <div class="flex flex-col gap-4 w-full">
-          <p className="font-univers-next-pro-light text-lg font-medium lowercase">
+          <p className="font-univers-next-pro-light text-lg leading-[21px] font-medium lowercase text-[#353535]">
             cor:{" "}
-            <span className="text-lightslategray lowercase">
+            <span className="text-lightslategray lowercase leading-[21px]">
               {filteredVariations["cor"]}
             </span>
           </p>
@@ -42,6 +42,8 @@ export default function ProductVariations(
               >
                 {links.length > 0 && (
                   <button
+                    f-partial={links[0]}
+                    f-client-nav
                     onClick={() =>
                       setFilteredVariations((prev) => ({
                         ...prev,
@@ -85,9 +87,9 @@ export default function ProductVariations(
           return (
             <ul key={name} className="flex flex-col gap-4 w-full">
               <li className="flex flex-col gap-2 w-full">
-                <p className="font-univers-next-pro-light text-lg font-medium lowercase">
+                <p className="font-univers-next-pro-light text-lg leading-[21px] font-medium lowercase text-[#353535]">
                   {name}:{" "}
-                  <span className="text-lightslategray lowercase">
+                  <span className="text-lightslategray lowercase leading-[21px]">
                     {selectedValue}
                   </span>
                 </p>
@@ -105,7 +107,7 @@ export default function ProductVariations(
                                 [name]: item,
                               }))}
                             title={`Change ${name}`}
-                            class={`flex py-2.5 pl-5 lowercase mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-medium font-univers-next-pro-regular ${
+                            class={`flex py-2 pl-5 lowercase mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full duration-200 transition-colors font-medium leading-[18px] font-univers-next-pro-regular ${
                               isChecked && "bg-dark-gray text-white"
                             }`}
                           >
