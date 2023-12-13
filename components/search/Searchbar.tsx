@@ -153,29 +153,32 @@ function Searchbar({
           !hasProducts && !hasTerms ? "hidden" : ""
         } max-w-[800px] container bg-base-100 pt-4 h-[500px] shadow-lg`}
       >
-        <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[190px_1fr] md:divide-x md:divide-slate-100 pb-1 px-3">
+        <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[190px_1fr] md:divide-x md:divide-slate-100 pb-1 pr-3">
           <div class="flex flex-col gap-6">
             <span
               role="heading"
               aria-level={3}
+              class="pl-3"
             >
-              sugestões
+              {searches && searches.length > 0 ? "sugestões" : "sem sugestões"}
             </span>
-            <ul id="search-suggestion" class="flex flex-col gap-6">
+            <ul id="search-suggestion" class="flex flex-col gap-4">
               {searches.map(({ term }) => (
                 <li>
                   <a
                     href={`/s?q=${term}`}
-                    class="flex gap-4 items-center text-sm"
+                    class="flex gap-2 items-center text-sm hover:bg-gray/20 py-1.5 pl-3"
+                    onMouseEnter={() => {
+                      setQuery(term);
+                      setTerm(term);
+                    }}
                   >
-                    <span>
-                      <Icon
-                        id="MagnifyingGlass"
-                        size={24}
-                        strokeWidth={1}
-                        loading="lazy"
-                      />
-                    </span>
+                    <Icon
+                      id="MagnifyingGlass"
+                      size={24}
+                      strokeWidth={1}
+                      loading="lazy"
+                    />
                     <span dangerouslySetInnerHTML={{ __html: term }} />
                   </a>
                 </li>
@@ -189,40 +192,50 @@ function Searchbar({
             >
               {term ? `produtos para ${term}` : "produtos sugeridos"}
             </span>
-            <Slider class="carousel gap-3">
-              {products?.slice(0, 3)?.map((product, index) => (
-                <Slider.Item
-                  index={index}
-                  class="carousel-item min-w-[160px] max-w-[160px]"
-                >
-                  <ProductCard
-                    product={product}
-                    platform={platform}
-                    isSearchbar={true}
-                    layout={{
-                      hide: {
-                        productDescription: true,
-                        cta: false,
-                        skuSelector: true,
-                        installments: true,
-                      },
-                      basics: {
-                        contentAlignment: "Center",
-                        oldPriceSize: "Small",
-                      },
-                    }}
-                  />
-                </Slider.Item>
-              ))}
-            </Slider>
-            {hasProducts && products && products.length > 0 && (
-              <a
-                href={`/s?q=${term}`}
-                class="flex items-center justify-center mt-10 pb-1 underline text-[#777] text-sm"
-              >
-                veja todos os {products.length} produtos
-              </a>
-            )}
+            {loading.value
+              ? (
+                <div class="flex items-center justify-center mt-16">
+                  <span class="loading loading-spinner loading-lg" />
+                </div>
+              )
+              : (
+                <>
+                  <Slider class="carousel gap-3">
+                    {products?.slice(0, 3)?.map((product, index) => (
+                      <Slider.Item
+                        index={index}
+                        class="carousel-item min-w-[160px] max-w-[160px]"
+                      >
+                        <ProductCard
+                          product={product}
+                          platform={platform}
+                          isSearchbar={true}
+                          layout={{
+                            hide: {
+                              productDescription: true,
+                              cta: false,
+                              skuSelector: true,
+                              installments: true,
+                            },
+                            basics: {
+                              contentAlignment: "Center",
+                              oldPriceSize: "Small",
+                            },
+                          }}
+                        />
+                      </Slider.Item>
+                    ))}
+                  </Slider>
+                  {hasProducts && products && products.length > 0 && (
+                    <a
+                      href={`/s?q=${term}`}
+                      class="flex items-center justify-center mt-10 pb-1 underline text-[#777] text-sm"
+                    >
+                      veja todos os {products.length} produtos
+                    </a>
+                  )}
+                </>
+              )}
           </div>
         </div>
       </div>
