@@ -10,7 +10,7 @@ export interface Props {
   productGroupID: string;
   price: number;
   discount: number;
-  onAddItem: () => Promise<void>;
+  onAddItem: () => void;
 }
 
 const useAddToCart = ({
@@ -22,7 +22,6 @@ const useAddToCart = ({
   onAddItem,
 }: Props) => {
   const [loading, setLoading] = useState(false);
-  const { displayCart } = useUI();
 
   const onClick = async (e: MouseEvent) => {
     e.preventDefault();
@@ -46,8 +45,6 @@ const useAddToCart = ({
           }],
         },
       });
-
-      displayCart.value = true;
     } finally {
       setLoading(false);
     }
@@ -57,7 +54,7 @@ const useAddToCart = ({
 };
 
 export default function AddToCartButton(
-  { disabled, ...props }: Props & { disabled: boolean },
+  { ...props }: Props,
 ) {
   const btnProps = useAddToCart(props);
 
@@ -66,7 +63,6 @@ export default function AddToCartButton(
       {...btnProps}
       data-deco="add-to-cart"
       hasBtn={false}
-      disabled={disabled}
       class="btn-primary h-[46px] w-full lg:max-w-[420px] lowercase leading-[14px] disabled:opacity-60 disabled:cursor-not-allowed font-univers-next-pro-regular bg-darkslategray hover:bg-darkslategray/80"
     >
       adicionar ao carrinho

@@ -70,7 +70,7 @@ function Specification(
       <summary class="collapse-title text-lg md:text-[32px] w-full group-open:border-none border-b border-b-lightslategray/60 pb-1.5">
         especificações
       </summary>
-      <div class="collapse-content w-full py-8 flex border-b border-b-lightslategray/60">
+      <div class="collapse-content w-full pt-6 pb-8 flex border-b border-b-lightslategray/60">
         <div class="flex flex-col gap-4 w-full">
           {lightSource && (
             <div class="flex flex-col w-full gap-1">

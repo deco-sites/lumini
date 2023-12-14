@@ -17,7 +17,7 @@ export default function ProductVariations(
   { colorPossibilities, possibilities, excludedKeys, isVariantOf }: Props,
 ) {
   const [filteredVariations, setFilteredVariations] = useState<Variations>({});
-  const { variations } = useUI();
+  const { variations, isBuyButtonClicked } = useUI();
 
   variations.value = filteredVariations;
 
@@ -25,11 +25,19 @@ export default function ProductVariations(
     <div class="flex flex-col gap-9 w-full lowercase">
       {colorPossibilities && Object.entries(colorPossibilities).length > 0 && (
         <div class="flex flex-col gap-4 w-full">
-          <p className="font-univers-next-pro-light text-lg leading-[21px] font-medium lowercase text-[#353535]">
+          <p
+            id="cor"
+            className="font-univers-next-pro-light text-lg leading-[21px] font-medium lowercase text-[#353535]"
+          >
             cor:{" "}
             <span className="text-lightslategray lowercase leading-[21px]">
               {filteredVariations["cor"]}
             </span>
+            {isBuyButtonClicked.value && !filteredVariations["cor"] && (
+              <span class="text-[18px] leading-[21px] text-[#ff4c4c] font-medium">
+                selecione uma opção
+              </span>
+            )}
           </p>
 
           <ul class="flex flex-row items-center gap-2">
@@ -86,11 +94,19 @@ export default function ProductVariations(
           return (
             <ul key={name} className="flex flex-col gap-4 w-full">
               <li className="flex flex-col gap-2 w-full">
-                <p className="font-univers-next-pro-light text-lg leading-[21px] font-medium lowercase text-[#353535]">
+                <p
+                  id={name}
+                  className="font-univers-next-pro-light text-lg leading-[21px] font-medium lowercase text-[#353535]"
+                >
                   {name}:{" "}
                   <span className="text-lightslategray lowercase leading-[21px]">
                     {selectedValue}
                   </span>
+                  {isBuyButtonClicked.value && !filteredVariations[name] && (
+                    <span class="text-[18px] leading-[21px] text-[#ff4c4c] font-medium">
+                      selecione uma opção
+                    </span>
+                  )}
                 </p>
                 <ul className="flex flex-col gap-3 w-full">
                   {filteredLinks.map(

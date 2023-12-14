@@ -10,6 +10,7 @@ const displayMenu = signal(false);
 const displaySearchPopup = signal(false);
 const displaySearchDrawer = signal(false);
 const variations = signal({});
+const isBuyButtonClicked = signal(false);
 
 const state = {
   displayCart,
@@ -17,6 +18,7 @@ const state = {
   displaySearchPopup,
   displaySearchDrawer,
   variations,
+  isBuyButtonClicked,
 };
 
 // Keyboard event listeners

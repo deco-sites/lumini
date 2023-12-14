@@ -12,7 +12,7 @@ export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
 }
 
 function AddToCartButton(props: Props) {
-  const { variations } = useUI();
+  const { variations, isBuyButtonClicked, displayCart } = useUI();
 
   const desiredProperties = {
     ...variations.value,
@@ -65,14 +65,26 @@ function AddToCartButton(props: Props) {
   const [quantity, setQuantity] = useState(1);
 
   const { addItems } = useCart();
-  const onAddItem = () =>
-    addItems({
-      orderItems: [{
-        id: (filteredProducts && filteredProducts[0]!.productID) || "0",
-        seller: props.seller,
-        quantity: quantity,
-      }],
-    });
+
+  function onAddItem() {
+    if (
+      !filteredProducts || (filteredProducts && filteredProducts.length !== 1)
+    ) {
+      isBuyButtonClicked.value = true;
+
+      return;
+    } else {
+      addItems({
+        orderItems: [{
+          id: (filteredProducts && filteredProducts[0]!.productID) || "0",
+          seller: props.seller,
+          quantity: quantity,
+        }],
+      });
+
+      displayCart.value = true;
+    }
+  }
 
   return (
     <>
@@ -83,8 +95,6 @@ function AddToCartButton(props: Props) {
           isPdp
         />
         <Button
-          disabled={!filteredProducts ||
-            (filteredProducts && filteredProducts.length !== 1)}
           onAddItem={onAddItem}
           {...props}
         />
