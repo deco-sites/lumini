@@ -13,7 +13,6 @@ import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
-import { formatPrice } from "$store/sdk/format.ts";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
@@ -22,6 +21,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ProductDescription from "./ProductDescription.tsx";
+import ProductPrice from "./ProductPrice.tsx";
 import ShareButton from "$store/components/ui/ShareButton.tsx";
 import AugmentedReality from "$store/components/product/AugmentedReality.tsx";
 
@@ -156,23 +156,14 @@ function ProductInfo(
       </div>
 
       {/* Prices */}
-      <div class="border-t border-gainsboro pt-4 mt-8">
-        <div class="flex flex-col gap-2 items-start normal-case">
-          {(listPrice ?? 0) > price && (
-            <span class="line-through text-[#a8a8a8] leading-[16px] text-sm font-univers-next-pro-light">
-              {formatPrice(listPrice, offers?.priceCurrency)}
-            </span>
-          )}
-          <span class="font-medium font-univers-next-pro-regular text-xl text-darkslategray leading-7">
-            {formatPrice(price, offers?.priceCurrency)}
-          </span>
-        </div>
-        {installments && (
-          <span class="text-sm leading-4 font-univers-next-pro-light font-normal text-gray-normal">
-            em até {installments.replace(".", ",")}
-          </span>
-        )}
-      </div>
+      <ProductPrice
+        price={price}
+        listPrice={listPrice}
+        installments={installments}
+        priceCurrency={offers?.priceCurrency}
+        products={isVariantOf?.hasVariant || []}
+      />
+
       {/* Add to Cart */}
       <div class="mt-4 mb-2.5 flex flex-col gap-2">
         {availability === "https://schema.org/InStock"
