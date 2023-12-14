@@ -16,7 +16,7 @@ export default function AboutSection(
 ) {
   return (
     <section class="max-w-[1250px] flex items-center justify-center mx-auto px-4 lg:px-0 pb-12 lg:pb-24">
-      <div class="w-full h-full flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="w-full h-full flex flex-col md:flex-row items-start justify-between gap-3">
         <div class="max-w-[540px] w-full h-full flex flex-col">
           <h1 dangerouslySetInnerHTML={{ __html: title ?? "" }} />
           <p dangerouslySetInnerHTML={{ __html: subTitle ?? "" }} />
@@ -29,7 +29,7 @@ export default function AboutSection(
           </div>
         </div>
         {image && (
-          <div class="max-w-[500px] w-full h-full mt-7 mr-10">
+          <div class="max-w-[500px] w-full h-full mt-[95px] mr-10">
             <Image
               class=""
               src={image.linkImage}
