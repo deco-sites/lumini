@@ -46,7 +46,6 @@ export default function ProductVariations(
                     f-client-nav
                     onClick={() =>
                       setFilteredVariations((prev) => ({
-                        ...prev,
                         "cor": value,
                       }))}
                   >
@@ -95,19 +94,52 @@ export default function ProductVariations(
                 </p>
                 <ul className="flex flex-col gap-3 w-full">
                   {filteredLinks.map(
-                    ({ item }, index) => {
+                    ({ item, commonLinks }, index) => {
                       const isChecked = filteredVariations[name] === item;
+
+                      const isUnavailable = !isVariantOf?.hasVariant?.some(
+                        (variant) => {
+                          const variantProperties =
+                            variant.additionalProperty || [];
+                          const variantUrl = variant.url || "";
+                          const isVariantInCommonLinks = commonLinks.some((
+                            commonLink,
+                          ) => variantUrl.includes(commonLink));
+
+                          if (isVariantInCommonLinks) {
+                            const desiredProperties = {
+                              ...filteredVariations,
+                              [name]: item,
+                            };
+
+                            return Object.entries(desiredProperties).every(
+                              ([propertyName, propertyValue]) => {
+                                const matchingProperty = variantProperties.find(
+                                  (property) =>
+                                    property.name === propertyName &&
+                                    property.value === propertyValue,
+                                );
+
+                                return !!matchingProperty;
+                              },
+                            );
+                          }
+
+                          return false;
+                        },
+                      );
 
                       return (
                         <li key={index}>
                           <button
+                            disabled={isUnavailable}
                             onClick={() =>
                               setFilteredVariations((prev) => ({
                                 ...prev,
                                 [name]: item,
                               }))}
                             title={`Change ${name}`}
-                            class={`flex py-2 pl-5 lowercase mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full duration-200 transition-colors font-medium leading-[18px] font-univers-next-pro-regular ${
+                            class={`flex py-2 pl-5 lowercase mt-0.5 border border-dark-gray hover:bg-dark-gray hover:text-white w-full duration-200 transition-colors font-medium leading-[18px] font-univers-next-pro-regular disabled:opacity-50 ${
                               isChecked && "bg-dark-gray text-white"
                             }`}
                           >

@@ -23,7 +23,7 @@ function ProductImageZoom({ images, width, height }: Props) {
       <Button
         title="Zoom Button"
         aria-label="open zoom on image"
-        class="hidden sm:inline-flex btn-ghost"
+        class="btn-ghost"
         onClick={() => open.value = true}
       >
         <Icon id="Zoom" size={24} />
@@ -34,7 +34,7 @@ function ProductImageZoom({ images, width, height }: Props) {
           open={open.value}
           onClose={() => open.value = false}
         >
-          <div class="modal-box lg:bg-transparent lg:shadow-none w-11/12 lg:w-full max-w-7xl grid grid-cols-[48px_1fr_48px] grid-rows-1 place-items-center">
+          <div class="modal-box lg:bg-transparent lg:shadow-none w-11/12 lg:w-full grid grid-cols-[48px_1fr_48px] grid-rows-1 place-items-center">
             <Slider class="carousel col-span-full col-start-1 row-start-1 row-span-full h-full w-full">
               {images.map((image, index) => (
                 <Slider.Item
@@ -47,7 +47,7 @@ function ProductImageZoom({ images, width, height }: Props) {
                     alt={image.alternateName}
                     width={width}
                     height={height}
-                    class="h-full w-auto"
+                    class="h-full w-full"
                   />
                 </Slider.Item>
               ))}
@@ -55,11 +55,11 @@ function ProductImageZoom({ images, width, height }: Props) {
 
             {images && images.length > 1 && (
               <>
-                <Slider.PrevButton class="flex items-center justify-center col-start-1 col-end-2 row-start-1 row-span-full lg:bg-white lg:p-2.5 lg:rounded-md">
+                <Slider.PrevButton class="flex items-center justify-center col-start-1 col-end-2 row-start-1 row-span-full">
                   <Icon size={24} id="ChevronLeft" strokeWidth={0.8} />
                 </Slider.PrevButton>
 
-                <Slider.NextButton class="flex items-center justify-center col-start-3 col-end-4 row-start-1 row-span-full lg:bg-white lg:p-2.5 lg:rounded-md">
+                <Slider.NextButton class="flex items-center justify-center col-start-3 col-end-4 row-start-1 row-span-full">
                   <Icon size={24} id="ChevronRight" strokeWidth={0.8} />
                 </Slider.NextButton>
               </>

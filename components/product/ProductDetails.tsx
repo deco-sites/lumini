@@ -375,8 +375,8 @@ function Details(props: { page: ProductDetailsPage } & Props) {
               <div class="absolute top-2 right-2">
                 <ProductImageZoom
                   images={images}
-                  width={700}
-                  height={Math.trunc(700 * HEIGHT / WIDTH)}
+                  width={1280}
+                  height={Math.trunc(1280 * HEIGHT / WIDTH)}
                 />
               </div>
             </div>
