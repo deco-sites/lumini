@@ -50,7 +50,7 @@ function DesignersCard({ name, country, link, hasImage }: IDesignersCard) {
         <div class="flex items-center gap-2">
           <a
             href={link}
-            class="underline pt-1.5 text-sm leading-[14px] text-[#353535]"
+            class="underline pt-1.5 text-sm font-univers-next-pro-regular leading-[14px] text-[#353535]"
           >
             conheça o trabalho
           </a>
