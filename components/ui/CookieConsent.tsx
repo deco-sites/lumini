@@ -134,7 +134,7 @@ function CookieConsent(props: Props) {
               }`}
             >
               <button
-                class="btn btn-outline bg-black text-white hover:bg-opacity-10 hover:text-black uppercase"
+                class="btn btn-outline bg-black text-white hover:bg-opacity-10 hover:text-black uppercase leading-[19px] text-sm font-univers-next-pro-regular"
                 data-button-cc-accept
               >
                 {buttons.allowText}
