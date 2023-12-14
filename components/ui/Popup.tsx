@@ -109,7 +109,7 @@ export default function Popup({
         (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
 
       await invoke.vtex.actions.masterdata.createDocument({
-        acronym: "subscribeNewsletter",
+        acronym: "newsletter",
         data: {
           email,
         },
