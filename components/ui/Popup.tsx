@@ -108,7 +108,12 @@ export default function Popup({
       const email =
         (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
 
-      await invoke.vtex.actions.newsletter.subscribe({ email });
+      await invoke.vtex.actions.masterdata.createDocument({
+        acronym: "subscribeNewsletter",
+        data: {
+          email,
+        },
+      });
     } finally {
       loading.value = false;
       success.value = true;
@@ -190,7 +195,7 @@ export default function Popup({
           {success.value
             ? (
               <div class="flex items-center justify-center lg:text-xl text-lg font-univers-next-pro-bold leading-7 text-center font-bold">
-                e-mail cadastrado com sucesso!
+                obrigado!
               </div>
             )
             : (
