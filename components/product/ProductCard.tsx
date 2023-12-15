@@ -219,7 +219,7 @@ function ProductCard(
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full"
         >
-          <img
+          <Image
             src={(firstImage || front).url!}
             alt={(firstImage || front).alternateName}
             width={WIDTH}
@@ -229,21 +229,21 @@ function ProductCard(
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
             }`}
-            sizes="(max-width: 640px) 50vw, 20vw"
-            // preload={preload}
+            // sizes="(max-width: 640px) 50vw, 20vw"
+            preload={preload}
             loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
-            <img
+            <Image
               src={(secondImage || back)?.url ?? (firstImage || front).url!}
               alt={(secondImage || back)?.alternateName ??
                 (firstImage || front).alternateName}
               width={WIDTH}
               height={HEIGHT}
               class="bg-base-100 col-span-full row-span-full transition-opacity w-full opacity-0 lg:group-hover:opacity-100"
-              sizes="(max-width: 640px) 50vw, 20vw"
+              // sizes="(max-width: 640px) 50vw, 20vw"
               loading="lazy"
               decoding="async"
             />
