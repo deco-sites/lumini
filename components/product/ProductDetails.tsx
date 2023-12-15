@@ -10,7 +10,6 @@ import AddToCartButtonLinx from "$store/islands/AddToCartButton/linx.tsx";
 import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
-import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { useId } from "$store/sdk/useId.ts";
@@ -24,6 +23,7 @@ import ProductDescription from "./ProductDescription.tsx";
 import ProductPrice from "./ProductPrice.tsx";
 import ShareButton from "$store/components/ui/ShareButton.tsx";
 import AugmentedReality from "$store/components/product/AugmentedReality.tsx";
+import ProductImage from "$store/islands/ProductImage.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -221,18 +221,6 @@ function ProductInfo(
           )
           : <OutOfStock productID={productID} />}
       </div>
-      {/* Shipping Simulation */}
-      <div class="mt-8">
-        {platform === "vtex" && (
-          <ShippingSimulation
-            items={[{
-              id: Number(product.sku),
-              quantity: 1,
-              seller: seller,
-            }]}
-          />
-        )}
-      </div>
       {/* Description card */}
       {
         /* <div class="mt-4 sm:mt-6">
@@ -323,27 +311,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                 </div>
               )}
 
-              <Slider class="carousel carousel-center gap-6 w-screen sm:w-full">
-                {images.map((img, index) => (
-                  <Slider.Item
-                    index={index}
-                    class="carousel-item w-full"
-                  >
-                    <Image
-                      class="w-full"
-                      sizes="(max-width: 640px) 100vw, 40vw"
-                      style={{ aspectRatio: ASPECT_RATIO }}
-                      src={img.url!}
-                      alt={img.alternateName}
-                      width={WIDTH}
-                      height={HEIGHT}
-                      // Preload LCP image for better web vitals
-                      preload={index === 0}
-                      loading={index === 0 ? "eager" : "lazy"}
-                    />
-                  </Slider.Item>
-                ))}
-              </Slider>
+              <ProductImage images={images} />
 
               {images && images.length > 1 && (
                 <>
@@ -362,14 +330,6 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                   </Slider.NextButton>
                 </>
               )}
-
-              <div class="absolute top-2 right-2">
-                <ProductImageZoom
-                  images={images}
-                  width={1280}
-                  height={Math.trunc(1280 * HEIGHT / WIDTH)}
-                />
-              </div>
             </div>
 
             {/* Dots */}

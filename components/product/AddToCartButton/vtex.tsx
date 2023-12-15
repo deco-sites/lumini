@@ -5,6 +5,7 @@ import { useState } from "preact/compat";
 import type { Product, ProductLeaf } from "apps/commerce/types.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
+import ShippingSimulation from "$store/components/ui/ShippingSimulation.tsx";
 
 export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
   seller: string;
@@ -115,6 +116,17 @@ function AddToCartButton(props: Props) {
             </span>
           </div>
         )}
+      </div>
+
+      {/* Shipping Simulation */}
+      <div class="mt-8">
+        <ShippingSimulation
+          items={[{
+            id: Number(filteredProducts && filteredProducts[0]?.sku),
+            quantity,
+            seller: props.seller,
+          }]}
+        />
       </div>
     </>
   );
