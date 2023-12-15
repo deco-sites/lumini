@@ -30,7 +30,7 @@ export default function Social(
                   <a
                     href={item.link}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer nofollow"
                     aria-label={`${item.description} Logo`}
                     class="flex gap-2 items-center"
                   >
