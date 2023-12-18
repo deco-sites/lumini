@@ -55,11 +55,11 @@ function CategoriesShelf({
               class="carousel-item w-[130px] h-[160px] sm:w-[180px] sm:h-[222px] first:pl-4 last:pr-4 sm:first:pl-1 sm:last:pr-1"
             >
               <a href={category.link}>
-                <img
+                <Image
                   src={category.image}
                   width={180}
                   height={222}
-                  loading="lazy"
+                  loading="eager"
                   alt={category.description}
                 />
               </a>
