@@ -213,7 +213,9 @@ export default function Popup({
                     </div>
                   )
                   : (
-                    { emailInput }
+                    <>
+                      {emailInput}
+                    </>
                   )}
 
                 <button
