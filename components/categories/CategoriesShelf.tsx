@@ -11,6 +11,8 @@ export interface Props {
     image: ImageWidget;
     description: string;
     link: string;
+    width?: number;
+    height?: number;
   }>;
   preload?: boolean;
 }
@@ -40,8 +42,8 @@ function CategoriesShelf({
               <a href={category.link}>
                 <Image
                   src={category.image}
-                  width={180}
-                  height={222}
+                  width={category.width ?? 180}
+                  height={category.height ?? 222}
                   loading={preload ? "eager" : "lazy"}
                   alt={category.description}
                 />
