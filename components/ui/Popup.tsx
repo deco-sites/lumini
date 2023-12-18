@@ -38,6 +38,7 @@ export interface Props {
     description: string;
     width?: number;
     height?: number;
+    isActive?: boolean;
   };
   /**
    * @title newsletter message text?
@@ -109,7 +110,7 @@ export default function Popup({
         (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
 
       await invoke.vtex.actions.masterdata.createDocument({
-        acronym: "newsletter",
+        acronym: "NW",
         data: {
           email,
         },
@@ -180,7 +181,7 @@ export default function Popup({
               />
             </button>
           </div>
-          {bannerImage && (
+          {bannerImage && bannerImage.isActive && (
             <div class="hidden md:block w-full h-full max-w-[25%] relative">
               <Image
                 src={bannerImage.image}
@@ -208,7 +209,7 @@ export default function Popup({
               <div class="flex flex-col gap-2 w-full">
                 {success.value
                   ? (
-                    <div class="flex items-center justify-center lg:text-xl text-lg font-univers-next-pro-bold leading-7 text-center font-bold">
+                    <div class="flex items-start justify-start lg:text-xl text-lg font-univers-next-pro-bold leading-7 text-start font-bold">
                       obrigado!
                     </div>
                   )
