@@ -180,7 +180,7 @@ export default function Popup({
               />
             </button>
           </div>
-          {bannerImage && self.window.innerWidth >= 768 && (
+          {bannerImage && (
             <div class="hidden md:block w-full h-full max-w-[25%] relative">
               <Image
                 src={bannerImage.image}
