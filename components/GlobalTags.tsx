@@ -9,30 +9,6 @@ function GlobalTags() {
       {/* Tailwind v3 CSS file */}
       <link href={asset("/styles.css")} rel="stylesheet" />
 
-      <link
-        as="font"
-        rel="preload prefetch"
-        type="font/woff2"
-        crossOrigin="anonymous"
-        href={asset("/fonts/UniversNextPro-Light.woff2")}
-      />
-
-      <link
-        as="font"
-        rel="preload prefetch"
-        type="font/woff2"
-        crossOrigin="anonymous"
-        href={asset("/fonts/UniversNextPro-Regular.woff2")}
-      />
-
-      <link
-        as="font"
-        rel="preload prefetch"
-        type="font/woff2"
-        crossOrigin="anonymous"
-        href={asset("/fonts/UniversNextPro-Bold.woff2")}
-      />
-
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -41,21 +17,27 @@ function GlobalTags() {
             font-style: light;
             font-weight: 300;
             font-display: swap;
-            src: url('${("/fonts/UniversNextPro-Light.woff2")}') format('woff2');
+            src: url('${
+            asset("/fonts/UniversNextPro-Light.woff2")
+          }') format('woff2');
           }
           @font-face {
             font-family: 'UniversNextPro-Regular';
             font-style: normal;
             font-weight: 400;
             font-display: swap;
-            src: url('${("/fonts/UniversNextPro-Regular.woff2")}') format('woff2');
+            src: url('${
+            asset("/fonts/UniversNextPro-Regular.woff2")
+          }') format('woff2');
           }
           @font-face {
             font-family: 'UniversNextPro-Bold';
             font-style: bold;
             font-weight: 700;
             font-display: swap;
-            src: url('${("/fonts/UniversNextPro-Bold.woff2")}') format('woff2');
+            src: url('${
+            asset("/fonts/UniversNextPro-Bold.woff2")
+          }') format('woff2');
           }
           `,
         }}
@@ -63,9 +45,6 @@ function GlobalTags() {
 
       {/* Web Manifest */}
       <link rel="manifest" href={asset("/site.webmanifest")} />
-
-      {/* 3RD Script */}
-      <script src="https://mobiliar3d.com/js/mobiliar.widgets.min.js" defer />
     </Head>
   );
 }

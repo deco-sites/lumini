@@ -5,5 +5,12 @@ export interface Props {
 export default function AugmentedReality({ html }: Props) {
   if (!html) return null;
 
-  return <div dangerouslySetInnerHTML={{ __html: html || "" }} />;
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: html || "" }} />
+
+      {/* 3RD Script */}
+      <script src="https://mobiliar3d.com/js/mobiliar.widgets.min.js" defer />
+    </>
+  );
 }
