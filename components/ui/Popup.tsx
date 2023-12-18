@@ -180,7 +180,7 @@ export default function Popup({
               />
             </button>
           </div>
-          {bannerImage && (
+          {bannerImage && self.window.innerWidth >= 768 && (
             <div class="hidden md:block w-full h-full max-w-[25%] relative">
               <Image
                 src={bannerImage.image}
@@ -192,53 +192,49 @@ export default function Popup({
               />
             </div>
           )}
-          {success.value
-            ? (
-              <div class="flex items-center justify-center lg:text-xl text-lg font-univers-next-pro-bold leading-7 text-center font-bold">
-                obrigado!
-              </div>
-            )
-            : (
-              <>
-                <form
-                  class="flex items-center justify-center w-full h-[85%] form-control bg-white py-2 rounded-r-lg"
-                  onSubmit={handleSubmit}
+          <form
+            class="flex items-center justify-center w-full h-[85%] form-control bg-white py-2 rounded-r-lg"
+            onSubmit={handleSubmit}
+          >
+            <div class="max-w-[280px] text-center flex flex-col h-full gap-2 md:gap-0 justify-between">
+              <div
+                class="text-[21px] font-univers-next-pro-regular leading-[27px] text-start text-[#353535]"
+                dangerouslySetInnerHTML={{
+                  __html: text ||
+                    "cadastre-se e ganhe 5% off na sua primeira compra.",
+                }}
+              />
+
+              <div class="flex flex-col gap-2 w-full">
+                {success.value
+                  ? (
+                    <div class="flex items-center justify-center lg:text-xl text-lg font-univers-next-pro-bold leading-7 text-center font-bold">
+                      obrigado!
+                    </div>
+                  )
+                  : (
+                    { emailInput }
+                  )}
+
+                <button
+                  type="submit"
+                  class="px-2.5 h-9 w-full flex items-center justify-center text-sm leading-[14px] text-darkslategray bg-lightslategray"
+                  disabled={loading}
                 >
-                  <div class="max-w-[280px] text-center flex flex-col h-full gap-2 md:gap-0 justify-between">
-                    <div
-                      class="text-[21px] font-univers-next-pro-regular leading-[27px] text-start text-[#353535]"
-                      dangerouslySetInnerHTML={{
-                        __html: text ||
-                          "cadastre-se e ganhe 5% off na sua primeira compra.",
-                      }}
-                    />
+                  {form?.button?.label || "enviar"}
+                </button>
 
-                    <div class="flex flex-col gap-2 w-full">
-                      {emailInput}
+                <p class="text-xs text-start text-[#989797] pb-4 leading-[14px]">
+                  {description ||
+                    "a lumini utiliza o e-mail fornecido para enviar novidades e ofertas por e-mail. ao enviar, você confirma que leu e concorda com a política de privacidade."}
+                </p>
+              </div>
 
-                      <button
-                        type="submit"
-                        class="px-2.5 h-9 w-full flex items-center justify-center text-sm leading-[14px] text-darkslategray bg-lightslategray"
-                        disabled={loading}
-                      >
-                        {form?.button?.label || "enviar"}
-                      </button>
-
-                      <p class="text-xs text-start text-[#989797] pb-4 leading-[14px]">
-                        {description ||
-                          "a lumini utiliza o e-mail fornecido para enviar novidades e ofertas por e-mail. ao enviar, você confirma que leu e concorda com a política de privacidade."}
-                      </p>
-                    </div>
-
-                    <div class="flex flex-col text-xs text-start lg:min-w-[300px]">
-                      {details?.map((detail) => (
-                        <span class="w-full">{detail}</span>
-                      ))}
-                    </div>
-                  </div>
-                </form>
-              </>
-            )}
+              <div class="flex flex-col text-xs text-start lg:min-w-[300px]">
+                {details?.map((detail) => <span class="w-full">{detail}</span>)}
+              </div>
+            </div>
+          </form>
         </form>
         <form method="dialog" class="modal-backdrop">
           <button
