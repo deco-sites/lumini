@@ -1,5 +1,4 @@
 import Icon from "$store/components/ui/Icon.tsx";
-import Header from "$store/components/ui/SectionHeader.tsx";
 import Image from "apps/website/components/Image.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
@@ -13,19 +12,12 @@ export interface Props {
     description: string;
     link: string;
   }>;
-  title?: string;
-  description?: string;
-  layout?: {
-    headerAlignment?: "center" | "left";
-    headerfontSize?: "Normal" | "Large";
-  };
+  preload?: boolean;
 }
 
 function CategoriesShelf({
   categories,
-  title,
-  description,
-  layout,
+  preload = false,
 }: Props) {
   const id = useId();
 
@@ -35,15 +27,6 @@ function CategoriesShelf({
 
   return (
     <div class="w-full container pt-8 pb-8 flex flex-col gap-12 lg:gap-16 lg:pt-10 lg:pb-20">
-      {title || description && (
-            <Header
-              title={title || ""}
-              description={description || ""}
-              fontSize={layout?.headerfontSize || "Large"}
-              alignment={layout?.headerAlignment || "center"}
-            />
-          )}
-
       <div
         id={id}
         class="container max-w-[1200px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
@@ -59,7 +42,7 @@ function CategoriesShelf({
                   src={category.image}
                   width={180}
                   height={222}
-                  loading="eager"
+                  loading={preload ? "eager" : "lazy"}
                   alt={category.description}
                 />
               </a>
