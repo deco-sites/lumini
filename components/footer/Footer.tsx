@@ -11,6 +11,7 @@ import Social from "$store/components/footer/Social.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
+import { asset } from "$fresh/runtime.ts";
 
 export type Item = {
   label: string;
@@ -253,7 +254,7 @@ function Footer({
                     width={52}
                     height={20}
                     loading="lazy"
-                    src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/img/footer-02___b451dae0e36eb67702aada3e57fd45ed.png"
+                    src={asset("/image/VTEX.webp")}
                   />
                 </div>
 
@@ -264,7 +265,7 @@ function Footer({
                     width={68}
                     height={48}
                     loading="lazy"
-                    src="https://www.abracadabra.com.br/allfa.svg?__frsh_c=8082c87b3981777fbf3e38c25733c9112c11e5b8"
+                    src={asset("/image/allfa.svg")}
                   />
                 </div>
               </div>

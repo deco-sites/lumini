@@ -1,4 +1,5 @@
 import Icon from "$store/components/ui/Icon.tsx";
+import Image from "apps/website/components/Image.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface PaymentItem {
