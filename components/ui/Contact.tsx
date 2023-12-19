@@ -1,7 +1,7 @@
 export default function Contact() {
   return (
     <section class="w-full h-full flex items-center justify-center font-univers-next-pro-regular px-4 lg:p-0">
-      <div class="max-w-[1296px] w-full h-full flex flex-col items-center justify-between">
+      <div class="max-w-[1296px] container w-full h-full flex flex-col items-center justify-between">
         <div class="w-full h-full flex items-center justify-center my-14">
           <h1 class="text-[32px]">atendimento loja virtual</h1>
         </div>
