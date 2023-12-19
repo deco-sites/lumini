@@ -22,7 +22,7 @@ export default function CollectionSection({ title, images }: Props) {
   return (
     <section
       id={id}
-      class="w-full container max-w-[1230px] py-2 px-2 xl:px-0 flex flex-col gap-10 lg:mt-5"
+      class="w-full container max-w-[1230px] py-2 px-2 xl:px-0 flex flex-col gap-6 md:gap-10 lg:mt-5"
     >
       <div class="flex justify-between w-full">
         <h1 class="text-[21px] lg:text-[37px] lg:leading-[56px] text-darkslategray font-univers-next-pro-regular">

@@ -169,15 +169,15 @@ export default function Popup({
             <button
               onClick={() =>
                 setCookieOnCloseModal("closed", modalCloseExpiredDate)}
-              class="flex items-center justify-center gap-1.5 focus:outline-none text-base leading-[18px]"
+              class="flex items-center justify-center gap-0.5 focus:outline-none text-sm leading-[18px]"
               aria-label="Fechar"
             >
               <span class="hidden md:block">fechar</span>
               <Icon
                 id="XMark"
-                strokeWidth={2}
-                width={20}
-                height={20}
+                strokeWidth={1.5}
+                width={14}
+                height={14}
               />
             </button>
           </div>
@@ -233,7 +233,7 @@ export default function Popup({
                 </p>
               </div>
 
-              <div class="flex flex-col text-xs text-start lg:min-w-[300px]">
+              <div class="flex flex-col text-xs text-start min-w-[300px]">
                 {details?.map((detail) => <span class="w-full">{detail}</span>)}
               </div>
             </div>

@@ -21,7 +21,7 @@ export default function Awards({ title, awards, interval }: Props) {
 
   return (
     <section class="flex flex-col gap-6 w-full h-full px-4 lg:px-0 mt-5 mb-5 lg:mb-36 lg:mt-12">
-      <div class="container max-w-[1250px]">
+      <div class="lg:container lg:max-w-[1250px]">
         <h1 class="text-[32px]">{title}</h1>
       </div>
 

@@ -51,9 +51,9 @@ export default function CollectionSection({ title, images }: Props) {
           {images?.map((item, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-full sm:w-[32.3%] xl:w-[400px] h-full"
+              class="carousel-item w-full sm:w-[32.3%] xl:w-[400px]"
             >
-              <a href={item.link} class="w-full h-full">
+              <a href={item.link} class="w-full">
                 <Image
                   src={item.image}
                   width={item.width ?? 400}
@@ -62,7 +62,7 @@ export default function CollectionSection({ title, images }: Props) {
                   loading="lazy"
                 />
 
-                <div>
+                <div class="pt-0.5">
                   <p class="text-xs font-medium my-1">{item.title}</p>
                   <p class="text-xl font-extralight mb-1">{item.subTitle}</p>
                 </div>
