@@ -40,7 +40,7 @@ export default function ProductVariations(
             )}
           </p>
 
-          <ul class="flex flex-row items-center gap-2">
+          <ul class="flex flex-wrap w-full items-center gap-2 max-w-[500px]">
             {Object.entries(colorPossibilities).map(([value, links]) => (
               <li
                 key={value}

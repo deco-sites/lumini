@@ -74,10 +74,10 @@ const OurStores: FunctionalComponent<Props> = ({ title, cards }) => {
   };
 
   return (
-    <section class="w-full h-full flex items-center justify-center my-2 px-4 xl:px-0">
+    <section class="w-full h-full flex items-center justify-center my-4 px-4 xl:px-0">
       <div class="max-w-[1536px] h-full flex flex-col items-start justify-start mx-auto mt-4">
         <div class="flex flex-col md:flex-row items-center justify-between w-full h-full my-4">
-          <p class="text-xl lg:text-[40px] text-[#3f3f40] my-4 font-semibold">
+          <p class="text-xl lg:text-[40px] text-[#3f3f40] my-4 leading-[60px]">
             {title}
           </p>
 
@@ -94,21 +94,21 @@ const OurStores: FunctionalComponent<Props> = ({ title, cards }) => {
                   alt={card.image.descriptionImage}
                 />
               </div>
-              <div class="my-2">
+              <div class="my-2 py-2">
                 <span class="my-2 text-2xl leading-7 text-[#3f3f40] font-univers-next-pro-bold">
                   {card.city}
                 </span>
 
                 <p
                   dangerouslySetInnerHTML={{ __html: card.description ?? "" }}
-                  class="my-2"
+                  class="my-2 pt-2"
                 />
               </div>
               <a
                 href={card.linkButton}
-                class="w-full flex items-center group max-w-[150px]"
+                class="w-full flex items-center group max-w-[175px] h-[40px]"
               >
-                <div class="flex items-center bg-transparent group-hover:bg-[#1d1d1b] text-[14px] leading-[14px] text-[#1d1d1b] group-hover:text-white py-2 px-4 border border-[#1d1d1b] group-hover:border-transparent my-4">
+                <div class="flex items-center bg-transparent h-[40px] group-hover:bg-[#1d1d1b] text-[14px] leading-[14px] text-[#1d1d1b] group-hover:text-white py-2 px-4 border border-[#1d1d1b] group-hover:border-transparent my-4">
                   {card.titleButton ?? "ver no mapa"}
                   <Image
                     class="group-hover:mix-blend-lighten ml-3"

@@ -55,6 +55,7 @@ function Cart() {
         return {
           image: { src: item.imageUrl, alt: item.skuName },
           quantity: item.quantity,
+          url: item.detailUrl ?? "",
           name: categoryName || item.name,
           additionalProperty: matcherItem?.additionalProperty || [],
           price: {
