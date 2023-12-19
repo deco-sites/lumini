@@ -102,17 +102,22 @@ function ProductCard(
   const [firstImage] = images?.filter((item) => item.name === "ordenacao1") ??
     [];
   const [secondImage] = images?.filter((item) => item.name === "hover") ?? [];
-  const { listPrice, price, installments } = useOffer(offers);
+  const { listPrice, price: partialPrice, installments } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
   const priceVariations = isVariantOf?.hasVariant?.map((item) =>
     item?.offers?.highPrice
   );
-  const hasVariation = priceVariations?.every((item) => item === price);
+  const hasVariation = priceVariations?.every((item) => item === partialPrice);
+  const validPrices: number[] = (priceVariations ?? [])?.filter((
+    price,
+  ): price is number => typeof price === "number");
+  const lowestPrice = validPrices.length > 0 ? Math.min(...validPrices) : null;
+  const price = lowestPrice ?? partialPrice;
 
   const discountPercentage = Math.round(
-    ((listPrice! - price!) / listPrice!) * 100,
+    ((listPrice! - partialPrice!) / listPrice!) * 100,
   );
 
   const l = layout;
@@ -205,7 +210,7 @@ function ProductCard(
             />
           )}
         </div>
-        {listPrice && price && listPrice > price && (
+        {listPrice && partialPrice && listPrice > partialPrice && (
           <div
             style={{ color: flagTextColor, background: flagBackgroundColor }}
             class="z-10 absolute top-0 right-0 flex py-1.5 px-2 items-center justify-center w-10 h-5 font-univers-next-pro-light text-xs"
