@@ -15,7 +15,7 @@ export default function SectionVideo(
   { link, width, height, description }: Props,
 ) {
   return (
-    <section class="w-full h-full flex items-center justify-center mx-auto">
+    <section class="w-full h-full flex items-center justify-center mx-auto px-4 lg:px-0">
       <div class="max-w-[1250px] w-full h-full">
         <Video
           width={width || 900}
