@@ -404,7 +404,8 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 }
 
 function ProductDetails(
-  { page, layout, flagTextColor, flagBackgroundColor }: Props,
+  { page, layout, flagTextColor = "#fff", flagBackgroundColor = "#1d1d1b" }:
+    Props,
 ) {
   if (!page || !page.product) return <NotFound />;
 

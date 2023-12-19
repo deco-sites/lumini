@@ -1,5 +1,5 @@
 import { Signal, useSignal } from "@preact/signals";
-import { useCallback } from "preact/hooks";
+import { useCallback, useEffect } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
@@ -94,7 +94,30 @@ function ShippingSimulation({ items }: Props) {
     } finally {
       loading.value = false;
     }
-  }, []);
+  }, [items]);
+
+  useEffect(() => {
+    async function simulateShipping() {
+      const definitivePostalCode = postalCode.value.replace("-", "");
+
+      if (definitivePostalCode.length !== 8) {
+        return;
+      }
+
+      try {
+        loading.value = true;
+        simulateResult.value = await simulate({
+          items: items,
+          postalCode: definitivePostalCode,
+          country: cart.value?.storePreferencesData.countryCode || "BRA",
+        });
+      } finally {
+        loading.value = false;
+      }
+    }
+
+    simulateShipping();
+  }, [items]);
 
   return (
     <div class="flex flex-col gap-2">
