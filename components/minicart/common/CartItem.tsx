@@ -12,6 +12,7 @@ export interface Item {
     src: string;
     alt: string;
   };
+  url: string;
   name: string;
   additionalProperty?: PropertyValue[];
   quantity: number;
@@ -70,18 +71,22 @@ function CartItem(
         gridTemplateColumns: "auto 1fr",
       }}
     >
-      <Image
-        src={image?.src.replace("55-55", "72-72")}
-        alt={image?.alt}
-        style={{ aspectRatio: "1" }}
-        width={72}
-        height={72}
-      />
+      <a href={item.url} aria-label={`go to ${item}`}>
+        <Image
+          src={image?.src.replace("55-55", "72-72")}
+          alt={image?.alt}
+          style={{ aspectRatio: "1" }}
+          width={72}
+          height={72}
+        />
+      </a>
 
       <div class="flex flex-col">
         <div class="flex justify-between items-start">
           <div class="flex flex-col gap-0.5">
-            <span class="lowercase text-[#353535]">{name}</span>
+            <a href={item.url} aria-label={`go to ${item}`}>
+              <span class="lowercase text-[#353535]">{name}</span>
+            </a>
 
             {additionalProperty?.map((item) => (
               <div class="flex items-center justify-start text-sm text-[#353535] lowercase">
@@ -96,12 +101,12 @@ function CartItem(
             </div>
           </div>
 
-          <div class="flex flex-col gap-2 items-end">
+          <div class="flex flex-col gap-3 items-end">
             <Button
               aria-label="remove item"
               disabled={loading || isGift}
               loading={loading}
-              class="btn-ghost btn-square hover:bg-transparent"
+              hasBtn={false}
               onClick={withLoading(async () => {
                 const analyticsItem = itemToAnalyticsItem(index);
 
