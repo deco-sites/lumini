@@ -49,82 +49,61 @@ export default function Contact() {
               <button type="submit" class="text-white bg-[#f5be32f5] hover:bg-[#ffcb49] hover:ring-2 hover:ring-[#f5be32] font-medium text-sm w-full sm:w-auto px-28 py-2.5 text-center">enviar</button>
             </div> 
           </form>
-          <div class="max-w-sm h-full flex flex-col items-start justify-start gap-4 text-sm mb-2 lg:mb-0">
-            <div>
-              <p class="text-base font-bold">
-                  contatos
-              </p>
-            </div>
-            <div>
-              <p>
-                loja virtual
-              </p>
-              <p>
-                segunda à sexta das 9h30 às 18h
-              </p>
-              <p>
-                +55 11 3437 5582
-              </p>
-              <p>
-                lojavirtual@lumini.com.br
-              </p>
-          </div>
-            <div>
-              <p>
-                showroom são paulo
-              </p>
-              <p>
-                al gabriel monteiro da silva, 1441
-              </p>
-              <p>
-                +55 11 3898 0222
-              </p>
-              <p>
-                lojasp@lumini.com.br
-              </p>
-            </div>
-            <div>
-              <p>
-                showroom rio de janeiro
-              </p>
-              <p>
-                casa shopping
-              </p>
-              <p>
-                +55 21 3325 4959
-              </p>
-              <p>
-                lojario@lumini.com.br
-              </p>
-            </div>
-            <div>
-              <p>
-                showroom campinas
-              </p>
-              <p>
-                rua américo brasiliense, 45
-              </p>
-              <p>
-                +55 19 3251 6362
-              </p>
-              <p>
-                lojacampinas@lumini.com.br  
-              </p>
-            </div>
-            <div>
-              <p>
-                corporativo são paulo
-              </p>
-              <p>
-                +55 11 4780 9922
-              </p>
-              <p>
-                +55 11 3437 5555
-              </p>
-              <p>
-                corporativosp@lumini.com.br
-              </p>
-            </div>
+            <div class="flex flex-col lg:flex-row mb-16">
+              <div class="flex flex-col ">
+                <div class="flex items-center justify-center gap-2">
+                  <div class="flex items-center justify-center">
+                    <img
+                      src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/phone___a27e116138fc7df681c54f5ca091ae86.svg"
+                      width={24}
+                      height={24}
+                      alt="image"
+                    />
+                  </div>
+                  <div class="flex flex-col">
+                    <p class="text-base">(011) 3437-5582</p>
+                    <p class="text-xs">de seg a sex das 09h ás 18h</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-center gap-2 mt-4">
+                  <div class="flex items-center justify-center">
+                    <img
+                      src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/whatsapp___062a7a168ddac7146ac16e2f0087a3aa.png"
+                      width={24}
+                      height={24}
+                      alt="image"
+                    />
+                  </div>
+                  <div class="flex flex-col">
+                    <p class="text-base">(011) 97387-0784</p>
+                    <p class="text-xs">de seg a sex das 09h ás 18h</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-[25px] h-[25px] md:w-[50px] md:h-[50px] border-b md:border-b-0 md:border-r border-solid border-dark-gray lg:mt-7 ml-[100px] lg:ml-0 mb-[0px] lg:mb-0">
+              </div>
+
+              <div class="flex flex-col">
+                <div class="flex items-center justify-center gap-2 mt-10 md:ml-10">
+                  <div class="flex items-center justify-center ">
+                    <img
+                      src="https://tezexb.vtexassets.com/assets/vtex/assets-builder/tezexb.lumini-store-theme/1.9.3/svg/email___e92d7ab101986769d3f2c421bba5c0c5.svg"
+                      width={24}
+                      height={24}
+                      alt="image"
+                    />
+                  </div>
+                  <div class="flex flex-col">
+                    <p class="text-base">
+                      <a href="mailto:lojavirtual@lumini.com.br">
+                        lojavirtual@lumini.com.br
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
       </div>
