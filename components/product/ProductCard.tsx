@@ -272,7 +272,7 @@ function ProductCard(
         </figcaption>
       </figure>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col py-2 gap-2">
+      <div class="flex-auto flex flex-col py-2 gap-1 md:min-h-[96px]">
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
@@ -312,7 +312,7 @@ function ProductCard(
         {l?.hide?.allPrices
           ? ""
           : (
-            <div class="flex flex-col gap-2 font-univers-next-pro-regular">
+            <div class="flex flex-col font-univers-next-pro-regular">
               <div
                 class={`flex flex-col w-full gap-0 ${
                   l?.basics?.oldPriceSize === "Normal"
@@ -326,29 +326,24 @@ function ProductCard(
                       ? `justify-between ${
                         isGridColsTwo ? "flex-col lg:flex-row" : "flex-row"
                       }`
-                      : "flex-col justify-center"
+                      : "flex-col justify-start"
                   }`}
                 >
-                  {
-                    /* {isSearchbar && (
-                    <p
-                      class={`flex items-center text-center justify-center gap-0.5 text-xs sm:text-sm text-base-300`}
-                    >
-                      <div class="flex items-center gap-0.5">
-                        <span>de</span>
-
-                        <span class="line-through">
+                  <div class="flex flex-col">
+                    {!isSearchbar && !hasVariation && discountPercentage > 0 &&
+                      (
+                        <span class="line-through text-xs sm:text-sm leading-4 text-[#a8a8a8]">
                           {formatPrice(listPrice, offers?.priceCurrency)}
                         </span>
-                      </div>
-                    </p>
-                  )} */
-                  }
-                  <span class="text-xs sm:text-base text-[#353535] leading-[18px]">
-                    {!isSearchbar && !hasVariation && "a partir de "}
-                    {/* {isSearchbar && "para"}{"  "} */}
-                    {formatPrice(price, offers?.priceCurrency)}
-                  </span>
+                      )}
+
+                    <span class="text-xs sm:text-base text-[#353535] leading-[18px]">
+                      {!isSearchbar && !hasVariation && "a partir de "}
+                      {/* {isSearchbar && "para"}{"  "} */}
+                      {formatPrice(price, offers?.priceCurrency)}
+                    </span>
+                  </div>
+
                   {!isSearchbar && (
                     <span class="text-[#777] leading-[18px] text-base font-univers-next-pro-light">
                       {productCategory}

@@ -153,7 +153,7 @@ function Searchbar({
           {notFound
             ? (
               <span
-                class="font-bold uppercase py-2"
+                class="font-bold lowercase py-2"
                 role="heading"
                 aria-level={3}
               >
@@ -164,11 +164,11 @@ function Searchbar({
               <>
                 <div class="flex flex-col gap-6 pb-2">
                   <span
-                    class="font-bold uppercase"
+                    class="font-bold lowercase"
                     role="heading"
                     aria-level={3}
                   >
-                    Termos mais buscados
+                    termos mais buscados
                   </span>
                   <ul id="search-suggestion" class="flex flex-col gap-5">
                     {searches?.map(({ term }) => (
@@ -200,7 +200,7 @@ function Searchbar({
                     : "hidden"}
                 >
                   <span
-                    class="font-bold uppercase"
+                    class="font-bold lowercase"
                     role="heading"
                     aria-level={3}
                   >
