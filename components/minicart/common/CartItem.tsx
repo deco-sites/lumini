@@ -71,20 +71,21 @@ function CartItem(
         gridTemplateColumns: "auto 1fr",
       }}
     >
-      <a href={item.url} aria-label={`go to ${item}`}>
+      <a href={item.url} aria-label={`go to ${name}`}>
         <Image
-          src={image?.src.replace("55-55", "72-72")}
+          src={image?.src.replace(/-(55)-55/g, "-72-72")}
           alt={image?.alt}
           style={{ aspectRatio: "1" }}
           width={72}
           height={72}
+          sizes="50vw"
         />
       </a>
 
       <div class="flex flex-col">
         <div class="flex justify-between items-start">
           <div class="flex flex-col gap-0.5">
-            <a href={item.url} aria-label={`go to ${item}`}>
+            <a href={item.url} aria-label={`go to ${name}`}>
               <span class="lowercase text-[#353535]">{name}</span>
             </a>
 

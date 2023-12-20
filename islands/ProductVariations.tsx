@@ -34,11 +34,13 @@ export default function ProductVariations(
               {filteredVariations["cor"] || filteredVariations["COR"]}
             </span>
             {isBuyButtonClicked.value &&
-              (!filteredVariations["cor"] || !filteredVariations["COR"]) && (
-              <span class="text-[18px] leading-[21px] text-[#ff4c4c] font-medium">
-                selecione uma opção
-              </span>
-            )}
+              ((possibilities["cor"] && !filteredVariations["cor"]) ||
+                (possibilities["COR"] && !filteredVariations["COR"])) &&
+              (
+                <span class="text-[18px] leading-[21px] text-[#ff4c4c] font-medium">
+                  selecione uma opção
+                </span>
+              )}
           </p>
 
           <ul class="flex flex-wrap w-full items-center gap-2 max-w-[500px]">
