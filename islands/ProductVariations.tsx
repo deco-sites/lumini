@@ -31,9 +31,10 @@ export default function ProductVariations(
           >
             cor:{" "}
             <span className="text-lightslategray lowercase leading-[21px]">
-              {filteredVariations["cor"]}
+              {filteredVariations["cor"] || filteredVariations["COR"]}
             </span>
-            {isBuyButtonClicked.value && !filteredVariations["cor"] && (
+            {isBuyButtonClicked.value &&
+              (!filteredVariations["cor"] || !filteredVariations["COR"]) && (
               <span class="text-[18px] leading-[21px] text-[#ff4c4c] font-medium">
                 selecione uma opção
               </span>
@@ -45,7 +46,8 @@ export default function ProductVariations(
               <li
                 key={value}
                 class={`${
-                  filteredVariations["cor"] === value && "border border-black"
+                  (filteredVariations["cor"] || filteredVariations["COR"]) ===
+                    value && "border border-black"
                 } w-10 h-10 cursor-pointer hover:border hover:border-black p-0.5`}
               >
                 {links.length > 0 && (
@@ -54,7 +56,7 @@ export default function ProductVariations(
                     f-client-nav
                     onClick={() =>
                       setFilteredVariations((prev) => ({
-                        "cor": value,
+                        [possibilities["cor"] ? "cor" : "COR"]: value,
                       }))}
                   >
                     <img
