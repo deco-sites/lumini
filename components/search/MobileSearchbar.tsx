@@ -162,38 +162,6 @@ function Searchbar({
             )
             : (
               <>
-                <div class="flex flex-col gap-6 pb-2">
-                  <span
-                    class="font-bold lowercase"
-                    role="heading"
-                    aria-level={3}
-                  >
-                    termos mais buscados
-                  </span>
-                  <ul id="search-suggestion" class="flex flex-col gap-5">
-                    {searches?.map(({ term }) => (
-                      <li class="flex items-center gap-2 hover:lg:scale-105 duration-100 transition">
-                        <a
-                          href={`/s?q=${term}`}
-                          class="flex gap-4 items-center"
-                        >
-                          {
-                            /* <span>
-                        <Icon
-                          id="MagnifyingGlass"
-                          size={24}
-                          strokeWidth={0.01}
-                        />
-                      </span> */
-                          }
-                          <span class="text-sm">
-                            {term}
-                          </span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
                 <div
                   class={hasProducts
                     ? "flex flex-col pt-6 pb-1 md:pt-0 gap-6"
