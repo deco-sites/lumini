@@ -41,7 +41,7 @@ function Sort({ sortOptions }: Props) {
       name="sort"
       aria-label="sort options"
       onInput={applySort}
-      class="w-[120px] h-[36px] rounded-[2px] text-base-content cursor-pointer outline-none lowercase"
+      class="w-[120px] h-[36px] rounded-[2px] text-base-content cursor-pointer outline-none lowercase bg-transparent"
     >
       <option value="" hidden class="text-[25px]">
         Ordenar por

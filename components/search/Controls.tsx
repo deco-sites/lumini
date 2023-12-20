@@ -68,13 +68,13 @@ function SearchControls(
             </button>
           )}
 
-          <p class="flex items-center gap-1 text-[16px]">
+          <p class="flex items-center gap-1 text-sm md:text-[16px]">
             <span>produtos encontrados:</span>
-            <span class="md:text-[18px]">{productsQuantity}</span>
+            <span class="text-sm md:text-[18px]">{productsQuantity}</span>
           </p>
         </div>
 
-        <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-[4rem] lg:gap-[5.5rem] sm:border-none">
+        <div class="flex flex-row items-center justify-between sm:gap-[4rem] lg:gap-[5.5rem]">
           <div class="flex lg:hidden items-center gap-4">
             <a
               aria-label="change elements to grid position"
@@ -85,7 +85,7 @@ function SearchControls(
                 <div
                   class={`${
                     isUniqueModeActive && "bg-black"
-                  } border border-black w-5 h-5`}
+                  } border border-black w-4 h-4`}
                 />
               ))}
             </a>
@@ -99,7 +99,7 @@ function SearchControls(
                 <div
                   class={`${
                     !isUniqueModeActive && "bg-black"
-                  } border border-black w-5 h-5`}
+                  } border border-black w-4 h-4`}
                 />
               ))}
             </a>
