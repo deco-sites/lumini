@@ -95,10 +95,21 @@ function AddToCartButton(props: Props) {
           onChange={setQuantity}
           isPdp
         />
-        <Button
-          onAddItem={onAddItem}
-          {...props}
-        />
+
+        <div class="flex w-full h-full relative">
+          {!filteredProducts ||
+            (filteredProducts && filteredProducts.length !== 1) &&
+              isBuyButtonClicked.value && (
+                <div class="z-[1] menu p-2 shadow bg-white rounded-[2px] w-full md:w-[238px] absolute -translate-y-16">
+                  por favor, selecione uma opção de cada variação.
+                </div>
+              )}
+
+          <Button
+            onAddItem={onAddItem}
+            {...props}
+          />
+        </div>
       </div>
 
       <div class="flex flex-col w-full border-b border-gainsboro pb-4">
