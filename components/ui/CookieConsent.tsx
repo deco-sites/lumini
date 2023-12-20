@@ -102,9 +102,9 @@ function CookieConsent(props: Props) {
           
         `}
         >
-          <div class="flex flex-col lg:flex-row items-center justify-center container mx-auto">
+          <div class="flex flex-col lg:flex-row items-center justify-center container mx-auto w-full">
             <div
-              class={`flex-auto flex flex-col gap-4 ${
+              class={`flex-auto flex flex-col gap-4 lg:w-[50%] ${
                 !layout?.content || layout?.content === "Tiled"
                   ? "lg:gap-2"
                   : ""
