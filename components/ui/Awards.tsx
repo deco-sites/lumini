@@ -20,7 +20,7 @@ export default function Awards({ title, awards, interval }: Props) {
   const id = useId();
 
   return (
-    <section class="flex flex-col gap-6 w-full h-full px-4 lg:px-0 mt-5 mb-5 lg:mb-36 lg:mt-12">
+    <section class="flex flex-col gap-6 w-full h-full px-4 lg:px-0 mt-5 mb-12 lg:mb-36 lg:mt-12">
       <div class="lg:container lg:max-w-[1250px]">
         <h1 class="text-[32px]">{title}</h1>
       </div>
@@ -30,9 +30,9 @@ export default function Awards({ title, awards, interval }: Props) {
           {awards?.map((award, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[215px] h-[116px]"
+              class="carousel-item w-[180px] md:w-[215px] h-[116px] last:pr-2"
             >
-              <div class="flex items-center justify-center w-full h-full py-1.5 shadow-xl rounded-md">
+              <div class="flex items-center justify-center w-full h-full py-1.5 award-shadow rounded-md">
                 <img
                   src={award.image}
                   width={award.width ?? 127}
