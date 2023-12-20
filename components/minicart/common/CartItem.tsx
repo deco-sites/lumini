@@ -97,7 +97,9 @@ function CartItem(
 
             <div class="flex items-center justify-between gap-2 w-full pt-0.5">
               <span class="text-sm text-[#353535]">
-                {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
+                {isGift
+                  ? "Grátis"
+                  : formatPrice(list * quantity, currency, locale)}
               </span>
             </div>
           </div>
