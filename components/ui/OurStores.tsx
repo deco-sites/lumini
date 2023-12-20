@@ -30,7 +30,7 @@ const Filter: FunctionalComponent<FilterProps> = (
     <select
       value={selectedCity || "filtrar por"}
       onChange={handleChange}
-      class="select select-bordered w-full max-w-xs"
+      class="select select-bordered w-full md:max-w-xs"
     >
       <option disabled value="filtrar por">filtrar por</option>
       {uniqueCities.map((item) => <option key={item}>{item}</option>)}
@@ -74,10 +74,10 @@ const OurStores: FunctionalComponent<Props> = ({ title, cards }) => {
   };
 
   return (
-    <section class="w-full h-full flex items-center justify-center my-4 px-4 xl:px-0">
-      <div class="max-w-[1536px] h-full flex flex-col items-start justify-start mx-auto mt-4">
-        <div class="flex flex-col md:flex-row items-center justify-between w-full h-full my-4">
-          <p class="text-xl lg:text-[40px] text-[#3f3f40] my-4 leading-[60px]">
+    <section class="w-full h-full flex items-center justify-center md:my-4 px-4 xl:px-0">
+      <div class="max-w-[1536px] h-full flex flex-col items-start justify-start mx-auto md:mt-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between w-full h-full my-4">
+          <p class="text-[18px] md:text-xl lg:text-[40px] text-[#3f3f40] my-4 leading-[60px]">
             {title}
           </p>
 
