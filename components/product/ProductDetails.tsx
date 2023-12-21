@@ -340,7 +340,11 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                 }`}
               >
                 {images.map((img, index) => (
-                  <li class="min-w-[63px] sm:min-w-[130px]">
+                  <li
+                    class={`${
+                      images.length >= 5 ? "min-w-[17%]" : "min-w-[63px]"
+                    } sm:min-w-[130px]`}
+                  >
                     <Slider.Dot index={index}>
                       <Image
                         style={{ aspectRatio: ASPECT_RATIO }}
