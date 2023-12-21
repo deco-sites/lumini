@@ -194,12 +194,12 @@ export default function Popup({
             </div>
           )}
           <form
-            class="flex items-center justify-center w-full h-[85%] form-control bg-white py-2 rounded-r-lg"
+            class="flex items-center justify-center w-full h-[95%] form-control bg-white md:py-2 rounded-r-lg"
             onSubmit={handleSubmit}
           >
             <div class="max-w-[280px] text-center flex flex-col h-full gap-2 md:gap-0 justify-between">
               <div
-                class="text-[21px] font-univers-next-pro-regular leading-[27px] text-start text-[#353535]"
+                class="text-[21px] font-univers-next-pro-regular leading-[27px] text-start text-[#353535] md:mt-10"
                 dangerouslySetInnerHTML={{
                   __html: text ||
                     "cadastre-se e ganhe 5% off na sua primeira compra.",
