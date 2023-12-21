@@ -36,7 +36,7 @@ export default function SuggestionHero({
 }: Props) {
   return (
     <section class=" flex flex-col items-center justify-center sm:flex-row w-full h-full lg:w-[85%] ml-auto font-univers-next-pro-light font-light my-4 md:my-8 gap-6 sm:gap-12">
-      <div class="flex flex-col gap-2.5 items-start justify-center sm:max-w-[50%] lg:max-w-[620px] px-2">
+      <div class="flex flex-col gap-2.5 items-start justify-center sm:max-w-[50%] lg:max-w-[620px] pt-6 pb-2 lg:pt-2">
         <span class="text-sm leading-[18px] text-[#777] pt-3 md:pt-0">
           {subtitle ?? "conheça"}
         </span>
