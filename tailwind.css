@@ -88,6 +88,10 @@ mobiliar-viewer-ar {
     box-shadow: 0 0 10px rgba(0,0,0,.15);
   }
 
+  .login-popup-shadow {
+    box-shadow: 0 2px 5px 1px rgba(0,0,0,.2);
+  }
+
   .scrollbar::-webkit-scrollbar {
     width: 4px;
     height: 4px;

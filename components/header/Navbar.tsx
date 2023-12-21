@@ -11,6 +11,7 @@ import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
+import LoginElement from "$store/islands/LoginElement.tsx";
 import { navbarHeight } from "./constants.ts";
 
 function Navbar({ items, searchbar, logo }: {
@@ -92,13 +93,9 @@ function Navbar({ items, searchbar, logo }: {
                 fill="none"
               />
             </a>
-            <a
-              class="btn btn-circle btn-sm btn-ghost hover:bg-transparent"
-              href="/login"
-              aria-label="Log in"
-            >
-              <Icon id="User" size={24} strokeWidth={1} />
-            </a>
+
+            <LoginElement />
+
             {platform === "vtex" && <CartButtonVTEX />}
             {platform === "vnda" && <CartButtonVDNA />}
             {platform === "wake" && <CartButtonWake />}
