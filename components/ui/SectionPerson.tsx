@@ -31,8 +31,8 @@ export default function SectionPerson(
               alt={imagePerson.description}
             />
           </div>
-          <div class="max-w-[593px] flex flex-col gap-2 md:ml-16 px-4 lg:px-0 pt-6 lg:pt-0">
-            <p class="text-[32px] lg:text-4xl font-univers-next-pro-regular text-black leading-[48px]">
+          <div class="max-w-[593px] w-full flex flex-col gap-2 md:ml-16 px-4 lg:px-0 pt-6 lg:pt-0">
+            <p class="text-start text-[32px] font-univers-next-pro-regular text-black leading-[48px]">
               {name}
             </p>
             <p
