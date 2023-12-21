@@ -30,7 +30,7 @@ export default function Awards({ title, awards, interval }: Props) {
           {awards?.map((award, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[180px] md:w-[215px] h-[116px] last:pr-2"
+              class="carousel-item w-[134px] h-[64px] md:w-[215px] md:h-[116px] last:pr-2"
             >
               <div class="flex items-center justify-center w-full h-full py-1.5 award-shadow rounded-md">
                 <img
@@ -38,6 +38,7 @@ export default function Awards({ title, awards, interval }: Props) {
                   width={award.width ?? 127}
                   height={award.height ?? 86}
                   loading="lazy"
+                  class="w-[50%] md:w-auto"
                   alt={award.description}
                 />
               </div>
