@@ -1,13 +1,12 @@
-import type { Platform } from "$store/apps/site.ts";
 import { SendEventOnClick } from "$store/components/Analytics.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
-import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
+import type { Platform } from "$store/apps/site.ts";
+import type { Product } from "apps/commerce/types.ts";
 
 export interface Layout {
   basics?: {
@@ -106,19 +105,44 @@ function ProductCard(
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
+  function calculateMaxPercentageDifference(
+    validPrices: number[],
+    validListPrices: number[],
+  ) {
+    return validPrices.length !== validListPrices.length
+      ? 0
+      : Math.max(...validPrices.map((price, index) =>
+        Math.abs((validListPrices[index] - price) / validListPrices[index]) *
+        100
+      ));
+  }
+
   const priceVariations = isVariantOf?.hasVariant?.map((item) =>
     item?.offers?.highPrice
   );
   const hasVariation = priceVariations?.every((item) => item === partialPrice);
-  const validPrices: number[] = (priceVariations ?? [])?.filter((
-    price,
-  ): price is number => typeof price === "number");
+
+  const validPrices = (priceVariations ?? []).filter((price): price is number =>
+    typeof price === "number"
+  );
   const lowestPrice = validPrices.length > 0 ? Math.min(...validPrices) : null;
   const price = lowestPrice ?? partialPrice;
 
-  const discountPercentage = Math.round(
-    ((listPrice! - partialPrice!) / listPrice!) * 100,
+  const listPriceVariations = isVariantOf?.hasVariant?.map((item) =>
+    item?.offers?.offers?.[0]?.priceSpecification?.find((price) =>
+      price.priceType === "https://schema.org/ListPrice"
+    )?.price
   );
+
+  const validListPrices = (listPriceVariations ?? []).filter((
+    price,
+  ): price is number => typeof price === "number");
+
+  const discount = calculateMaxPercentageDifference(
+    validPrices,
+    validListPrices,
+  );
+  const discountPercentage = Math.round(discount);
 
   const l = layout;
   const align =
@@ -210,7 +234,7 @@ function ProductCard(
             />
           )}
         </div>
-        {listPrice && partialPrice && listPrice > partialPrice && (
+        {discountPercentage > 0 && (
           <div
             style={{ color: flagTextColor, background: flagBackgroundColor }}
             class="z-10 absolute top-0 right-0 flex py-1.5 px-2 items-center justify-center w-10 h-5 font-univers-next-pro-light text-xs"
@@ -331,6 +355,7 @@ function ProductCard(
                 >
                   <div class="flex flex-col">
                     {!isSearchbar && !hasVariation && discountPercentage > 0 &&
+                      listPrice !== price &&
                       (
                         <span class="line-through text-xs sm:text-sm leading-4 text-[#a8a8a8]">
                           {formatPrice(listPrice, offers?.priceCurrency)}

@@ -9,13 +9,11 @@ import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
 import AddToCartButtonLinx from "$store/islands/AddToCartButton/linx.tsx";
 import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
-import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { ProductDetailsPage, ProductLeaf } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
@@ -24,6 +22,7 @@ import ProductPrice from "./ProductPrice.tsx";
 import ShareButton from "$store/components/ui/ShareButton.tsx";
 import AugmentedReality from "$store/components/product/AugmentedReality.tsx";
 import ProductImage from "$store/islands/ProductImage.tsx";
+import type { ProductDetailsPage, ProductLeaf } from "apps/commerce/types.ts";
 
 export interface Props {
   /** @title Integration */

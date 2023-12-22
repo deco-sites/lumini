@@ -2,9 +2,8 @@ import { useCart } from "apps/vtex/hooks/useCart.ts";
 import Button, { Props as BtnProps } from "./common.tsx";
 import QuantitySelector from "$store/components/ui/QuantitySelector.tsx";
 import { useState } from "preact/compat";
-import type { Product, ProductLeaf } from "apps/commerce/types.ts";
+import type { ProductLeaf } from "apps/commerce/types.ts";
 import { useUI } from "$store/sdk/useUI.ts";
-import { useOffer } from "$store/sdk/useOffer.ts";
 import ShippingSimulation from "$store/components/ui/ShippingSimulation.tsx";
 
 export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
@@ -14,75 +13,46 @@ export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
 
 function AddToCartButton(props: Props) {
   const { variations, isBuyButtonClicked, displayCart } = useUI();
-
-  const desiredProperties = {
-    ...variations.value,
-  };
-
-  const filteredProducts = props?.products?.filter(
-    (product) => {
-      const additionalProperties = product.additionalProperty || [];
-
-      return Object.entries(desiredProperties).every(
-        ([propertyName, propertyValue]) => {
-          if (propertyName in desiredProperties) {
-            const matchingProperty = additionalProperties.find(
-              (property) =>
-                property.name === propertyName &&
-                property.value === propertyValue,
-            );
-
-            return !!matchingProperty;
-          }
-
-          return false;
-        },
-      );
-    },
-  );
-
-  function getAvailability(filteredProduct: ProductLeaf | undefined) {
-    if (!filteredProduct) return;
-
-    const additionalProperties = filteredProduct.additionalProperty || [];
-    const inventoryLevel = filteredProduct.offers?.offers[0].inventoryLevel
-      .value;
-
-    if (inventoryLevel == 1000000) return false;
-
-    if (
-      additionalProperties.find((item) => item.value === "pronta-entrega") &&
-      inventoryLevel != 1000000
-    ) {
-      return true;
-    }
-
-    return false;
-  }
-
-  const isAvailable = filteredProducts && filteredProducts.length === 1 &&
-    getAvailability(filteredProducts[0]);
-
+  const { addItems } = useCart();
   const [quantity, setQuantity] = useState(1);
 
-  const { addItems } = useCart();
+  const desiredProperties = { ...variations.value };
+  const filteredProducts = props?.products?.filter(filterProducts);
+
+  function filterProducts(product: ProductLeaf) {
+    const additionalProperties = product.additionalProperty || [];
+    return Object.entries(desiredProperties).every(([propName, propValue]) =>
+      additionalProperties.some((prop) =>
+        prop.name === propName && prop.value === propValue
+      )
+    );
+  }
+
+  function getAvailability(filteredProduct: ProductLeaf | undefined) {
+    if (!filteredProduct) return false;
+
+    const { additionalProperty, offers } = filteredProduct;
+    const inventoryLevel = offers?.offers[0]?.inventoryLevel?.value;
+
+    return inventoryLevel !== 1000000 &&
+      additionalProperty?.some((item) => item.value === "pronta-entrega");
+  }
+
+  const isAvailable = filteredProducts?.length === 1 &&
+    getAvailability(filteredProducts[0]);
 
   function onAddItem() {
-    if (
-      !filteredProducts || (filteredProducts && filteredProducts.length !== 1)
-    ) {
+    if (!filteredProducts || filteredProducts.length !== 1) {
       isBuyButtonClicked.value = true;
-
-      return;
     } else {
+      const [product] = filteredProducts;
       addItems({
         orderItems: [{
-          id: (filteredProducts && filteredProducts[0]!.productID) || "0",
+          id: product?.productID || "0",
           seller: props.seller,
-          quantity: quantity,
+          quantity,
         }],
       });
-
       displayCart.value = true;
     }
   }
@@ -90,25 +60,17 @@ function AddToCartButton(props: Props) {
   return (
     <>
       <div class="flex w-full h-full gap-4 lg:gap-10">
-        <QuantitySelector
-          quantity={quantity}
-          onChange={setQuantity}
-          isPdp
-        />
+        <QuantitySelector quantity={quantity} onChange={setQuantity} isPdp />
 
         <div class="flex w-full h-full relative">
-          {!filteredProducts ||
-            (filteredProducts && filteredProducts.length !== 1) &&
-              isBuyButtonClicked.value && (
-                <div class="z-[1] menu p-2 shadow bg-white rounded-[2px] w-full md:w-[238px] absolute -translate-y-16">
-                  por favor, selecione uma opção de cada variação.
-                </div>
-              )}
+          {(!filteredProducts || filteredProducts.length !== 1) &&
+            isBuyButtonClicked.value && (
+            <div class="z-[1] menu p-2 shadow bg-white rounded-[2px] w-full md:w-[238px] absolute -translate-y-16">
+              por favor, selecione uma opção de cada variação.
+            </div>
+          )}
 
-          <Button
-            onAddItem={onAddItem}
-            {...props}
-          />
+          <Button onAddItem={onAddItem} {...props} />
         </div>
       </div>
 
@@ -118,8 +80,8 @@ function AddToCartButton(props: Props) {
           produto.
         </span>
 
-        {filteredProducts && filteredProducts.length === 1 && (
-          <div class="text-xl text-[#585959] font-univers-next-pro-regular my-4">
+        {filteredProducts?.length === 1 && (
+          <div class="text-xl text-[#585959] font-univers-next-pro-regular my-4 lowercase">
             <span class="leading-[23px]">
               {isAvailable
                 ? "pronta entrega"
@@ -133,7 +95,7 @@ function AddToCartButton(props: Props) {
       <div class="mt-8">
         <ShippingSimulation
           items={[{
-            id: Number(filteredProducts && filteredProducts[0]?.sku),
+            id: Number(filteredProducts?.[0]?.sku),
             quantity,
             seller: props.seller,
           }]}

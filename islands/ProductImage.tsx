@@ -13,8 +13,6 @@ const WIDTH = 709;
 const HEIGHT = 709;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
-// ...
-
 const ProductImage: FunctionComponent<{ images: ImageProps[] }> = (
   { images },
 ) => {
