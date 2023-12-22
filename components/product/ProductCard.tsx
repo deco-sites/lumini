@@ -125,6 +125,7 @@ function ProductCard(
   const validPrices = (priceVariations ?? []).filter((price): price is number =>
     typeof price === "number"
   );
+
   const lowestPrice = validPrices.length > 0 ? Math.min(...validPrices) : null;
   const price = lowestPrice ?? partialPrice;
 
