@@ -95,7 +95,7 @@ const OurStores: FunctionalComponent<Props> = ({ title, cards }) => {
                 />
               </div>
               <div class="my-2 py-2">
-                <span class="my-2 text-2xl leading-7 text-[#3f3f40] font-univers-next-pro-bold">
+                <span class="my-2 text-lg leading-[21px] lgtext-2xl lg:leading-7 text-[#3f3f40] font-univers-next-pro-bold">
                   {card.city}
                 </span>
 
