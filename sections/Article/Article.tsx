@@ -29,7 +29,7 @@ export default function Article(
 
   return (
     <div class="flex flex-col items-center justify-center my-12 font-univers-next-pro-light w-full">
-      <div class="flex flex-col lg:flex-row justify-between max-w-[1250px] w-full mx-auto">
+      <div class="flex flex-col lg:flex-row justify-between max-w-[1250px] w-full mx-auto px-4 lg:px-0">
         <span class="w-full text-lg lg:text-[32px]">{subtitle}</span>
         <h1 class="text-lg lg:text-[32px] font-bold lg:leading-[46px] w-full">
           {title}
@@ -57,7 +57,7 @@ export default function Article(
           rootId={id}
           scroll="smooth"
           infinite
-          interval={interval && 1e3}
+          interval={interval && interval * 1e3}
         />
       </div>
 

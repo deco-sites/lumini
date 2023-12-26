@@ -1,11 +1,8 @@
-import Video from "apps/website/components/Video.tsx";
-import type { VideoWidget } from "apps/admin/widgets.ts";
-
 export interface Props {
   /**
-   * @title If you are having trouble uploading videos via the link, downloading the video may work better
+   * @title The link of the video
    */
-  link: VideoWidget;
+  link: string;
   width?: number;
   height?: number;
   description: string;
@@ -14,19 +11,19 @@ export interface Props {
 export default function SectionVideo(
   { link, width, height, description }: Props,
 ) {
+  if (!link) return null;
+
   return (
     <section class="w-full h-full flex items-center justify-center mx-auto px-4 lg:px-0">
-      <div class="max-w-[1250px] w-full h-full">
-        <Video
-          width={width || 900}
-          height={height || 773}
-          muted
-          autoPlay
-          controls
-          src={link}
+      <div class="max-w-[375px] md:max-w-[820px] lg:max-w-[1250px] w-full h-full mx-auto">
+        <iframe
+          title="vimeo-player"
           alt={description}
-          loading="lazy"
-          class="w-full h-full object-cover pt-20 pb-[60px]"
+          src={link}
+          width={width ?? 1300}
+          height={height ?? 731}
+          frameborder="0"
+          allowFullScreen={true}
         />
       </div>
     </section>
