@@ -68,6 +68,22 @@ function Searchbar({
   const hasProducts = Boolean(products.length);
   const hasTerms = Boolean(searches.length);
   const [term, setTerm] = useState("");
+  const newSuggestions = payload.value?.products?.[0]?.category;
+  const [...newTerms] = newSuggestions?.split(">") ?? [];
+
+  const filteredProducts = products?.filter((filteredItem) => {
+    if (term && filteredItem?.isVariantOf?.name) {
+      const termLowerCase = term.toLowerCase();
+      const itemNameLowerCase = filteredItem.isVariantOf.name.toLowerCase();
+      return itemNameLowerCase.includes(termLowerCase);
+    } else {
+      return true;
+    }
+  });
+
+  const productsToDisplay = filteredProducts.length > 0
+    ? filteredProducts
+    : products;
 
   useEffect(() => {
     if (displaySearchPopup.value === true) {
@@ -153,8 +169,8 @@ function Searchbar({
           !hasProducts && !hasTerms ? "hidden" : ""
         } max-w-[800px] container bg-base-100 pt-4 h-[500px] shadow-lg`}
       >
-        <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[190px_1fr] md:divide-x md:divide-slate-100 pb-1 pr-3">
-          <div class="flex flex-col gap-6">
+        <div class="gap-5 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[190px_1fr] md:divide-x md:divide-slate-100 pb-1 pr-3">
+          <div class="flex flex-col gap-3">
             <span
               role="heading"
               aria-level={3}
@@ -162,23 +178,52 @@ function Searchbar({
             >
               {searches && searches.length > 0 ? "sugestões" : "sem sugestões"}
             </span>
-            <ul id="search-suggestion" class="flex flex-col gap-4">
+
+            <span class="pl-3 font-bold text-sm">
+              {term ?? ""}
+            </span>
+
+            <ul id="first-search-suggestion" class="flex flex-col gap-1 pl-6">
+              {newTerms?.map((term) => (
+                <li>
+                  <a
+                    href={`/s?q=${term}`}
+                    class="flex gap-2 items-center text-sm hover:bg-gray/20 py-1.5"
+                    onMouseEnter={() => {
+                      setTerm(term);
+                    }}
+                  >
+                    {
+                      /* <Icon
+                      id="MagnifyingGlass"
+                      size={24}
+                      strokeWidth={1}
+                      loading="lazy"
+                    /> */
+                    }
+                    <span dangerouslySetInnerHTML={{ __html: term }} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <ul id="search-suggestion" class="flex flex-col gap-1">
               {searches.map(({ term }) => (
                 <li>
                   <a
                     href={`/s?q=${term}`}
                     class="flex gap-2 items-center text-sm hover:bg-gray/20 py-1.5 pl-3"
                     onMouseEnter={() => {
-                      setQuery(term);
                       setTerm(term);
                     }}
                   >
-                    <Icon
+                    {
+                      /* <Icon
                       id="MagnifyingGlass"
                       size={24}
                       strokeWidth={1}
                       loading="lazy"
-                    />
+                    /> */
+                    }
                     <span dangerouslySetInnerHTML={{ __html: term }} />
                   </a>
                 </li>
@@ -201,7 +246,7 @@ function Searchbar({
               : (
                 <>
                   <Slider class="carousel gap-3">
-                    {products?.slice(0, 3)?.map((product, index) => (
+                    {productsToDisplay?.slice(0, 3)?.map((product, index) => (
                       <Slider.Item
                         index={index}
                         class="carousel-item min-w-[160px] max-w-[160px]"
