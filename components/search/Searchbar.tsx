@@ -207,13 +207,15 @@ function Searchbar({
               ))}
             </ul>
             <ul id="search-suggestion" class="flex flex-col gap-1">
-              {searches.map(({ term }) => (
+              {searches.map(({ term: search }) => (
                 <li>
                   <a
-                    href={`/s?q=${term}`}
+                    href={`/s?q=${search}`}
                     class="flex gap-2 items-center text-sm hover:bg-gray/20 py-1.5 pl-3"
                     onMouseEnter={() => {
-                      setTerm(term);
+                      if (term && term.length > 1) {
+                        setTerm(search);
+                      }
                     }}
                   >
                     {
@@ -224,7 +226,7 @@ function Searchbar({
                       loading="lazy"
                     /> */
                     }
-                    <span dangerouslySetInnerHTML={{ __html: term }} />
+                    <span dangerouslySetInnerHTML={{ __html: search }} />
                   </a>
                 </li>
               ))}
