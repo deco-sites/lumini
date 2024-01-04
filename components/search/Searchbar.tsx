@@ -183,7 +183,10 @@ function Searchbar({
               {term ?? ""}
             </span>
 
-            <ul id="first-search-suggestion" class="flex flex-col gap-1 pl-6">
+            <ul
+              id="first-search-suggestion"
+              class="flex flex-col gap-1 pl-6 lowercase"
+            >
               {newTerms?.map((term) => (
                 <li>
                   <a
@@ -206,7 +209,7 @@ function Searchbar({
                 </li>
               ))}
             </ul>
-            <ul id="search-suggestion" class="flex flex-col gap-1">
+            <ul id="search-suggestion" class="flex flex-col gap-1 lowercase">
               {searches.map(({ term: search }) => (
                 <li>
                   <a
@@ -215,6 +218,10 @@ function Searchbar({
                     onMouseEnter={() => {
                       if (term && term.length > 1) {
                         setTerm(search);
+                      }
+
+                      if (filteredProducts.length == 0) {
+                        setQuery(search);
                       }
                     }}
                   >
